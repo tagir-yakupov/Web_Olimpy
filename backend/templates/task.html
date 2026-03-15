@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задания</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        .navbar { background: #333; padding: 15px 20px; display: flex; justify-content: space-between; }
+        .navbar a { color: white; text-decoration: none; padding: 10px 15px; border-radius: 4px; }
+        .navbar a:hover { background: #555; }
+        .container { max-width: 1000px; margin: 30px auto; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-top: 0; border-bottom: 2px solid #3498db; padding-bottom: 15px; }
+        .task-info { background: #e8f4f8; padding: 15px; border-radius: 8px; margin-bottom: 25px; color: #2c3e50; }
+        .task-card { background: #f9f9f9; padding: 25px; margin: 25px 0; border-radius: 8px; border-left: 5px solid #3498db; }
+        .task-id { color: #3498db; font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; }
+        .task-question { font-size: 16px; line-height: 1.6; color: #2c3e50; margin-bottom: 20px; white-space: pre-line; }
+
+        .code-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .code-table th, .code-table td {
+            border: 2px solid #3498db;
+            padding: 12px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .matrix-table {
+            width: auto;
+            border-collapse: collapse;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+        }
+        .matrix-table th, .matrix-table td {
+            border: 2px solid #2c3e50;
+            padding: 15px 20px;
+            text-align: center;
+            font-size: 16px;
+            min-width: 50px;
+        }
+        .matrix-table th {
+            background: #34495e;
+            color: white;
+            font-weight: bold;
+        }
+        .matrix-table td {
+            background: #ecf0f1;
+            font-weight: bold;
+        }
+
+
+        .form-group { margin-top: 15px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: bold; color: #555; }
+        .form-group input { width: 100%; padding: 12px; border: 2px solid #ddd; border-radius: 4px; font-size: 14px; transition: 0.3s; }
+        .form-group input:focus { outline: none; border-color: #3498db; }
+        .btn { display: inline-block; padding: 14px 35px; background: #27ae60; color: white; text-decoration: none; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #219a52; }
+        .btn-container { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">Главная</a>
+        <div>
+            <a href="/profile">Профиль</a>
+            <a href="/logout" style="background:#c0392b;">Выйти</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>Подготовка к ОГЭ по информатике</h1>
+
+        <div class="task-info">
+            <strong>Всего заданий: {{ tasks|length }}</strong>
+        </div>
+
+        <form method="post" action="/task/submit">
+            {% for t in tasks %}
+                <div class="task-card">
+                    <div class="task-id">Задание №{{ t.id }}</div>
+                    <div class="task-question">{{ t.question }}</div>
+
+                    {% if t.table %}
+                        {% if t.table.type == 'code' %}
+                            <table class="code-table">
+                                <thead>
+                                    <tr>
+                                        {% for header in t.table.headers %}
+                                            <th>{{ header }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for code in t.table.codes %}
+                                            <td>{{ code }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        {% elif t.table.type == 'matrix' %}
+                            <table class="matrix-table">
+                                <thead>
+                                    <tr>
+                                        {% for header in t.table.headers %}
+                                            <th>{{ header }}</th>
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for row in t.table.rows %}
+                                        <tr>
+                                            {% for cell in row %}
+                                                {% if cell == '' %}
+                                                    <td class="empty"></td>
+                                                {% else %}
+                                                    <td>{{ cell }}</td>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                    {% endif %}
+
+                    <div class="form-group">
+                        <label for="t{{ t.id }}">Ваш ответ:</label>
+                        <input type="text" id="t{{ t.id }}" name="t{{ t.id }}" required placeholder="Введите ответ">
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="btn-container">
+                <button type="submit" class="btn">Завершить тестирование</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

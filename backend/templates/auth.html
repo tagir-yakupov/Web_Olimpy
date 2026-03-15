@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page_type == 'register' %}Регистрация{% else %}Вход{% endif %}</title>
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        .navbar { background: #333; padding: 10px 20px; }
+        .navbar a { color: white; text-decoration: none; padding: 10px 15px; border-radius: 4px; }
+        .navbar a:hover { background: #555; }
+        .container { max-width: 400px; margin: 50px auto; padding: 30px; background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        h2 { margin-top: 0; color: #333; text-align: center; }
+        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
+        input[type="text"], input[type="password"] { width: 100%; padding: 12px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; }
+        input:focus { outline: none; border-color: #3498db; }
+        button { width: 100%; padding: 12px; margin-top: 20px; background: #3498db; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #2980b9; }
+        .error { background: #ffebee; color: #c62828; padding: 10px; border-radius: 4px; margin-bottom: 15px; text-align: center; }
+        .links { text-align: center; margin-top: 20px; color: #666; }
+        .links a { color: #3498db; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/">На главную страницу</a>
+    </nav>
+
+    <div class="container">
+        {% if page_type == 'register' %}
+            <h2>Регистрация</h2>
+            {% if error %}<div class="error"> {{ error }}</div>{% endif %}
+            <form method="post" action="/register">
+                <label for="reg_username">Логин</label>
+                <input type="text" id="reg_username" name="username" required placeholder="Введите логин">
+
+                <label for="reg_password">Пароль</label>
+                <input type="password" id="reg_password" name="password" required placeholder="Введите пароль">
+
+                <button type="submit">Зарегистрироваться</button>
+            </form>
+            <div class="links">Уже есть аккаунт? <a href="/login">Войти</a></div>
+        {% else %}
+            <h2>Вход</h2>
+            {% if error %}<div class="error"> {{ error }}</div>{% endif %}
+            <form method="post" action="/login">
+                <label for="login_username">Логин</label>
+                <input type="text" id="login_username" name="username" required placeholder="Введите логин">
+
+                <label for="login_password">Пароль</label>
+                <input type="password" id="login_password" name="password" required placeholder="Введите пароль">
+
+                <button type="submit">Войти</button>
+            </form>
+            <div class="links">Нет аккаунта? <a href="/register">Зарегистрироваться</a></div>
+        {% endif %}
+    </div>
+</body>
+</html>
