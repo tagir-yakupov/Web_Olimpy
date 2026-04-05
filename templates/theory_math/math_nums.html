@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Olimpy. Задание 6 ОГЭ — Числа и вычисления{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Зелёная тема для страницы с заданием 6 */
+    .topic-hero {
+        background: linear-gradient(135deg, #1e6b3b 0%, #0f4c2a 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        color: white;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #1e3a2f;
+        border-bottom: 3px solid #198754;
+        display: inline-block;
+    }
+    .formula-card, .rule-card {
+        background: white;
+        border-left: 4px solid #198754;
+        border-radius: 0.75rem;
+        transition: transform 0.2s;
+    }
+    .formula-card:hover, .rule-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .example-card {
+        background: #f8fff8;
+        border: 1px solid #d4e6d4;
+        border-radius: 0.75rem;
+    }
+    .task-block {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        overflow: hidden;
+    }
+    .task-number {
+        background: #198754;
+        color: white;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        display: inline-block;
+        border-radius: 0 0 0.5rem 0;
+    }
+    .solution-toggle {
+        cursor: pointer;
+        color: #198754;
+        font-weight: 500;
+        transition: all 0.2s;
+    }
+    .solution-toggle:hover {
+        color: #0f5c3a;
+        text-decoration: underline;
+    }
+    .solution-content {
+        background: #eaf7ea;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    .table-custom {
+        background: white;
+        border-radius: 0.75rem;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .table-custom th, .table-custom td {
+        padding: 0.75rem;
+        vertical-align: middle;
+        border-color: #d4e6d4;
+    }
+    .table-custom th {
+        background: #eaf7ea;
+        color: #1e3a2f;
+    }
+    .badge-green {
+        background-color: #198754;
+        color: white;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+    }
+    .btn-outline-success-custom {
+        color: #198754;
+        border-color: #198754;
+    }
+    .btn-outline-success-custom:hover {
+        background-color: #198754;
+        color: white;
+    }
+    .math {
+        font-family: monospace;
+        font-size: 1.1rem;
+    }
+    .properties-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+    }
+    .prop-card {
+        background: white;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        border-left: 3px solid #198754;
+    }
+    .prop-card .formula {
+        font-weight: bold;
+        color: #198754;
+        font-size: 1.1rem;
+    }
+    hr {
+        background-color: #d4e6d4;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Задание №6 ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-calculator-fill me-1"></i> Числа и вычисления</span>
+            </div>
+            <h1 class="display-5 fw-bold">Числа и вычисления</h1>
+            <p class="lead mt-3">Действия с обыкновенными и десятичными дробями. Степени. Сравнение чисел. Полный разбор задания №6 из ОГЭ по математике с примерами и пояснениями.</p>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-123" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Задача 1 -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №1</div>
+        <span class="badge-green"><i class="bi bi-clock me-1"></i> Тип: дроби</span>
+    </div>
+    <p class="fs-5 fw-semibold">Найдите значение выражения \(\displaystyle \frac{0,8}{1-\frac{1}{9}}.\)</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol1')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol1" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Вспоминаем, что при вычитании дробей нужно привести их к общему знаменателю, а при делении дробей первую умножаем на перевёрнутую вторую.</p>
+        <p>Посчитаем знаменатель: \(1-\displaystyle \frac{1}{9}=\frac{9}{9}-\frac{1}{9}=\frac{8}{9}.\)</p>
+        <p>Получим: \(\displaystyle \frac{0,8}{1-\frac{1}{9}}=\displaystyle \frac{8}{10}:\frac{8}{9}=\displaystyle \frac{8}{10}\cdot \frac{9}{8}=\frac{9}{10}=0,9.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 0,9</p>
+    </div>
+</div>
+
+<!-- Задача 2 (соответствие дробей) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №2</div>
+        <span class="badge-green"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Тип: соответствие</span>
+    </div>
+    <p>Соотнесите обыкновенные дроби с равными им десятичными дробями.</p>
+    <div class="table-responsive">
+        <table class="table table-custom w-auto mx-auto">
+            <thead>
+                <tr>
+                    <th>А. \(\frac{5}{8}\)</th><th>Б. \(\frac{3}{25}\)</th><th>В. \(\frac{1}{2}\)</th><th>Г. \(\frac{1}{50}\)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1) 0,5</td><td>2) 0,02</td><td>3) 0,12</td><td>4) 0,625</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p>Запишите в ответ цифры, расположив их в порядке, соответствующем буквам А→Б→В→Г.</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol2')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol2" class="solution-content d-none">
+        <p><strong>Решение (способ 1 — деление в столбик):</strong></p>
+        <div class="row">
+            <div class="col-md-6">
+                <p>\(\frac{5}{8} = 5 \div 8 = 0,625\) → <strong>4</strong></p>
+                <p>\(\frac{3}{25} = 3 \div 25 = 0,12\) → <strong>3</strong></p>
+                <p>\(\frac{1}{2} = 0,5\) → <strong>1</strong></p>
+                <p>\(\frac{1}{50} = 0,02\) → <strong>2</strong></p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Способ 2 — приведение к знаменателю 10,100,1000:</strong></p>
+                <p>\(\frac{5}{8}=\frac{625}{1000}=0,625\)</p>
+                <p>\(\frac{3}{25}=\frac{12}{100}=0,12\)</p>
+                <p>\(\frac{1}{2}=\frac{5}{10}=0,5\)</p>
+                <p>\(\frac{1}{50}=\frac{2}{100}=0,02\)</p>
+            </div>
+        </div>
+        <table class="table table-custom w-auto mt-3">
+            <tr><th>А</th><th>Б</th><th>В</th><th>Г</th></tr>
+            <tr><td>4</td><td>3</td><td>1</td><td>2</td></tr>
+        </table>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 4312</p>
+        <div class="alert alert-success-custom mt-2 p-2 rounded">
+            <i class="bi bi-lightbulb-fill me-1"></i> <strong>Замечание:</strong> Можно также преобразовывать десятичные дроби в обыкновенные — результат будет тот же.
+        </div>
+    </div>
+</div>
+
+<!-- Свойства степеней (справочный блок) -->
+<div class="mb-5">
+    <h2 class="section-title"><i class="bi bi-plus-slash-minus me-2 text-success"></i>Свойства степеней (справочник)</h2>
+    <div class="properties-grid">
+        <div class="prop-card"><span class="formula">\(a^0 = 1\)</span><br><small class="text-secondary">(при \(a \neq 0\))</small></div>
+        <div class="prop-card"><span class="formula">\(a^n \cdot a^m = a^{n+m}\)</span><br><small>При умножении степени складываются</small></div>
+        <div class="prop-card"><span class="formula">\(\frac{a^n}{a^m} = a^{n-m}\)</span><br><small>При делении степени вычитаются</small></div>
+        <div class="prop-card"><span class="formula">\((a^n)^m = a^{n \cdot m}\)</span><br><small>Степень в степени — перемножение</small></div>
+        <div class="prop-card"><span class="formula">\(a^{-n} = \frac{1}{a^n}\)</span><br><small>Отрицательный показатель — обратная дробь</small></div>
+        <div class="prop-card"><span class="formula">\((a \cdot b)^n = a^n \cdot b^n\)</span><br><small>Степень произведения</small></div>
+        <div class="prop-card"><span class="formula">\(\left(\frac{a}{b}\right)^n = \frac{a^n}{b^n}\)</span><br><small>Степень дроби</small></div>
+        <div class="prop-card"><span class="formula">\(\left(\frac{a}{b}\right)^{-n} = \left(\frac{b}{a}\right)^n\)</span><br><small>Отрицательная степень дроби — переворот</small></div>
+    </div>
+</div>
+
+<!-- Задача 3 -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №3</div>
+        <span class="badge-green"><i class="bi bi-plus-slash-minus me-1"></i> Тип: степени</span>
+    </div>
+    <p class="fs-5 fw-semibold">Найдите значение выражения \({(16\cdot 10^{-2})}^2 \cdot (13\cdot 10^4).\)</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol3')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol3" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Используем свойства степеней:</p>
+        <p>\({(16\cdot 10^{-2})}^2 \cdot (13\cdot 10^4) = 16^2 \cdot (10^{-2})^2 \cdot 13 \cdot 10^4\)</p>
+        <p>\(= 256 \cdot 13 \cdot 10^{-4} \cdot 10^4 = 256 \cdot 13 \cdot 10^{0} = 3328 \cdot 1 = 3328.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 3328</p>
+    </div>
+</div>
+
+<!-- Задача 4 -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №4</div>
+        <span class="badge-green"><i class="bi bi-plus-slash-minus me-1"></i> Тип: степени + сложение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Найдите значение выражения \(5\cdot 10^{-1} + 6\cdot 10^{-2} + 4\cdot 10^{-4}.\)</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol4')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol4" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>\(5\cdot 10^{-1} = 5 \cdot 0,1 = 0,5\)</p>
+        <p>\(6\cdot 10^{-2} = 6 \cdot 0,01 = 0,06\)</p>
+        <p>\(4\cdot 10^{-4} = 4 \cdot 0,0001 = 0,0004\)</p>
+        <p>Суммируем: \(0,5 + 0,06 + 0,0004 = 0,5604\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 0,5604</p>
+    </div>
+</div>
+
+<!-- Задача 5 -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №5</div>
+        <span class="badge-green"><i class="bi bi-plus-slash-minus me-1"></i> Тип: степени с одинаковым основанием</span>
+    </div>
+    <p class="fs-5 fw-semibold">Найдите значение выражения \(\displaystyle \frac{3^8 \cdot 3^5}{3^9}.\)</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol5')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol5" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>\(\displaystyle \frac{3^8 \cdot 3^5}{3^9} = \frac{3^{8+5}}{3^9} = \frac{3^{13}}{3^9} = 3^{13-9} = 3^4 = 81.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 81</p>
+    </div>
+</div>
+
+<!-- Кнопка возврата ко всем темам -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/math" class="btn btn-outline-success-custom rounded-pill"><i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам</a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}

@@ -1,8 +1,8 @@
 import os
 import sys
 from flask import Flask, session, redirect, url_for, request, render_template
-from backend.registry import auth_bp, load_users, save_users
-from backend.parse1 import load_tasks, load_math_oge
+from registry import auth_bp, load_users, save_users
+from parse1 import load_tasks, load_math_oge
 import atexit
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -44,6 +44,29 @@ def task_info():
         return redirect(url_for('auth.login'))
     return render_template('task.html', tasks=tasks_info, subject='Информатика')
 
+@app.route('/theory/oge/math')
+def open_math_theory():
+    return render_template('math_th_main.html')
+
+@app.route('/theory/oge/math/numbers_and_calculations')
+def numbers_and_calculations():
+    return render_template('theory_math/math_nums.html')
+
+@app.route('/theory/oge/math/equalizations')
+def equalizations():
+    return render_template('theory_math/math_eq.html')
+
+@app.route('/theory/oge/math/plots')
+def plots():
+    return render_template('theory_math/math_plots.html')
+
+@app.route('/theory/oge/math/geometry')
+def geometry():
+    return render_template('theory_math/math_geometry.html')
+
+@app.route('/theory/oge/math/problems')
+def problems():
+    return render_template('theory_math/math_problems.html')
 
 @app.route('/task/math')
 def task_math():
