@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+
+
+
+                <strong>Это личный кабинет. Здесь вы можете посмотреть свою успеваемость</strong>
+
+                <div class="row text-center mb-4">
+                    <div class="col-6 border-end">
+                        <div class="h4 text-success mb-0">4</div>
+                        <small>Решено заданий</small>
+                    </div>
+                    <div class="col-6">
+                        <div class="h4 text-success mb-0">25%</div>
+                        <small class="text-muted">Процент верно решенных задач</small>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="d-grid gap-2">
+                    <a href="/task" class="btn btn-success btn-lg">
+                        Решать задачи из ОГЭ по информатике
+                    </a>
+                    <a href="/task/math" class="btn btn-success btn-lg">
+                        Решать задачи из ОГЭ по математике
+                    </a>
+                    <a href="/" class="btn btn-success btn-lg">
+                        Перейти на главную страницу
+                    </a>
+                </div>
+
+
+{% endblock %}
