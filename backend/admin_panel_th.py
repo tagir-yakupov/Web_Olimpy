@@ -11,7 +11,7 @@ conf_th = Blueprint('conf', __name__, url_prefix='/theory/oge')
 def conf():
     if session.get('user_name') != 'admin':
         flash('Доступ запрещен!', 'error')
-        return redirect(url_for('index'))
+        return redirect(url_for('main'))
     
     if request.method == 'POST':
         task_condition = request.form.get('task_condition')
