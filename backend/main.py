@@ -13,6 +13,7 @@ sys.path.insert(0, ROOT_DIR)
 from backend.registry import auth_bp
 from backend.math_info import math_th_bp
 from backend.admin_panel_th import conf_th
+from backend.admin_panel_pb import conf_pb
 from backend.parse1 import load_tasks, load_math_oge
 from backend.database.db_session import global_init, create_session
 from backend.database.models import UserModel
@@ -34,6 +35,7 @@ app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
 app.register_blueprint(auth_bp)
 app.register_blueprint(math_th_bp)  # ← Регистрируем теорию по математике
 app.register_blueprint(conf_th)
+app.register_blueprint(conf_pb)
 
 # Загружаем задания
 tasks_info = load_tasks()

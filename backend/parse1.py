@@ -5,7 +5,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 def load_tasks():
     """Загружает задания по информатике из data/task.json"""
-    path = os.path.join(ROOT_DIR, 'data', 'task.json')
+    path = os.path.join(ROOT_DIR, 'data', 'task_inf_oge.json')
     try:
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)

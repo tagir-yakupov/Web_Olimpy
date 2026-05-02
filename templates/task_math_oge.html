@@ -83,6 +83,18 @@
         font-size: 0.9rem;
         margin: 0;
     }
+    
+    /* Стили для LaTeX формул */
+    .latex-formula {
+        font-size: 1.1rem;
+        margin: 10px 0;
+    }
+    
+    .task-text {
+        white-space: pre-line;
+        color: #3d5a3d;
+        line-height: 1.6;
+    }
 </style>
 {% endblock %}
 
@@ -106,9 +118,9 @@
                         <strong>Задание №{{ t.id }}</strong>
                     </div>
                     <div class="card-body">
-                        <p class="card-text mb-3" style="white-space: pre-line; color: #3d5a3d;">
-                            {{ t.question }}
-                        </p>
+                        <div class="task-text mb-3" id="question-{{ t.id }}">
+                            {{ t.question | safe }}
+                        </div>
                         {% if t.image %}
                         <div class="text-center mb-3">
                             <img src="{{ t.image }}"
@@ -148,4 +160,41 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+        
+        renderLatexInQuestions();
+    });
+    
+    function renderLatexInQuestions() {
+        const questions = document.querySelectorAll('.task-text');
+        
+        questions.forEach(function(question) {
+            let html = question.innerHTML;
+            
+            html = html.replace(/\$\$([^$]+)\$\$/g, '\\[ $1 \\]');
+            html = html.replace(/\$([^$]+)\$/g, '\\( $1 \\)');
+            
+            question.innerHTML = html;
+        });
+        
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+
+    function refreshLatex() {
+        if (window.MathJax) {
+            MathJax.typesetPromise();
+        }
+    }
+</script>
 {% endblock %}
