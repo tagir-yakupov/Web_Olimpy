@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Вариант: {{ subject }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: #f5f7f5; }
+    .navbar { background-color: #2d4a2d !important; }
+    .card { border: none; box-shadow: 0 2px 8px rgba(45, 74, 45, 0.1); }
+    .card-header {
+        background-color: #e8f0e8;
+        border-bottom: 2px solid #c5d5c5;
+        color: #2d4a2d;
+    }
+    .task-card {
+        border-left: 4px solid #5a8f5a;
+        background-color: #fafcf9;
+    }
+    .difficulty-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 2rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    .difficulty-1 { background: #d4edda; color: #155724; }
+    .difficulty-2 { background: #fff3cd; color: #856404; }
+    .difficulty-3 { background: #f8d7da; color: #721c24; }
+    .topic-tag {
+        background: #e8f4e8;
+        color: #2d4a2d;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+    .variant-stats {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+    .stat-item {
+        text-align: center;
+        padding: 0.5rem;
+    }
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #5a8f5a;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Персональный вариант: {{ subject }}</h4>
+            <span class="badge bg-light text-success">{{ tasks|length }} заданий</span>
+        </div>
+
+        <div class="card-body">
+            <!-- Статистика варианта -->
+            <div class="variant-stats">
+                <div class="row text-center">
+                    <div class="col-3 stat-item">
+                        <div class="stat-value">{{ stats.total }}</div>
+                        <small class="text-muted">Всего</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-success">{{ stats.by_difficulty[1] or 0 }}</div>
+                        <small class="text-muted">Лёгких задач</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-warning">{{ stats.by_difficulty[2] or 0 }}</div>
+                        <small class="text-muted">Средних задач</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-danger">{{ stats.by_difficulty[3] or 0 }}</div>
+                        <small class="text-muted">Сложных задач</small>
+                    </div>
+                </div>
+                <div class="text-center mt-2">
+                    <small class="text-muted">⏱Примерное время выполнения: {{ (stats.estimated_time / 60)|round }} мин</small>
+                </div>
+            </div>
+
+            <form method="post" action="/generate/variant/submit">
+                <input type="hidden" name="subject_param" value="{{ 'informatics' if subject == 'Информатика' else 'math' }}">
+
+                {% for t in tasks %}
+                <div class="card task-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Задание №{{ t.id }}</strong>
+                            {% if t.topic %}
+                            <span class="topic-tag ms-2">{{ t.topic }}</span>
+                            {% endif %}
+                        </div>
+                        <span class="difficulty-badge difficulty-{{ t.difficulty }}">
+                            {{ ['🟢', '🟡', '🔴'][t.difficulty-1] }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-3" style="white-space: pre-line;">{{ t.question }}</p>
+
+                        {% if t.image %}
+                        <div class="text-center mb-3">
+                            <img src="{{ t.image }}" class="img-fluid rounded" style="max-height: 300px;">
+                        </div>
+                        {% endif %}
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ваш ответ:</label>
+                            <input type="text" class="form-control" name="t{{ t.id }}" required placeholder="Введите ответ">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg px-5">
+                        Завершить
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

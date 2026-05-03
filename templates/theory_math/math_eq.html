@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+
+{% block title %}Olimpy. Задание 9 ОГЭ — Уравнения и неравенства{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Зелёная тема для страницы с заданием 9 */
+    .topic-hero {
+        background: linear-gradient(135deg, #1e6b3b 0%, #0f4c2a 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        color: white;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #1e3a2f;
+        border-bottom: 3px solid #198754;
+        display: inline-block;
+    }
+    .task-block {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+    .task-block:hover {
+        transform: translateY(-2px);
+    }
+    .task-number {
+        background: #198754;
+        color: white;
+        padding: 0.5rem 1.2rem;
+        font-weight: bold;
+        display: inline-block;
+        border-radius: 0 0 0.75rem 0;
+    }
+    .badge-type {
+        background-color: #eaf7ea;
+        color: #1e6b3b;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .solution-toggle {
+        cursor: pointer;
+        color: #198754;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+    .solution-toggle:hover {
+        color: #0f5c3a;
+        text-decoration: underline;
+    }
+    .solution-content {
+        background: #eaf7ea;
+        border-radius: 0.75rem;
+        padding: 1.2rem;
+        margin-top: 1rem;
+    }
+    .btn-outline-success-custom {
+        color: #198754;
+        border-color: #198754;
+    }
+    .btn-outline-success-custom:hover {
+        background-color: #198754;
+        color: white;
+    }
+    .figure-caption {
+        font-size: 0.85rem;
+        color: #6c757d;
+        text-align: center;
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Задание №9 ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-diagram-3 me-1"></i> Уравнения и неравенства</span>
+            </div>
+            <h1 class="display-5 fw-bold">Уравнения и неравенства</h1>
+            <p class="lead mt-3">Линейные и квадратные уравнения, системы уравнений, системы неравенств. Полный разбор задания №9 из ОГЭ по математике с примерами и пояснениями.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"><i class="bi bi-check-circle-fill me-1"></i> 6 типов заданий</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Все методы решения</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-diagram-3" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Задача 1: Линейное уравнение -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №1</div>
+        <span class="badge-type"><i class="bi bi-plus-slash-minus me-1"></i> Линейное уравнение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Решите уравнение: \(-x-4+5\left(x+3\right)=5\left(-1-x\right)-2\).</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol1')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol1" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Уравнение линейное. Раскрываем скобки, приводим подобные слагаемые, все «иксы» переносим в левую часть равенства, всё без «иксов» – вправо:</p>
+        <p>\(-x-4+5x+15 = -5-5x-2\)</p>
+        <p>\(4x+11 = -5x-7\)</p>
+        <p>\(4x+5x = -11-7\)</p>
+        <p>\(9x = -18 \Rightarrow x = -2\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(-2\)</p>
+    </div>
+</div>
+
+<!-- Задача 2: Квадратное уравнение -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №2</div>
+        <span class="badge-type"><i class="bi bi-calculator-fill me-1"></i> Квадратное уравнение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Решите уравнение: \(\displaystyle\frac{5}{4}x^2+7x+9=0\). Если корней несколько, запишите их в ответ без пробелов в порядке возрастания.</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol2')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol2" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Уравнение квадратное: \(a=\frac{5}{4},\; b=7,\; c=9\).</p>
+        <p>Вычисляем дискриминант: \(D = b^2 - 4ac = 7^2 - 4\cdot\frac{5}{4}\cdot9 = 49 - 45 = 4\).</p>
+        <p>Корни: \(x_{1,2} = \frac{-b \pm \sqrt{D}}{2a} = \frac{-7 \pm 2}{2\cdot\frac{5}{4}} = \frac{-7 \pm 2}{\frac{5}{2}} = (-7 \pm 2)\cdot\frac{2}{5}\)</p>
+        <p>\(x_1 = (-7-2)\cdot\frac{2}{5} = -9\cdot0,4 = -3,6\)</p>
+        <p>\(x_2 = (-7+2)\cdot\frac{2}{5} = -5\cdot0,4 = -2\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(-3,6-2\)</p>
+    </div>
+</div>
+
+<!-- Задача 3: Уравнение с произведением, равным нулю -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №3</div>
+        <span class="badge-type"><i class="bi bi-box-seam me-1"></i> Произведение = 0</span>
+    </div>
+    <p class="fs-5 fw-semibold">Решите уравнение: \((-4x-3)(x-3)=0\). Если уравнение имеет более одного корня, в ответ запишите меньший из корней.</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol3')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol3" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Произведение равно нулю, когда хотя бы один из множителей равен нулю:</p>
+        <p>\(-4x-3 = 0 \Rightarrow x = -\frac{3}{4} = -0,75\)</p>
+        <p>или \(x-3 = 0 \Rightarrow x = 3\)</p>
+        <p>Меньший из корней: \(-0,75\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(-0,75\)</p>
+    </div>
+</div>
+
+<!-- Задача 4: Система уравнений -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №4</div>
+        <span class="badge-type"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Система уравнений</span>
+    </div>
+    <p class="fs-5 fw-semibold">Решите систему уравнений: \(\left\{ \begin{array}{c} 3x+2y=8 \\ 4x-y=7 \end{array} \right.\) В ответе запишите значение \(x+y\).</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol4')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol4" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Используем метод подстановки: из второго уравнения выражаем \(y = 4x-7\) и подставляем в первое:</p>
+        <p>\(3x + 2(4x-7) = 8\)</p>
+        <p>\(3x + 8x - 14 = 8\)</p>
+        <p>\(11x = 22 \Rightarrow x = 2\)</p>
+        <p>\(y = 4\cdot2 - 7 = 8 - 7 = 1\)</p>
+        <p>\(x + y = 2 + 1 = 3\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(3\)</p>
+    </div>
+</div>
+
+<!-- Задача 5: Графики функций (пересечение) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №5</div>
+        <span class="badge-type"><i class="bi bi-graph-up me-1"></i> Графики функций</span>
+    </div>
+    <p class="fs-5 fw-semibold">На рисунке изображены графики функций \(y=4-x^2\) и \(y=-2-x\). Вычислите ординату точки \(B\).</p>
+    <div class="text-center my-3">
+        <img src="https://ege-study.ru/wp-content/uploads/2019/11/рисунок-9-1.jpg" alt="Графики функций y=4-x² и y=-2-x" class="img-fluid rounded shadow-sm" style="max-width: 450px;">
+        <div class="figure-caption">Рис. 1 — Графики функций \(y=4-x^2\) и \(y=-2-x\)</div>
+    </div>
+    <div class="solution-toggle" onclick="toggleSolution('sol5')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol5" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Координаты точек пересечения находим из системы уравнений:</p>
+        <p>\(\left\{ \begin{array}{c} y = 4-x^2 \\ y = -2-x \end{array} \right. \Rightarrow -2-x = 4-x^2 \Rightarrow x^2 - x - 6 = 0\)</p>
+        <p>\(D = 1 + 24 = 25\), \(x_{1,2} = \frac{1 \pm 5}{2}\)</p>
+        <p>\(x_1 = -2\) (точка А), \(x_2 = 3\) — абсцисса точки \(B\)</p>
+        <p>Ордината точки \(B\): \(y = -2 - 3 = -5\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(-5\)</p>
+    </div>
+</div>
+
+<!-- Задача 6: Система неравенств -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №6</div>
+        <span class="badge-type"><i class="bi bi-bar-chart-steps me-1"></i> Система неравенств</span>
+    </div>
+    <p class="fs-5 fw-semibold">Найдите наибольшее значение \(x\), удовлетворяющее системе неравенств: \(\left\{ \begin{array}{c} 8x+16 \le 0 \\ 2-2x < 13 \end{array} \right.\)</p>
+    <div class="solution-toggle" onclick="toggleSolution('sol6')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol6" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Решаем каждое неравенство отдельно:</p>
+        <p>\(8x+16 \le 0 \Rightarrow 8x \le -16 \Rightarrow x \le -2\)</p>
+        <p>\(2-2x < 13 \Rightarrow -2x < 11 \Rightarrow x > -5,5\)</p>
+        <p>Пересечение решений: \((-5,5; -2]\)</p>
+        <p>Наибольшее значение \(x = -2\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: \(-2\)</p>
+    </div>
+</div>
+
+<!-- Только кнопка возврата ко всем темам -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/math" class="btn btn-outline-success-custom rounded-pill"><i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам</a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}

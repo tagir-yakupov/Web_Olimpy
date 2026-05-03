@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .theory-content { max-width: 900px; margin: 0 auto; }
+    .formula-box {
+        background: #e8f5e9;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        text-align: center;
+        font-size: 1.1rem;
+    }
+    .example-box {
+        background: #fff3cd;
+        border-left: 4px solid #ffc107;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 4px;
+    }
+    .venn-diagram {
+        background: #f8f9fa;
+        padding: 2rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        text-align: center;
+    }
+    .operation {
+        background: #28a745;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        display: inline-block;
+        margin: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="theory-content">
+    <h1 class="mb-4">Задание №8: Теория множеств и круги Эйлера</h1>
+
+    <!-- Основные операции -->
+    <section class="mb-5">
+        <h2>1. Основные операции с множествами</h2>
+
+        <h3>Пересечение (И, &)</h3>
+        <div class="formula-box">
+            A & B = A ∩ B
+        </div>
+        <p>Элементы, которые одновременно присутствуют и в A, и в B.</p>
+
+        <h3>Объединение (ИЛИ, |)</h3>
+        <div class="formula-box">
+            A | B = A ∪ B
+        </div>
+        <p>Все элементы из обоих множеств без повторений.</p>
+    </section>
+
+    <!-- Формулы -->
+    <section class="mb-5">
+        <h2>2. Основные формулы</h2>
+
+        <h3>Формула двух множеств:</h3>
+        <div class="formula-box">
+            A + B = A|B + A&B
+        </div>
+
+        <h3>Формула трёх множеств:</h3>
+        <div class="formula-box">
+            A + B + C + A&B&C = A|B|C + A&B + A&C + B&C
+        </div>
+
+        <h3>Формула трёх множеств с нулём:</h3>
+        <div class="formula-box">
+            Если A&C = 0, то: A + B + C = A|B|C + A&B + B&C
+        </div>
+    </section>
+
+    <!-- Пример решения -->
+    <section class="mb-5">
+        <h2>3. Пример решения задания №8</h2>
+
+        <div class="example-box">
+            <strong>Условие:</strong><br>
+            Поисковые запросы:<br>
+            • Перри & Финес = 793<br>
+            • Финес & (Перри | Изабелла) = 811<br>
+            • Перри & Изабелла & Финес = 454<br><br>
+            Найти: Финес & Изабелла = ?<br><br>
+            <strong>Решение:</strong><br>
+            1. Так как Финес есть во всех запросах, его можно вычеркнуть<br>
+            2. Задача сводится к двум множествам: Перри и Изабелла<br>
+            3. Перри = a + b = 793<br>
+            4. Перри | Изабелла = a + b + c = 811<br>
+            5. Перри & Изабелла = b = 454<br>
+            6. Изабелла = b + c<br>
+            7. Находим a: a = (a+b) - b = 793 - 454 = 339<br>
+            8. Находим b+c: b+c = (a+b+c) - a = 811 - 339 = 472<br><br>
+            <strong>Ответ: 472</strong>
+        </div>
+    </section>
+
+    <!-- Алгоритм решения -->
+    <section class="mb-5">
+        <h2>4. Алгоритм решения</h2>
+
+        <ol>
+            <li>Построить круги Эйлера</li>
+            <li>Подписать все сектора (a, b, c, d...)</li>
+            <li>Записать уравнения для каждого запроса</li>
+            <li>Решить систему уравнений</li>
+            <li>Найти искомое значение</li>
+        </ol>
+    </section>
+
+    <div class="text-center mt-4">
+        <a href="/theory" class="btn btn-outline-success">Назад к теории</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+{% block title %}Задания по {{ subject }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body { background-color: #f5f7f5; }
+    .navbar { background-color: #2d4a2d !important; }
+    .card { border: none; box-shadow: 0 2px 8px rgba(45, 74, 45, 0.1); }
+    .card-header {
+        background-color: #e8f0e8;
+        border-bottom: 2px solid #c5d5c5;
+        color: #2d4a2d;
+    }
+    .task-card {
+        border-left: 4px solid #5a8f5a;
+        background-color: #fafcf9;
+        transition: transform 0.2s;
+    }
+    .task-card:hover { transform: translateY(-2px); }
+
+    .difficulty-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 2rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    .difficulty-1 { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+    .difficulty-2 { background: #fff3cd; color: #856404; border: 1px solid #ffeaa7; }
+    .difficulty-3 { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+
+    .filter-bar {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 8px rgba(45, 74, 45, 0.08);
+    }
+    .filter-label {
+        font-size: 0.85rem;
+        color: #2d4a2d;
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+
+    .table-custom th, .table-matrix th {
+        background-color: #d4e0d4;
+        color: #2d4a2d;
+        font-weight: 600;
+        border-color: #b8c8b8;
+    }
+    .table-custom td, .table-matrix td {
+        background-color: #ffffff;
+        border-color: #e0e8e0;
+        color: #3d5a3d;
+    }
+    .table-matrix .empty { background-color: #f0f4f0; }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #5a8f5a;
+        box-shadow: 0 0 0 0.2rem rgba(90, 143, 90, 0.25);
+    }
+    .btn-success {
+        background-color: #5a8f5a;
+        border-color: #4a7a4a;
+    }
+    .btn-success:hover {
+        background-color: #4a7a4a;
+        border-color: #3d6a3d;
+    }
+    .alert-info {
+        background-color: #e8f4e8;
+        border-color: #c5d5c5;
+        color: #2d4a2d;
+    }
+
+    .topic-tag {
+        background: #e8f4e8;
+        color: #2d4a2d;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        margin-left: 0.5rem;
+    }
+
+    pre.code-block {
+        background: #f8faf8;
+        border: 1px solid #c5d5c5;
+        border-radius: 6px;
+        padding: 1rem;
+        overflow-x: auto;
+    }
+    pre.code-block code {
+        color: #2d4a2d;
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="card">
+        <!-- Заголовок -->
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h4 class="mb-0">Задания по {{ subject }} (ОГЭ)</h4>
+            <span class="badge bg-light text-success">{{ tasks|length }} из {{ all_tasks_count }} заданий</span>
+        </div>
+
+        <div class="card-body">
+            <!-- Панель фильтров -->
+            <div class="filter-bar">
+                <form method="get" class="row g-3 align-items-end">
+                    <!-- Сложность -->
+                    <div class="col-md-3">
+                        <label class="filter-label">Сложность</label>
+                        <select name="difficulty" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="">Все уровни</option>
+                            <option value="1" {{
+                            'selected' if current_difficulty == 1 else '' }}>Легко</option>
+                            <option value="2" {{
+                            'selected' if current_difficulty == 2 else '' }}>Средне</option>
+                            <option value="3" {{
+                            'selected' if current_difficulty == 3 else '' }}>Сложно</option>
+                        </select>
+                    </div>
+
+
+
+
+                    <div class="col-md-3">
+                        <label class="filter-label">Сортировать по</label>
+                        <select name="sort" class="form-select form-select-sm" onchange="this.form.submit()">
+                            <option value="id" {{
+                            'selected' if current_sort == 'id' else '' }}>По номеру</option>
+                            <option value="difficulty" {{
+                            'selected' if current_sort == 'difficulty' else '' }}>По сложности</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="{{ url_for('task_info') }}" class="btn btn-outline-secondary btn-sm w-100">
+                            ↺ Сброс
+                        </a>
+                    </div>
+                </form>
+
+                {% if current_difficulty or current_topic or current_sort != 'id' %}
+                <div class="mt-3 pt-2 border-top">
+                    <small class="text-muted">Активные фильтры:</small>
+                    {% if current_difficulty %}
+                    <span class="badge bg-secondary ms-1">
+                            Сложность: {{ ['Легко', 'Средне', 'Сложно'][current_difficulty-1] }}
+                            <a href="{{ url_for('task_info', difficulty=None, topic=current_topic, sort=current_sort) }}"
+                               class="text-white ms-1 text-decoration-none">×</a>
+                        </span>
+                    {% endif %}
+                    {% if current_topic %}
+                    <span class="badge bg-secondary ms-1">
+                            Тема: {{ current_topic }}
+                            <a href="{{ url_for('task_info', difficulty=current_difficulty, topic=None, sort=current_sort) }}"
+                               class="text-white ms-1 text-decoration-none">×</a>
+                        </span>
+                    {% endif %}
+                    {% if current_sort != 'id' %}
+                    <span class="badge bg-secondary ms-1">
+                            Сортировка: {{ {'difficulty':'По сложности'}.get(current_sort, '') }}
+                            <a href="{{ url_for('task_info', difficulty=current_difficulty, topic=current_topic, sort='id') }}"
+                               class="text-white ms-1 text-decoration-none">×</a>
+                        </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="alert alert-info mb-4">
+                <strong>Показано:</strong> {{ tasks|length }} из {{ all_tasks_count }} заданий
+                {% if current_difficulty or current_topic %}
+                <span class="text-muted">(с учётом фильтров)</span>
+                {% endif %}
+            </div>
+
+            <form method="post" action="/task/submit">
+                <input type="hidden" name="subject" value="{{ subject }}">
+
+                {% for t in tasks %}
+                <div class="card task-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <div>
+                            <strong>Задание №{{ t.id }}</strong>
+                            {% if t.topic %}
+                            <span class="topic-tag">{{ t.topic }}</span>
+                            {% endif %}
+                        </div>
+                        <span class="difficulty-badge difficulty-{{ t.difficulty }}">
+                            {{ ['Легко', 'Средне', 'Сложно'][t.difficulty-1] }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-3" style="white-space: pre-line; color: #3d5a3d;">
+                            {{ t.question }}
+                        </p>
+
+
+                        <!-- Изображение (если есть) -->
+                        {% if t.image %}
+                        <div class="task-image">
+                            <img src="{{ t.image }}" alt="Задание {{ t.id }}"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                            <div class="alert alert-warning" style="display: none;">
+                                Изображение не загружено
+                            </div>
+                            {% if t.image_caption %}
+                            <div class="figure-caption">{{ t.image_caption }}</div>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+
+
+                        {% if t.code %}
+                        <pre class="code-block mb-3"><code>{{ t.code }}</code></pre>
+                        {% endif %}
+
+
+                        {% if t.table %}
+                        {% if t.table.type == 'code' %}
+                        <div class="table-responsive mb-3">
+                            <table class="table table-bordered table-custom text-center">
+                                <thead class="table-success">
+                                <tr>
+                                    {% for header in t.table.headers %}
+                                    <th>{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    {% for code in t.table.codes %}
+                                    <td class="font-monospace">{{ code }}</td>
+                                    {% endfor %}
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {% elif t.table.type == 'matrix' %}
+                        <div class="table-responsive mb-3">
+                            <table class="table table-bordered table-matrix text-center">
+                                <thead>
+                                <tr>
+                                    {% for header in t.table.headers %}
+                                    <th>{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in t.table.rows %}
+                                <tr>
+                                    {% for cell in row %}
+                                    {% if cell == '' %}
+                                    <td class="empty"></td>
+                                    {% else %}
+                                    <td>{{ cell }}</td>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+
+
+                        <div class="mb-3">
+                            <label for="t{{ t.id }}" class="form-label fw-bold">Ваш ответ:</label>
+                            <input type="text" class="form-control" id="t{{ t.id }}" name="t{{ t.id }}"
+                                   required placeholder="Введите ответ">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% if not tasks %}
+                <div class="alert alert-warning text-center">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    По выбранным фильтрам заданий не найдено.
+                    <a href="{{ url_for('task_info') }}" class="alert-link">Сбросить фильтры</a>
+                </div>
+                {% endif %}
+
+                <div class="text-center mt-4 mb-3">
+                    <button type="submit" class="btn btn-success btn-lg px-5" {% if not tasks %}disabled{% endif %}>
+                        Завершить тестирование
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
