@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ОГЭ Подготовка{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- 🔧 ИСПРАВЛЕННЫЕ СТИЛИ С КОНТРАСТНЫМ ТЕКСТОМ -->
+    <style>
+        /* ===== CSS ПЕРЕМЕННЫЕ ДЛЯ ТЕМ ===== */
+        :root[data-theme="light"] {
+            --bg-primary: #f5f7f5;
+            --bg-secondary: #ffffff;
+            --bg-tertiary: #e8f0e8;
+            --text-primary: #2d4a2d;
+            --text-secondary: #6c757d;
+            --text-muted: #6c757d;
+            --navbar-bg: #2d4a2d;
+            --navbar-text: #ffffff;
+            --card-bg: #ffffff;
+            --card-border: #c5d5c5;
+            --card-header-bg: #e8f0e8;
+            --footer-bg: #2d4a2d;
+            --footer-text: #ffffff;
+            --input-bg: #ffffff;
+            --input-border: #ced4da;
+            --input-text: #2d4a2d;
+            --table-bg: #ffffff;
+            --table-border: #e0e8e0;
+            --table-header-bg: #d4e0d4;
+            --table-text: #2d4a2d;
+            --hover-bg: #e8f0e8;
+            --alert-success-bg: #d4edda;
+            --alert-success-text: #155724;
+            --alert-danger-bg: #f8d7da;
+            --alert-danger-text: #721c24;
+            --alert-warning-bg: #fff3cd;
+            --alert-warning-text: #856404;
+            --alert-info-bg: #e8f4e8;
+            --alert-info-text: #2d4a2d;
+            --dropdown-bg: #ffffff;
+            --dropdown-text: #2d4a2d;
+            --dropdown-border: #ced4da;
+            --dropdown-hover-bg: #e8f0e8;
+            --shadow: 0 2px 8px rgba(45, 74, 45, 0.1);
+            --border-color: #c5d5c5;
+        }
+
+        :root[data-theme="dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-tertiary: #21262d;
+            --text-primary: #f0f6fc;
+            --text-secondary: ##ffffff;
+            --text-muted: #8b949e;
+            --navbar-bg: #161b22;
+            --navbar-text: #f0fcf1;
+            --card-bg: #161b22;
+            --card-border: #30363d;
+            --card-header-bg: #21262d;
+            --footer-bg: #161b22;
+            --footer-text: #8b949e;
+            --input-bg: #0d1117;
+            --input-border: #30363d;
+            --input-text: #f0f6fc;
+            --table-bg: #161b22;
+            --table-border: #30363d;
+            --table-header-bg: #21262d;
+            --table-text: #f0f6fc;
+            --hover-bg: #21262d;
+            --alert-success-bg: #1a3a2a;
+            --alert-success-text: #4ade80;
+            --alert-danger-bg: #3a1a1a;
+            --alert-danger-text: #f87171;
+            --alert-warning-bg: #3a3a1a;
+            --alert-warning-text: #fbbf24;
+            --alert-info-bg: #1a2a3a;
+            --alert-info-text: #60a5fa;
+            --dropdown-bg: #161b22;
+            --dropdown-text: #f0f6fc;
+            --dropdown-border: #30363d;
+            --dropdown-hover-bg: #21262d;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            --border-color: #30363d;
+        }
+
+        /* ===== БАЗОВЫЕ СТИЛИ ===== */
+        body {
+            background-color: var(--bg-primary) !important;
+            color: var(--text-primary) !important;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* ===== НАВИГАЦИЯ ===== */
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--navbar-text) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary) !important;
+        }
+
+        .dropdown-menu {
+            background-color: var(--dropdown-bg) !important;
+            border-color: var(--dropdown-border) !important;
+        }
+
+        .dropdown-item {
+            color: var(--dropdown-text) !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--dropdown-hover-bg) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .dropdown-divider {
+            border-top-color: var(--border-color) !important;
+        }
+
+        .dropdown-header {
+            color: var(--text-secondary) !important;
+        }
+
+        /* ===== КАРТОЧКИ ===== */
+        .card {
+            background-color: var(--card-bg) !important;
+            border: 1px solid var(--card-border) !important;
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .card-header {
+            background-color: var(--card-header-bg) !important;
+            color: var(--text-primary) !important;
+            border-bottom: 2px solid var(--card-border) !important;
+        }
+
+        .card-body {
+            color: var(--text-primary) !important;
+        }
+
+        .card-title {
+            color: var(--text-primary) !important;
+        }
+
+        .card-text {
+            color: var(--text-secondary) !important;
+        }
+
+        /* ===== ОСНОВНОЙ КОНТЕНТ ===== */
+        main {
+            flex: 1;
+            padding-top: 76px;
+        }
+
+        .container {
+            color: var(--text-primary) !important;
+        }
+
+        /* ===== ФУТЕР ===== */
+        footer {
+            background: var(--footer-bg) !important;
+            color: var(--footer-text) !important;
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.3s ease;
+        }
+
+        footer a {
+            color: var(--footer-text) !important;
+        }
+
+        /* ===== ФОРМЫ И СЕЛЕКТЫ ===== */
+        .form-control, .form-select {
+            background-color: var(--input-bg) !important;
+            border: 2px solid var(--input-border) !important;
+            color: var(--input-text) !important;
+            border-radius: 0.5rem;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: var(--input-bg) !important;
+            color: var(--input-text) !important;
+            border-color: #5a8f5a !important;
+            box-shadow: 0 0 0 0.2rem rgba(90, 143, 90, 0.25);
+        }
+
+        .form-label {
+            color: var(--text-primary) !important;
+            font-weight: 600;
+        }
+
+        .form-text {
+            color: var(--text-secondary) !important;
+        }
+
+        /* 🔧 ТАБЛИЦЫ И МАТРИЦЫ - ЗЕЛЁНЫЕ ГРАНИЦЫ */
+        .table {
+            background-color: var(--table-bg) !important;
+            color: var(--table-text) !important;
+            border: 2px solid #5a8f5a !important;
+        }
+
+        .table-bordered {
+            border: 2px solid #5a8f5a !important;
+        }
+
+        .table-bordered th, .table-bordered td {
+            border: 2px solid #5a8f5a !important;
+            background-color: var(--table-bg) !important;
+            color: var(--table-text) !important;
+        }
+
+        .table thead th {
+            background-color: var(--table-header-bg) !important;
+            color: var(--table-text) !important;
+            border: 2px solid #5a8f5a !important;
+            border-bottom: 3px solid #5a8f5a !important;
+        }
+
+        .table tbody td {
+            background-color: var(--table-bg) !important;
+            color: var(--table-text) !important;
+            border: 2px solid #5a8f5a !important;
+        }
+
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: var(--bg-tertiary) !important;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: var(--hover-bg) !important;
+        }
+
+        .table-custom th, .table-matrix th {
+            background-color: var(--table-header-bg) !important;
+            color: var(--table-text) !important;
+            font-weight: 600;
+            border: 2px solid #5a8f5a !important;
+        }
+
+        .table-custom td, .table-matrix td {
+            background-color: var(--table-bg) !important;
+            color: var(--table-text) !important;
+            border: 2px solid #5a8f5a !important;
+        }
+
+        .table-matrix .empty {
+            background-color: var(--bg-tertiary) !important;
+            border: 2px solid #5a8f5a !important;
+        }
+
+        /* 🔧 ПОЛЯ ВВОДА ОТВЕТОВ - ЗЕЛЁНЫЕ ГРАНИЦЫ */
+        .task-answer-input {
+            background-color: var(--input-bg) !important;
+            border: 2px solid #5a8f5a !important;
+            color: var(--input-text) !important;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .task-answer-input:focus {
+            border-color: #4a7a4a !important;
+            box-shadow: 0 0 0 0.25rem rgba(90, 143, 90, 0.35) !important;
+            outline: none;
+        }
+
+        /* ===== ALERTS ===== */
+        .alert {
+            border: none !important;
+        }
+
+        .alert-success {
+            background-color: var(--alert-success-bg) !important;
+            color: var(--alert-success-text) !important;
+        }
+
+        .alert-danger {
+            background-color: var(--alert-danger-bg) !important;
+            color: var(--alert-danger-text) !important;
+        }
+
+        .alert-warning {
+            background-color: var(--alert-warning-bg) !important;
+            color: var(--alert-warning-text) !important;
+        }
+
+        .alert-info {
+            background-color: var(--alert-info-bg) !important;
+            color: var(--alert-info-text) !important;
+        }
+
+        .btn-close {
+            filter: invert(var(--btn-close-filter, 0)) grayscale(100%);
+        }
+
+        [data-theme="dark"] .btn-close {
+            --btn-close-filter: 1;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn-success {
+            background-color: #5a8f5a !important;
+            border-color: #4a7a4a !important;
+            color: #ffffff !important;
+        }
+
+        .btn-success:hover {
+            background-color: #4a7a4a !important;
+            border-color: #3d6a3d !important;
+        }
+
+        .btn-outline-success {
+            color: #5a8f5a !important;
+            border: 2px solid #5a8f5a !important;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #5a8f5a !important;
+            color: #ffffff !important;
+        }
+
+        .btn-outline-secondary {
+            color: var(--text-primary) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: var(--hover-bg) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .btn-outline-light {
+            color: var(--navbar-text) !important;
+            border-color: var(--navbar-text) !important;
+        }
+
+        .btn-outline-light:hover {
+            background-color: var(--navbar-text) !important;
+            color: var(--navbar-bg) !important;
+        }
+
+        /* ===== КНОПКА ПЕРЕКЛЮЧЕНИЯ ТЕМЫ ===== */
+        .theme-toggle {
+            background: transparent;
+            border: 2px solid var(--navbar-text);
+            color: var(--navbar-text);
+            padding: 0.25rem 0.75rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .theme-toggle:hover {
+            background: var(--navbar-text);
+            color: var(--navbar-bg);
+        }
+
+        /* ===== ССЫЛКИ ===== */
+        a {
+            color: #5a8f5a;
+        }
+
+        a:hover {
+            color: #4a7a4a;
+        }
+
+        [data-theme="dark"] a {
+            color: #60a5fa;
+        }
+
+        [data-theme="dark"] a:hover {
+            color: #93c5fd;
+        }
+
+        /* ===== BADGES ===== */
+        .badge {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .badge.bg-light {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .badge.bg-success {
+            background-color: #1a3a2a !important;
+            color: #4ade80 !important;
+        }
+
+        .badge.bg-danger {
+            background-color: #3a1a1a !important;
+            color: #f87171 !important;
+        }
+
+        .badge.bg-warning {
+            background-color: #3a3a1a !important;
+            color: #fbbf24 !important;
+        }
+
+        /* ===== BORDERS ===== */
+        .border {
+            border-color: var(--border-color) !important;
+        }
+
+        .border-top {
+            border-top-color: var(--border-color) !important;
+        }
+
+        .border-bottom {
+            border-bottom-color: var(--border-color) !important;
+        }
+
+        .border-end {
+            border-right-color: var(--border-color) !important;
+        }
+
+        /* ===== TEXT COLORS ===== */
+        .text-muted {
+            color: var(--text-secondary) !important;
+        }
+
+        .text-success {
+            color: #4ade80 !important;
+        }
+
+        .text-danger {
+            color: #f87171 !important;
+        }
+
+        .text-warning {
+            color: #fbbf24 !important;
+        }
+
+        .text-info {
+            color: #60a5fa !important;
+        }
+
+        /* ===== BACKGROUND COLORS ===== */
+        .bg-light {
+            background-color: var(--bg-tertiary) !important;
+        }
+
+        /* 🔧 ГЕНЕРАТОР ВАРИАНТОВ - ТЁМНАЯ ТЕМА */
+        .generator-container, .generator-card {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .difficulty-selector, .difficulty-option {
+            background-color: var(--bg-secondary) !important;
+            border-color: var(--border-color) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .difficulty-option.selected {
+            background-color: var(--bg-tertiary) !important;
+            border-color: #5a8f5a !important;
+        }
+
+        .topic-chips, .topic-chip {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--border-color) !important;
+        }
+
+        .topic-chip.selected {
+            background-color: #5a8f5a !important;
+            color: #ffffff !important;
+            border-color: #5a8f5a !important;
+        }
+
+        .preview-card {
+            background-color: var(--bg-tertiary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .stat-badge {
+            background-color: var(--bg-secondary) !important;
+            color: var(--text-primary) !important;
+        }
+
+        .loading-overlay {
+            background-color: rgba(13, 17, 23, 0.9) !important;
+        }
+
+        /* 🔧 ТЕОРИЯ ПО ИНФОРМАТИКЕ - УЛУЧШЕННЫЙ ТЕКСТ */
+        .theory-content h1, .theory-content h2, .theory-content h3,
+        .theory-content h4, .theory-content h5, .theory-content h6 {
+            color: var(--text-primary) !important;
+            font-weight: 700 !important;
+        }
+
+        .theory-content p, .theory-content li, .theory-content td {
+            color: var(--text-primary) !important;
+            font-size: 1.05rem !important;
+            line-height: 1.7 !important;
+        }
+
+        .theory-content strong, .theory-content b {
+            color: var(--text-primary) !important;
+            font-weight: 700 !important;
+        }
+
+        .formula-box, .example-box, .code-block {
+            background-color: var(--bg-tertiary) !important;
+            border-left: 4px solid #5a8f5a !important;
+            color: var(--text-primary) !important;
+            padding: 1.5rem !important;
+            border-radius: 0.5rem !important;
+        }
+
+        .formula-box code, .example-box code {
+            background-color: var(--bg-secondary) !important;
+            color: #4ade80 !important;
+            padding: 0.2rem 0.4rem !important;
+            border-radius: 0.25rem !important;
+            font-weight: 600 !important;
+        }
+
+        .operator-table th, .operator-table td {
+            background-color: var(--table-bg) !important;
+            color: var(--text-primary) !important;
+            border-color: var(--table-border) !important;
+            font-weight: 600 !important;
+        }
+
+        .operator-table th {
+            background-color: var(--table-header-bg) !important;
+        }
+
+        /* ===== SCROLLBAR (Webkit) ===== */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-secondary);
+        }
+
+        /* ===== SELECTION ===== */
+        ::selection {
+            background-color: #5a8f5a;
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] ::selection {
+            background-color: #4a7a4a;
+            color: #f0f6fc;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 991px) {
+            main {
+                padding-top: 120px;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- 🔧 НАВИГАЦИЯ С КНОПКОЙ ТЕМЫ -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="bi bi-mortarboard-fill me-2"></i>ОГЭ Подготовка
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    {% if session.get('user_name') %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/task">
+                                <i class="bi bi-journal-text me-1"></i>Информатика
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/task/math">
+                                <i class="bi bi-calculator me-1"></i>Математика
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                                <i class="bi bi-book me-1"></i>Теория
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><h6 class="dropdown-header">Информатика</h6></li>
+                                <li><a class="dropdown-item" href="/theory_inf/task6">Задание №6</a></li>
+                                <li><a class="dropdown-item" href="/theory_inf/task7">Задание №7</a></li>
+                                <li><a class="dropdown-item" href="/theory_inf/task8">Задание №8</a></li>
+                                <li><a class="dropdown-item" href="/theory_inf/libreoffice">LibreOffice</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><h6 class="dropdown-header">Математика</h6></li>
+                                <li><a class="dropdown-item" href="/theory/oge/math">📐 Оглавление</a></li>
+                                <li><a class="dropdown-item" href="/theory/oge/math/equalizations">Уравнения</a></li>
+                                <li><a class="dropdown-item" href="/theory/oge/math/plots">Графики</a></li>
+                                <li><a class="dropdown-item" href="/theory/oge/math/geometry">Геометрия</a></li>
+                                <li><a class="dropdown-item" href="/theory/oge/math/problems">Задачи</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/generate">
+                                <i class="bi bi-shuffle me-1"></i>Варианты
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/profile">
+                                <i class="bi bi-person-circle me-1"></i>{{ session['user_name'] }}
+                            </a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <button class="theme-toggle" id="themeToggle" title="Сменить тему">
+                                <i class="bi bi-moon-fill" id="themeIcon"></i>
+                                <span id="themeText">Тёмная</span>
+                            </button>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-outline-light btn-sm" href="/logout">
+                                <i class="bi bi-box-arrow-right me-1"></i>Выйти
+                            </a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">
+                                <i class="bi bi-box-arrow-in-right me-1"></i>Войти
+                            </a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <a class="btn btn-success btn-sm" href="/register">
+                                <i class="bi bi-person-plus me-1"></i>Регистрация
+                            </a>
+                        </li>
+                        <li class="nav-item ms-2">
+                            <button class="theme-toggle" id="themeToggle" title="Сменить тему">
+                                <i class="bi bi-moon-fill" id="themeIcon"></i>
+                                <span id="themeText">Тёмная</span>
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="py-4">
+        <div class="container">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0 small">2026 ОГЭ Подготовка</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- 🔧 СКРИПТ ПЕРЕКЛЮЧЕНИЯ ТЕМЫ -->
+    <script>
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            if (newTheme === 'dark') {
+                themeIcon.className = 'bi bi-sun-fill';
+                themeText.textContent = 'Светлая';
+            } else {
+                themeIcon.className = 'bi bi-moon-fill';
+                themeText.textContent = 'Тёмная';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const html = document.documentElement;
+            const themeIcon = document.getElementById('themeIcon');
+            const themeText = document.getElementById('themeText');
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', savedTheme);
+
+            if (savedTheme === 'dark') {
+                themeIcon.className = 'bi bi-sun-fill';
+                themeText.textContent = 'Светлая';
+            } else {
+                themeIcon.className = 'bi bi-moon-fill';
+                themeText.textContent = 'Тёмная';
+            }
+
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', toggleTheme);
+            }
+        });
+    </script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

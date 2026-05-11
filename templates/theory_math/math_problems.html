@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+
+{% block title %}Olimpy. Текстовые задачи на движение и работу — ОГЭ математика{% endblock %}
+
+{% block extra_css %}
+<style>
+    .topic-hero {
+        background: linear-gradient(135deg, #1e6b3b 0%, #0f4c2a 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        color: white;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #1e3a2f;
+        border-bottom: 3px solid #198754;
+        display: inline-block;
+    }
+    .task-block {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+    .task-block:hover {
+        transform: translateY(-2px);
+    }
+    .task-number {
+        background: #198754;
+        color: white;
+        padding: 0.5rem 1.2rem;
+        font-weight: bold;
+        display: inline-block;
+        border-radius: 0 0 0.75rem 0;
+    }
+    .badge-type {
+        background-color: #eaf7ea;
+        color: #1e6b3b;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .solution-toggle {
+        cursor: pointer;
+        color: #198754;
+        font-weight: 500;
+        transition: all 0.2s;
+        display: inline-block;
+        margin-top: 0.5rem;
+    }
+    .solution-toggle:hover {
+        color: #0f5c3a;
+        text-decoration: underline;
+    }
+    .solution-content {
+        background: #eaf7ea;
+        border-radius: 0.75rem;
+        padding: 1.2rem;
+        margin-top: 1rem;
+    }
+    .btn-outline-success-custom {
+        color: #198754;
+        border-color: #198754;
+    }
+    .btn-outline-success-custom:hover {
+        background-color: #198754;
+        color: white;
+    }
+    .figure-caption {
+        font-size: 0.85rem;
+        color: #6c757d;
+        text-align: center;
+        margin-top: 0.5rem;
+    }
+    .task-image {
+        text-align: center;
+        margin: 1rem 0;
+    }
+    .task-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    table {
+        margin: 1rem auto;
+        border-collapse: collapse;
+        width: auto;
+        background: white;
+    }
+    th, td {
+        border: 1px solid #d4e6d4;
+        padding: 8px 12px;
+        text-align: center;
+    }
+    th {
+        background-color: #eaf7ea;
+        color: #1e3a2f;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Текстовые задачи</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-calculator-fill me-1"></i> Движение и работа</span>
+            </div>
+            <h1 class="display-5 fw-bold">Текстовые задачи на движение и работу</h1>
+            <p class="lead mt-3">Квадратные уравнения и подбор целого корня. Решение задач на движение по дороге и по воде, на совместную работу.</p>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-bar-chart-steps" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== ТЕКСТОВЫЕ ЗАДАЧИ НА ДВИЖЕНИЕ ==================== -->
+
+<h2 class="section-title mt-4"><i class="bi bi-car-front-fill me-2 text-success"></i>Задачи на движение</h2>
+
+<div class="task-image">
+    <img src="https://ege-study.ru/wp-content/uploads/2023/01/photo1673026774.jpeg" alt="Алгоритм решения задач на движение">
+    <div class="figure-caption">Алгоритм решения задач на движение</div>
+</div>
+
+<!-- Задача 1 (движение) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №1</div>
+        <span class="badge-type"><i class="bi bi-car-front-fill me-1"></i> Движение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Из пункта А в пункт В, расстояние между которыми 50 км, одновременно выехали автомобилист и велосипедист. Известно, что в час автомобилист проезжает на 40 км больше, чем велосипедист. Определите скорость велосипедиста, если известно, что он прибыл в пункт В на 4 часа позже автомобилиста. Ответ дайте в км/ч.</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_move1')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_move1" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Что обозначить за \(x\)? Очевидно, скорость велосипедиста – ведь ее и надо найти. Автомобилист проезжает на 40 километров в час больше. Значит, скорость автомобилиста равна \(x+40\).</p>
+        <p>Нарисуем таблицу.</p>
+        <table>
+            <thead>
+                <tr><th></th><th>\(v\)</th><th>\(t\)</th><th>\(S\)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>велосипедист</td><td>\(x\)</td><td>\(\frac{50}{x}\)</td><td>50</td></tr>
+                <tr><td>автомобилист</td><td>\(x+40\)</td><td>\(\frac{50}{x+40}\)</td><td>50</td></tr>
+            </tbody>
+        </table>
+        <p>Остается записать, что велосипедист прибыл в конечный пункт на 4 часа позже автомобилиста. Позже – значит, времени он затратил больше.</p>
+        <p>Это значит, что \(t_1\) на четыре больше, чем \(t_2\), то есть \(t_2+4=t_1\).</p>
+        <p>\[ \frac{50}{x+40}+4=\frac{50}{x} \]</p>
+        <p>Смотрите, как легко решается это уравнение: \(\frac{50}{x+40}-\frac{50}{x}=4.\)</p>
+        <p>В левой части уравнения приводим дроби к одному знаменателю. Правую часть пока не трогаем. Общий знаменатель равен \(x(x+40)\).</p>
+        <p>\[ \frac{50(x+40)-50x}{x(x+40)}=4 \]</p>
+        <p>\[ \frac{50x+2000-50x}{x(x+40)}=4 \]</p>
+        <p>\[ \frac{2000}{x(x+40)}=4 \]</p>
+        <p>Разделим обе части нашего уравнения на 4: \(\frac{500}{x(x+40)}=1.\)</p>
+        <p>Умножим обе части уравнения на \(x(x+40)\): \(x(x+40)=500\)</p>
+        <p>\[ x^2+40x-500=0 \]</p>
+        <p>Найдем дискриминант \(D = 1600 + 2000 = 3600\) и корни: \(x_1=10,\ x_2=-50.\)</p>
+        <p>Ясно, что \(x_2\) не подходит по смыслу задачи, так как скорость велосипедиста не может быть отрицательной.</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 10</p>
+    </div>
+</div>
+
+<!-- Задача 2 (движение) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №2</div>
+        <span class="badge-type"><i class="bi bi-bicycle me-1"></i> Движение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Велосипедист выехал с постоянной скоростью из города А в город В, расстояние между которыми равно 70 км. На следующий день он отправился обратно со скоростью на 3 км/ч больше прежней. По дороге он сделал остановку на 3 часа. В результате он затратил на обратный путь столько же времени, сколько на путь из А в В. Найдите скорость велосипедиста на пути из А в В. Ответ дайте в км/ч.</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_move2')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_move2" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть скорость велосипедиста на пути из А в В равна \(x\). Тогда его скорость на обратном пути равна \(x+3\). По условию задачи, расстояние между городами А и В – 70 км.</p>
+        <table>
+            <thead><tr><th></th><th>\(v\)</th><th>\(t\)</th><th>\(S\)</th></tr></thead>
+            <tbody>
+                <tr><td>туда</td><td>\(x\)</td><td>\(\frac{70}{x}\)</td><td>70</td></tr>
+                <tr><td>обратно</td><td>\(x+3\)</td><td>\(\frac{70}{x+3}\)</td><td>70</td></tr>
+            </tbody>
+        </table>
+        <p>На обратном пути велосипедист сделал остановку на 3 часа и в результате затратил столько же времени, сколько на пути из А в В. Это значит, что на обратном пути он крутил педали на 3 часа меньше.</p>
+        <p>Значит, \(t_1\) на 3 больше: \(\frac{70}{x}-\frac{70}{x+3}=3.\)</p>
+        <p>Приводим дроби к одному знаменателю:</p>
+        <p>\[ \frac{70(x+3)-70x}{x(x+3)}=3 \]</p>
+        <p>\[ \frac{70\cdot 3}{x(x+3)}=3 \]</p>
+        <p>Делим обе части на 3: \(\frac{70}{x(x+3)}=1.\)</p>
+        <p>\[ x^2+3x-70=0 \]</p>
+        <p>Дискриминант: \(9+4\cdot70=289\). Корни: \(x_1=7,\ x_2=-10.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 7</p>
+    </div>
+</div>
+
+<!-- Задача 3 (движение по воде) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №3</div>
+        <span class="badge-type"><i class="bi bi-water me-1"></i> Движение по воде</span>
+    </div>
+    <p class="fs-5 fw-semibold">Моторная лодка прошла против течения реки 135 км и вернулась в пункт отправления, затратив на обратный путь на 6 часов меньше. Найдите скорость течения, если скорость лодки в неподвижной воде равна 12 км/ч. Ответ дайте в км/ч.</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_move3')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_move3" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Скорость течения обозначим за \(x\). Тогда по течению лодка плывет со скоростью \(12+x\), против течения — \(12-x\).</p>
+        <table>
+            <thead><tr><th></th><th>\(v\)</th><th>\(t\)</th><th>\(S\)</th></tr></thead>
+            <tbody>
+                <tr><td>Против течения</td><td>\(12-x\)</td><td>\(\frac{135}{12-x}\)</td><td>135</td></tr>
+                <tr><td>По течению</td><td>\(12+x\)</td><td>\(\frac{135}{12+x}\)</td><td>135</td></tr>
+            </tbody>
+        </table>
+        <p>Против течения лодка плыла дольше, значит:</p>
+        <p>\[ \frac{135}{12-x}-\frac{135}{12+x}=6 \]</p>
+        <p>Сократим на 3: \(\frac{45}{12-x}-\frac{45}{12+x}=2.\)</p>
+        <p>Приведем к общему знаменателю:</p>
+        <p>\[ \frac{45(12+x)-45(12-x)}{(12-x)(12+x)}=2 \]</p>
+        <p>\[ \frac{45\cdot12+45x-45\cdot12+45x}{144-x^2}=2 \]</p>
+        <p>\[ \frac{90x}{144-x^2}=2 \Rightarrow \frac{45x}{144-x^2}=1 \]</p>
+        <p>\[ 45x=144-x^2 \Rightarrow x^2+45x-144=0 \]</p>
+        <p>Дискриминант: \(45^2+4\cdot144=2025+576=2601=51^2\).</p>
+        <p>\(x=\frac{-45\pm51}{2}\). Положительный корень: \(x=3.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 3</p>
+    </div>
+</div>
+
+<!-- Задача 4 (движение) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №4</div>
+        <span class="badge-type"><i class="bi bi-ship me-1"></i> Движение</span>
+    </div>
+    <p class="fs-5 fw-semibold">Пристани A и B расположены на озере, расстояние между ними равно 234 км. Баржа отправилась с постоянной скоростью из A в B. На следующий день после прибытия она отправилась обратно со скоростью на 4 км/ч больше прежней, сделав по пути остановку на 8 часов. В результате она затратила на обратный путь столько же времени, сколько на путь из A в B. Найдите скорость баржи на пути из A в B. Ответ дайте в км/ч.</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_move4')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_move4" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть \(x\) – скорость баржи на пути из А в В.</p>
+        <table>
+            <thead><tr><th></th><th>\(v\)</th><th>\(t\)</th><th>\(S\)</th></tr></thead>
+            <tbody>
+                <tr><td>Из А в В</td><td>\(x\)</td><td>\(\frac{234}{x}\)</td><td>234</td></tr>
+                <tr><td>Из В в А</td><td>\(x+4\)</td><td>\(\frac{234}{x+4}\)</td><td>234</td></tr>
+            </tbody>
+        </table>
+        <p>Время, затраченное на путь из А в В и на обратный путь – одинаково (с учётом остановки):</p>
+        <p>\[ \frac{234}{x}=\frac{234}{x+4}+8 \]</p>
+        <p>\[ \frac{234}{x}-\frac{234}{x+4}=8 \]</p>
+        <p>Сократим на 2: \(\frac{117}{x}-\frac{117}{x+4}=4.\)</p>
+        <p>\[ \frac{117\cdot4}{x(x+4)}=4 \Rightarrow \frac{117}{x^2+4x}=1 \]</p>
+        <p>\[ x^2+4x-117=0 \]</p>
+        <p>Дискриминант: \(16+468=484=22^2\).</p>
+        <p>\(x=\frac{-4\pm22}{2}\). Положительный корень: \(x=9.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 9</p>
+    </div>
+</div>
+
+<!-- Задача 5 (движение) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №5</div>
+        <span class="badge-type"><i class="bi bi-car-front-fill me-1"></i> Движение</span>
+    </div>
+    <p class="fs-5 fw-semibold">От пристани А к пристани В, расстояние между которыми равно 192 км, отправился с постоянной скоростью первый теплоход, а через 4 часа после этого следом за ним со скоростью на 4 км/ч большей, отправился второй. Найдите скорость первого теплохода, если в пункт В оба теплохода прибыли одновременно. Ответ дайте в км/ч.</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_move5')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_move5" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть \(x\) – скорость первого теплохода, \(x+4\) – скорость второго.</p>
+        <table>
+            <thead><tr><th></th><th>\(v\)</th><th>\(t\)</th><th>\(S\)</th></tr></thead>
+            <tbody>
+                <tr><td>первый</td><td>\(x\)</td><td>\(\frac{192}{x}\)</td><td>192</td></tr>
+                <tr><td>второй</td><td>\(x+4\)</td><td>\(\frac{192}{x+4}\)</td><td>192</td></tr>
+            </tbody>
+        </table>
+        <p>Второй теплоход был в пути на 4 часа меньше, чем первый:</p>
+        <p>\[ \frac{192}{x}-\frac{192}{x+4}=4 \]</p>
+        <p>\[ \frac{48}{x}-\frac{48}{x+4}=1 \]</p>
+        <p>\[ \frac{48(x+4)-48x}{x(x+4)}=1 \]</p>
+        <p>\[ \frac{192}{x(x+4)}=1 \Rightarrow x(x+4)=192 \]</p>
+        <p>\[ x^2+4x-192=0 \]</p>
+        <p>Дискриминант: \(16+768=784=28^2\).</p>
+        <p>\(x=\frac{-4\pm28}{2}\). Положительный корень: \(x=12.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 12</p>
+    </div>
+</div>
+
+<!-- ==================== ТЕКСТОВЫЕ ЗАДАЧИ НА РАБОТУ ==================== -->
+
+<h2 class="section-title mt-5"><i class="bi bi-briefcase-fill me-2 text-success"></i>Задачи на работу</h2>
+
+<div class="task-image">
+    <img src="https://ege-study.ru/wp-content/uploads/2023/01/photo1673089062.jpeg" alt="Алгоритм решения задач на работу">
+    <div class="figure-caption">Алгоритм решения задач на работу</div>
+</div>
+
+<!-- Задача 1 (работа) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №1</div>
+        <span class="badge-type"><i class="bi bi-briefcase-fill me-1"></i> Работа</span>
+    </div>
+    <p class="fs-5 fw-semibold">На изготовление 99 деталей первый рабочий тратит на 2 часа меньше, чем второй рабочий на изготовление 110 таких же деталей. Известно, что первый рабочий за час делает на 1 деталь больше, чем второй. Сколько деталей в час делает второй рабочий?</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_work1')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_work1" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть \(x\) деталей в час – производительность второго рабочего, \(x+1\) – производительность первого.</p>
+        <table>
+            <thead><tr><th></th><th>\(p\)</th><th>\(t\)</th><th>\(A\)</th></tr></thead>
+            <tbody>
+                <tr><td>первый</td><td>\(x+1\)</td><td>\(\frac{99}{x+1}\)</td><td>99</td></tr>
+                <tr><td>второй</td><td>\(x\)</td><td>\(\frac{110}{x}\)</td><td>110</td></tr>
+            </tbody>
+        </table>
+        <p>Время, затраченное первым рабочим, на 2 часа меньше:</p>
+        <p>\[ \frac{110}{x}-\frac{99}{x+1}=2 \]</p>
+        <p>\[ \frac{110(x+1)-99x}{x(x+1)}=2 \]</p>
+        <p>\[ \frac{110x+110-99x}{x(x+1)}=2 \]</p>
+        <p>\[ \frac{11x+110}{x(x+1)}=2 \]</p>
+        <p>\[ 11x+110=2x(x+1) \]</p>
+        <p>\[ 2x^2-9x-110=0 \]</p>
+        <p>Дискриминант: \(81+880=961=31^2\).</p>
+        <p>\(x=\frac{9\pm31}{4}\). Положительный корень: \(x=10.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 10</p>
+    </div>
+</div>
+
+<!-- Задача 2 (работа) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №2</div>
+        <span class="badge-type"><i class="bi bi-briefcase-fill me-1"></i> Работа</span>
+    </div>
+    <p class="fs-5 fw-semibold">На изготовление 575 деталей первый рабочий тратит на 2 часа меньше, чем второй рабочий на изготовление 600 таких же деталей. Известно, что первый рабочий за час делает на 1 деталь больше, чем второй. Сколько деталей за час делает первый рабочий?</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_work2')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_work2" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть \(x\) – производительность первого рабочего, тогда \(x-1\) – производительность второго.</p>
+        <table>
+            <thead><tr><th></th><th>\(p\)</th><th>\(t\)</th><th>\(A\)</th></tr></thead>
+            <tbody>
+                <tr><td>1 рабочий</td><td>\(x\)</td><td>\(\frac{575}{x}\)</td><td>575</td></tr>
+                <tr><td>2 рабочий</td><td>\(x-1\)</td><td>\(\frac{600}{x-1}\)</td><td>600</td></tr>
+            </tbody>
+        </table>
+        <p>\[ \frac{600}{x-1}-\frac{575}{x}=2 \]</p>
+        <p>\[ 600x-575(x-1)=2x(x-1) \]</p>
+        <p>\[ 600x-575x+575=2x^2-2x \]</p>
+        <p>\[ 25x+575=2x^2-2x \]</p>
+        <p>\[ 2x^2-27x-575=0 \]</p>
+        <p>Дискриминант: \(729+4600=5329=73^2\).</p>
+        <p>\(x=\frac{27\pm73}{4}\). Положительный корень: \(x=25.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 25</p>
+    </div>
+</div>
+
+<!-- Задача 3 (работа) -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Задача №3</div>
+        <span class="badge-type"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Работа</span>
+    </div>
+    <p class="fs-5 fw-semibold">Плиточник должен уложить 175 м² плитки. Если он будет укладывать на 10 м² в день больше, чем запланировал, то закончит работу на 2 дня раньше. Сколько квадратных метров плитки в день планирует укладывать плиточник?</p>
+
+    <div class="solution-toggle" onclick="toggleSolution('sol_work3')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="sol_work3" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p>Пусть \(x\) – производительность плиточника по плану (м²/день).</p>
+        <table>
+            <thead><tr><th></th><th>\(p\)</th><th>\(t\)</th><th>\(A\)</th></tr></thead>
+            <tbody>
+                <tr><td>По плану</td><td>\(x\)</td><td>\(\frac{175}{x}\)</td><td>175</td></tr>
+                <tr><td>Быстрее</td><td>\(x+10\)</td><td>\(\frac{175}{x+10}\)</td><td>175</td></tr>
+            </tbody>
+        </table>
+        <p>\[ \frac{175}{x}-\frac{175}{x+10}=2 \]</p>
+        <p>\[ \frac{175(x+10)-175x}{x(x+10)}=2 \]</p>
+        <p>\[ \frac{1750}{x^2+10x}=2 \]</p>
+        <p>\[ 1750=2x^2+20x \]</p>
+        <p>\[ x^2+10x-875=0 \]</p>
+        <p>По теореме Виета: \(x_1=25,\ x_2=-35.\)</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 25</p>
+    </div>
+</div>
+
+<!-- Кнопка возврата -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/math" class="btn btn-outline-success-custom rounded-pill"><i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам</a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}
