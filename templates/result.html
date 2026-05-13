@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Результат: {{ subject }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+
+
+
+                <div class="alert {% if percent >= 50 %}alert-success{% else %}alert-warning{% endif %} mb-4">
+                    <h1 class="display-4 fw-bold mb-1">{{ correct }} из {{ total }}</h1>
+                    <p class="mb-0 fs-5">{{ percent }}% правильных ответов</p>
+                </div>
+                <div class="mb-4">
+                    <div class="progress" style="height: 25px;">
+                        <div class="progress-bar {% if percent >= 80 %}bg-success{% elif percent >= 50 %}bg-warning{% else %}bg-danger{% endif %}"
+                             role="progressbar" style="width: {{ percent }}%"
+                             aria-valuenow="{{ percent }}" aria-valuemin="0" aria-valuemax="100">
+                            <strong>{{ percent }}%</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="/task{% if subject == 'Математика' %}/math{% endif %}" class="btn btn-primary btn-lg">
+                        Пройти ещё раз
+                    </a>
+                    <a href="/" class="btn btn-outline-secondary btn-lg">
+                        На главную страницу
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">Сверим ответы с правильными</h5>
+            </div>
+            <div class="card-body">
+                {% for r in results %}
+                <div class="card mb-3 {% if r.is_correct %}border-success{% else %}border-danger{% endif %}">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <strong class="text-primary">Задание №{{ r.id }}</strong>
+                            {% if r.is_correct %}
+                                <span class="badge bg-success fs-6">Верно</span>
+                            {% else %}
+                                <span class="badge bg-danger fs-6">Неверно</span>
+                            {% endif %}
+                        </div>
+
+                        <p class="text-muted small mb-2">{{ r.question }}</p>
+
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <div class="p-2 rounded {% if r.is_correct %}bg-success-subtle{% else %}bg-danger-subtle{% endif %}">
+                                    <small class="text-muted d-block">Ваш ответ:</small>
+                                    <strong>{{ r.user_answer }}</strong>
+                                </div>
+                            </div>
+                            {% if not r.is_correct %}
+                            <div class="col-md-6">
+                                <div class="p-2 rounded bg-success-subtle">
+                                    <small class="text-muted d-block">Правильный ответ:</small>
+                                    <strong>{{ r.correct_answer }}</strong>
+                                </div>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+
+{% endblock %}

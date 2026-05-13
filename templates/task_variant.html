@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+{% block title %}Вариант: {{ subject }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        background-color: var(--bg-primary) !important;
+        color: var(--text-primary) !important;
+    }
+
+    .card {
+        background-color: var(--card-bg) !important;
+        border: 1px solid var(--card-border) !important;
+    }
+
+    .card-header {
+        background-color: var(--card-header-bg) !important;
+        color: var(--text-primary) !important;
+        border-bottom: 2px solid var(--card-border) !important;
+    }
+
+    .card-body {
+        color: var(--text-primary) !important;
+    }
+
+    .task-card {
+        border-left: 4px solid #5a8f5a;
+        background-color: var(--card-bg) !important;
+        margin-bottom: 2rem;
+    }
+
+    .difficulty-badge {
+        padding: 0.25rem 0.75rem;
+        border-radius: 2rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+    }
+    .difficulty-1 { background: #1a3a2a; color: #4ade80; }
+    .difficulty-2 { background: #3a3a1a; color: #fbbf24; }
+    .difficulty-3 { background: #3a1a1a; color: #f87171; }
+
+    .topic-tag {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+    }
+
+    .variant-stats {
+        background: var(--bg-secondary);
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    .stat-item {
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .stat-value {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #5a8f5a;
+    }
+
+    /* 🔧 ТАБЛИЦЫ - ЗЕЛЁНЫЕ ГРАНИЦЫ */
+    .table {
+        background-color: var(--table-bg) !important;
+        color: var(--table-text) !important;
+        border: 2px solid #5a8f5a !important;
+        margin: 1rem 0;
+    }
+
+    .table-bordered {
+        border: 2px solid #5a8f5a !important;
+    }
+
+    .table-bordered th, .table-bordered td {
+        border: 2px solid #5a8f5a !important;
+        background-color: var(--table-bg) !important;
+        color: var(--table-text) !important;
+        padding: 0.75rem;
+    }
+
+    .table thead th {
+        background-color: var(--table-header-bg) !important;
+        color: var(--table-text) !important;
+        border: 2px solid #5a8f5a !important;
+        border-bottom: 3px solid #5a8f5a !important;
+        font-weight: 600;
+    }
+
+    .table tbody td {
+        background-color: var(--table-bg) !important;
+        color: var(--table-text) !important;
+        border: 2px solid #5a8f5a !important;
+    }
+
+    .table-matrix .empty {
+        background-color: var(--bg-tertiary) !important;
+        border: 2px solid #5a8f5a !important;
+    }
+
+    /* Поля ввода */
+    .form-control {
+        background-color: var(--input-bg) !important;
+        border: 2px solid #5a8f5a !important;
+        color: var(--input-text) !important;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .form-control:focus {
+        border-color: #4a7a4a !important;
+        box-shadow: 0 0 0 0.25rem rgba(90, 143, 90, 0.35) !important;
+        color: var(--input-text) !important;
+    }
+
+    .form-label {
+        color: var(--text-primary) !important;
+        font-weight: 600;
+    }
+
+    /* Кнопки */
+    .btn-success {
+        background-color: #5a8f5a !important;
+        border-color: #4a7a4a !important;
+        color: #ffffff !important;
+    }
+
+    .btn-success:hover {
+        background-color: #4a7a4a !important;
+        border-color: #3d6a3d !important;
+    }
+
+    /* Изображения */
+    .task-image {
+        text-align: center;
+        margin: 1rem 0;
+    }
+
+    .task-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border: 2px solid #5a8f5a;
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h4 class="mb-0">Персональный вариант: {{ subject }}</h4>
+            <span class="badge bg-light text-success">{{ tasks|length }} заданий</span>
+        </div>
+
+        <div class="card-body">
+            <!-- Статистика варианта -->
+            <div class="variant-stats">
+                <div class="row text-center">
+                    <div class="col-3 stat-item">
+                        <div class="stat-value">{{ stats.total }}</div>
+                        <small class="text-muted">Всего</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-success">{{ stats.by_difficulty[1] or 0 }}</div>
+                        <small class="text-muted">🟢 Лёгких задач</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-warning">{{ stats.by_difficulty[2] or 0 }}</div>
+                        <small class="text-muted">🟡 Средних задач</small>
+                    </div>
+                    <div class="col-3 stat-item">
+                        <div class="stat-value text-danger">{{ stats.by_difficulty[3] or 0 }}</div>
+                        <small class="text-muted">🔴 Сложных задач</small>
+                    </div>
+                </div>
+                <div class="text-center mt-2">
+                    <small class="text-muted"> Примерное время выполнения: {{ (stats.estimated_time / 60)|round }} мин</small>
+                </div>
+            </div>
+
+            <form method="post" action="/generate/variant/submit">
+                <input type="hidden" name="subject_param"
+                       value="{{ 'informatics' if subject == 'Информатика' else 'math' }}">
+
+                {% for t in tasks %}
+                <div class="card task-card mb-4">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>Задание №{{ t.id }}</strong>
+                            {% if t.topic %}
+                            <span class="topic-tag ms-2">{{ t.topic }}</span>
+                            {% endif %}
+                        </div>
+                        <span class="difficulty-badge difficulty-{{ t.difficulty }}">
+                            {{ ['🟢', '🟡', ''][t.difficulty-1] }}
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text mb-3" style="white-space: pre-line;">{{ t.question }}</p>
+
+
+                        {% if t.image %}
+                        <div class="task-image">
+                            <img src="{{ t.image }}" class="img-fluid rounded" style="max-height: 300px;">
+                        </div>
+                        {% endif %}
+
+
+                        {% if t.table %}
+                        {% if t.table.type == 'code' %}
+                        <div class="table-responsive mb-3">
+                            <table class="table table-bordered table-custom text-center">
+                                <thead class="table-success">
+                                <tr>
+                                    {% for header in t.table.headers %}
+                                    <th>{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    {% for code in t.table.codes %}
+                                    <td class="font-monospace">{{ code }}</td>
+                                    {% endfor %}
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        {% elif t.table.type == 'matrix' %}
+                        <div class="table-responsive mb-3">
+                            <table class="table table-bordered table-matrix text-center">
+                                <thead>
+                                <tr>
+                                    {% for header in t.table.headers %}
+                                    <th>{{ header }}</th>
+                                    {% endfor %}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for row in t.table.rows %}
+                                <tr>
+                                    {% for cell in row %}
+                                    {% if cell == '' %}
+                                    <td class="empty"></td>
+                                    {% else %}
+                                    <td>{{ cell }}</td>
+                                    {% endif %}
+                                    {% endfor %}
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Ваш ответ:</label>
+                            <input type="text" class="form-control" name="t{{ t.id }}" required
+                                   placeholder="Введите ответ">
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-success btn-lg px-5">
+                        ✓ Завершить вариант
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

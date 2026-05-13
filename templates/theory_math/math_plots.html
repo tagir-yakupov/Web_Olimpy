@@ -1,0 +1,437 @@
+{% extends "base.html" %}
+
+{% block title %}Olimpy. Задание 11-12 ОГЭ — Функции и графики{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Зелёная тема для страницы с функциями и графиками */
+    .topic-hero {
+        background: linear-gradient(135deg, #1e6b3b 0%, #0f4c2a 100%);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        color: white;
+    }
+    .section-title {
+        position: relative;
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        color: #1e3a2f;
+        border-bottom: 3px solid #198754;
+        display: inline-block;
+    }
+    .theory-block {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        margin-bottom: 2rem;
+        overflow: hidden;
+        transition: transform 0.2s;
+    }
+    .theory-block:hover {
+        transform: translateY(-2px);
+    }
+    .theory-number {
+        background: #198754;
+        color: white;
+        padding: 0.5rem 1.2rem;
+        font-weight: bold;
+        display: inline-block;
+        border-radius: 0 0 0.75rem 0;
+    }
+    .badge-type {
+        background-color: #eaf7ea;
+        color: #1e6b3b;
+        padding: 0.3rem 0.8rem;
+        border-radius: 2rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .formula-card {
+        background: #f8fff8;
+        border-left: 4px solid #198754;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    .properties-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .prop-card {
+        background: white;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        border-left: 3px solid #198754;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+    .prop-card .formula {
+        font-weight: bold;
+        color: #198754;
+        font-size: 1.1rem;
+    }
+    .btn-outline-success-custom {
+        color: #198754;
+        border-color: #198754;
+    }
+    .btn-outline-success-custom:hover {
+        background-color: #198754;
+        color: white;
+    }
+    .graph-placeholder {
+        background: #eaf7ea;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        text-align: center;
+        border: 1px dashed #198754;
+    }
+    .function-card {
+        background: white;
+        border-radius: 0.75rem;
+        padding: 1.2rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border-left: 4px solid #198754;
+    }
+    hr {
+        background-color: #d4e6d4;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"> Задание №11-12 ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"> Функции и графики</span>
+            </div>
+            <h1 class="display-5 fw-bold">Функции и графики</h1>
+            <p class="lead mt-3">Линейная функция, обратная пропорциональность, квадратичная функция, степенная функция. Чтение графиков, свойства функций, определение коэффициентов.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"> 4 типа функций</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Все свойства и графики</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-graph-up" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Теоретический блок: Определение функции -->
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">Основные понятия</div>
+        <span class="badge-type"><i class="bi bi-book me-1"></i> Теория</span>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="function-card">
+                <h5 class="fw-bold text-success">Что такое функция?</h5>
+                <p><strong>Функция</strong> — это зависимость переменной \(y\) от переменной \(x\), при которой каждому значению \(x\) соответствует единственное значение \(y\).</p>
+                <p class="mb-0"><strong>\(x\)</strong> — аргумент (независимая переменная)</p>
+                <p><strong>\(y\)</strong> — зависимая переменная (значение функции)</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="function-card">
+                <h5 class="fw-bold text-success">Важные определения</h5>
+                <p><strong>Область определения</strong> — все значения, которые может принимать \(x\).</p>
+                <p><strong>Область значений</strong> — все значения, которые принимает \(y\).</p>
+                <p><strong>Нули функции</strong> — значения \(x\), при которых \(y = 0\).</p>
+                <p><strong>График функции</strong> — множество всех точек \((x; y)\) на координатной плоскости.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Раздел 1: Линейная функция -->
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">1</div>
+        <span class="badge-type"><i class="bi bi-graph-up me-1"></i> Линейная функция</span>
+    </div>
+
+    <div class="formula-card">
+        <h5 class="fw-bold text-success">Общий вид</h5>
+        <p class="fs-4 fw-semibold">\(y = kx + b\)</p>
+        <p>где \(x\) — аргумент, \(k, b \in \mathbb{R}\). График — <strong>прямая линия</strong>.</p>
+        <p><strong>\(k\)</strong> — угловой коэффициент. <strong>\(b\)</strong> — свободный член (точка пересечения с осью \(y\)).</p>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Нуль функции</span>
+                <p class="mt-2">\(x = -\frac{b}{k}\) (при \(k \neq 0\))</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Знаки функции</span>
+                <p class="mt-2">При \(k > 0\): \(y > 0\) при \(x > -\frac{b}{k}\), \(y < 0\) при \(x < -\frac{b}{k}\)</p>
+                <p class="mb-0">При \(k < 0\): \(y > 0\) при \(x < -\frac{b}{k}\), \(y < 0\) при \(x > -\frac{b}{k}\)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="properties-grid mt-3">
+        <div class="prop-card">
+            <span class="formula">\(k > 0\)</span>
+            <p class="mt-2">Функция <strong>возрастает</strong> на \(\mathbb{R}\)</p>
+            <p class="mb-0 text-secondary">Прямая идёт вверх</p>
+        </div>
+        <div class="prop-card">
+            <span class="formula">\(k < 0\)</span>
+            <p class="mt-2">Функция <strong>убывает</strong> на \(\mathbb{R}\)</p>
+            <p class="mb-0 text-secondary">Прямая идёт вниз</p>
+        </div>
+        <div class="prop-card">
+            <span class="formula">\(b\)</span>
+            <p class="mt-2">Точка пересечения с осью \(y\): \((0; b)\)</p>
+        </div>
+    </div>
+
+    <!-- пофиксить тут -->
+    <div class="graph-placeholder mt-3">
+        <img src="/static/images/linear_graph.png" alt="None">
+        <div class="figure-caption">Рис. 1 — График линейной функции y = kx + b</div>
+    </div>
+</div>
+
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">2</div>
+        <span class="badge-type"><i class="bi bi-diagram-3 me-1"></i> Обратная пропорциональность</span>
+    </div>
+
+    <div class="formula-card">
+        <h5 class="fw-bold text-success">Общий вид</h5>
+        <p class="fs-4 fw-semibold">\(y = \frac{k}{x}\)</p>
+        <p>где \(x\) — аргумент, \(k \in \mathbb{R}\), \(k \neq 0\). График — <strong>гипербола</strong>.</p>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Область определения</span>
+                <p class="mt-2">\(x \neq 0\) (все числа, кроме нуля)</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Область значений</span>
+                <p class="mt-2">\(y \neq 0\) (все числа, кроме нуля)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="properties-grid mt-3">
+        <div class="prop-card">
+            <span class="formula">\(k > 0\)</span>
+            <p class="mt-2">Ветви гиперболы расположены в <strong>I и III</strong> четвертях</p>
+            <p class="mb-0">Функция убывает на \((-\infty; 0)\) и \((0; +\infty)\)</p>
+        </div>
+        <div class="prop-card">
+            <span class="formula">\(k < 0\)</span>
+            <p class="mt-2">Ветви гиперболы расположены в <strong>II и IV</strong> четвертях</p>
+            <p class="mb-0">Функция возрастает на \((-\infty; 0)\) и \((0; +\infty)\)</p>
+        </div>
+    </div>
+
+    <!-- пофиксить тут -->
+    <div class="graph-placeholder mt-3">
+        <img src="/static/images/hyperbola.png" alt="None">
+        <div class="figure-caption">Рис. 2 — График обратной зависимости</div>
+    </div>
+</div>
+
+
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">3</div>
+        <span class="badge-type"><i class="bi bi-bar-chart-steps me-1"></i> Квадратичная функция</span>
+    </div>
+
+    <div class="formula-card">
+        <h5 class="fw-bold text-success">Общий вид</h5>
+        <p class="fs-4 fw-semibold">\(y = ax^2 + bx + c\)</p>
+        <p>где \(x\) — аргумент, \(a, b, c \in \mathbb{R}\), \(a \neq 0\). График — <strong>парабола</strong>.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Вершина параболы</span>
+                <p class="mt-2">\(x_0 = -\frac{b}{2a}\)</p>
+                <p>\(y_0 = -\frac{b^2 - 4ac}{4a}\)</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Ось симметрии</span>
+                <p class="mt-2">Прямая \(x = -\frac{b}{2a}\)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="properties-grid mt-3">
+        <div class="prop-card">
+            <span class="formula">\(a > 0\)</span>
+            <p class="mt-2">Ветви параболы направлены <strong>вверх</strong></p>
+            <p>\(y_{\min} = y_0\)</p>
+            <p class="mb-0">Убывает на \((-\infty; x_0]\), возрастает на \([x_0; +\infty)\)</p>
+        </div>
+        <div class="prop-card">
+            <span class="formula">\(a < 0\)</span>
+            <p class="mt-2">Ветви параболы направлены <strong>вниз</strong></p>
+            <p>\(y_{\max} = y_0\)</p>
+            <p class="mb-0">Возрастает на \((-\infty; x_0]\), убывает на \([x_0; +\infty)\)</p>
+        </div>
+    </div>
+
+    <div class="formula-card mt-3">
+        <h5 class="fw-bold text-success">Частный случай: \(y = ax^2\)</h5>
+        <p>График проходит через начало координат. Симметричен относительно оси \(y\).</p>
+        <p>При \(a > 0\): \(y_{\min} = 0\) при \(x = 0\)</p>
+        <p class="mb-0">При \(a < 0\): \(y_{\max} = 0\) при \(x = 0\)</p>
+    </div>
+
+    <div class="formula-card mt-2">
+        <h5 class="fw-bold text-success">Преобразования графика \(y = ax^2\)</h5>
+        <p><strong>\(y = ax^2 + m\)</strong> — сдвиг вдоль оси \(y\) на \(m\) единиц (вверх при \(m>0\), вниз при \(m<0\))</p>
+        <p><strong>\(y = a(x - m)^2\)</strong> — сдвиг вдоль оси \(x\) на \(m\) единиц (вправо при \(m>0\), влево при \(m<0\))</p>
+    </div>
+
+    <!-- пофиксить тут -->
+    <div class="graph-placeholder mt-3">
+        <img src="/static/images/squarefunc.png" alt="None">
+        <div class="figure-caption">Рис. 3 — График квадратичной функции</div>
+    </div>
+</div>
+
+<!-- Раздел 4: Степенная функция -->
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">4</div>
+        <span class="badge-type"><i class="bi bi-plus-slash-minus me-1"></i> Степенная функция</span>
+    </div>
+
+    <div class="formula-card">
+        <h5 class="fw-bold text-success">Общий вид</h5>
+        <p class="fs-4 fw-semibold">\(y = x^n\)</p>
+        <p>где \(x\) — аргумент, \(n \in \mathbb{N}\) (натуральное число)</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="function-card">
+                <h5 class="fw-bold text-success">Чётная функция</h5>
+                <p><strong>Определение:</strong> \(f(-x) = f(x)\)</p>
+                <p>График симметричен относительно оси \(y\)</p>
+                <hr>
+                <h6 class="fw-bold">При чётном \(n = 2k\):</h6>
+                <ul class="list-unstyled">
+                    <li>✓ \(y > 0\) при \(x \neq 0\)</li>
+                    <li>✓ Функция чётная</li>
+                    <li>✓ Убывает на \((-\infty; 0]\), возрастает на \([0; +\infty)\)</li>
+                    <li>✓ Область значений: \([0; +\infty)\)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="function-card">
+                <h5 class="fw-bold text-success">Нечётная функция</h5>
+                <p><strong>Определение:</strong> \(f(-x) = -f(x)\)</p>
+                <p>График симметричен относительно начала координат</p>
+                <hr>
+                <h6 class="fw-bold">При нечётном \(n = 2k-1\):</h6>
+                <ul class="list-unstyled">
+                    <li>✓ \(y > 0\) при \(x > 0\), \(y < 0\) при \(x < 0\)</li>
+                    <li>✓ Функция нечётная</li>
+                    <li>✓ Возрастает на \(\mathbb{R}\)</li>
+                    <li>✓ Область значений: \(\mathbb{R}\)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- пофиксить тут -->
+    <div class="graph-placeholder mt-3">
+        <img src="/static/images/squarefunc.png" alt="None">
+        <div class="figure-caption">Рис. 4 — График степенной функции \(y = x^n\): при чётном \(n\) — парабола, при нечётном \(n\) — кубическая парабола</div>
+    </div>
+</div>
+
+<!-- Раздел 5: Возрастание и убывание функции -->
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number">5</div>
+        <span class="badge-type"><i class="bi bi-arrow-up me-1"></i> Монотонность</span>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Возрастающая функция</span>
+                <p class="mt-2">Для любых \(x_1 < x_2\) выполняется \(f(x_1) < f(x_2)\)</p>
+                <p class="text-secondary">Большему аргументу — большее значение функции</p>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="prop-card">
+                <span class="formula">Убывающая функция</span>
+                <p class="mt-2">Для любых \(x_1 < x_2\) выполняется \(f(x_1) > f(x_2)\)</p>
+                <p class="text-secondary">Большему аргументу — меньшее значение функции</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Блок с типовыми заданиями -->
+<div class="theory-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="theory-number"></div>
+        <span class="badge-type"><i class="bi bi-pencil-square me-1"></i> Что нужно уметь на ОГЭ</span>
+    </div>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="prop-card text-center">
+                <i class="bi bi-eye fs-2 text-success"></i>
+                <h6 class="mt-2 fw-bold">Читать график</h6>
+                <small class="text-secondary">Определять значение функции по аргументу и наоборот</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="prop-card text-center">
+                <i class="bi bi-calculator fs-2 text-success"></i>
+                <h6 class="mt-2 fw-bold">Находить коэффициенты</h6>
+                <small class="text-secondary">Определять \(k\) и \(b\) по графику линейной функции</small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="prop-card text-center">
+                <i class="bi bi-diagram-3 fs-2 text-success"></i>
+                <h6 class="mt-2 fw-bold">Определять знаки</h6>
+                <small class="text-secondary">По графику определять знаки коэффициентов квадратичной функции</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Кнопка возврата ко всем темам -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/math" class="btn btn-outline-success-custom rounded-pill"><i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам</a>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}

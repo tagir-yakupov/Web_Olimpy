@@ -1,0 +1,210 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .theory-content { max-width: 900px; margin: 0 auto; }
+    .code-block {
+        background: #f8f9fa;
+        border-left: 4px solid #28a745;
+        padding: 1rem;
+        margin: 1rem 0;
+        font-family: 'Consolas', monospace;
+        border-radius: 4px;
+    }
+    .formula {
+        background: #e8f5e9;
+        padding: 1rem;
+        border-radius: 8px;
+        margin: 1rem 0;
+        text-align: center;
+        font-weight: bold;
+    }
+    /* 🔧 ТЕОРИЯ ПО ИНФОРМАТИКЕ - УЛУЧШЕННЫЙ ТЕКСТ */
+
+    .formula-box, .example-box, .code-block {
+        background-color: var(--bg-tertiary) !important;
+        border-left: 4px solid #5a8f5a !important;
+        color: var(--text-primary) !important;
+        padding: 1.5rem !important;
+        border-radius: 0.5rem !important;
+    }
+
+    .formula-box code, .example-box code {
+        background-color: var(--bg-secondary) !important;
+        color: #4ade80 !important;
+        padding: 0.2rem 0.4rem !important;
+        border-radius: 0.25rem !important;
+        font-weight: 600 !important;
+    }
+
+    .operator-table th, .operator-table td {
+        background-color: var(--table-bg) !important;
+        color: var(--text-primary) !important;
+        border-color: var(--table-border) !important;
+        font-weight: 600 !important;
+    }
+
+    .operator-table th {
+        background-color: var(--table-header-bg) !important;
+    }
+    .operator-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1rem 0;
+    }
+    .operator-table th, .operator-table td {
+        border: 1px solid #dee2e6;
+        padding: 0.75rem;
+        text-align: center;
+    }
+    .operator-table th {
+        background: #28a745;
+        color: white;
+    }
+    .example-box {
+        background: #000000;
+        border-left: 4px solid #ffc107;
+        padding: 1rem;
+        margin: 1rem 0;
+        border-radius: 4px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="theory-content">
+    <h1 class="mb-4">Задание №6: Алгоритмы и программирование</h1>
+
+    <!-- Остаток от деления -->
+    <section class="mb-5">
+        <h2>1. Остаток от деления (mod)</h2>
+
+        <div class="formula">
+            s % t (Python) | s % t (C++) | mod(s, t) (Алгоритмический) | s mod t (Pascal)
+        </div>
+
+        <p><strong>Что это?</strong> Остаток от деления показывает, что остаётся, когда одно число не делится на другое нацело.</p>
+
+        <div class="example-box">
+            <strong>Пример:</strong> 17 / 5 = 3 (целое число), остаток равен 2.<br>
+            17 - (5 × 3) = 2
+        </div>
+
+        <p>Остаток может быть 0, если число делится на другое нацело.</p>
+    </section>
+
+    <!-- Целочисленное деление -->
+    <section class="mb-5">
+        <h2>2. Целочисленное деление (div)</h2>
+
+        <div class="formula">
+            s // t (Python) | s / t (C++) | div(s, t) (Алгоритмический) | s div t (Pascal)
+        </div>
+
+        <p><strong>Что это?</strong> Это деление с отбрасыванием дробной части результата. Оно даёт только целую часть, без остатка.</p>
+
+        <div class="example-box">
+            <strong>Пример:</strong> 17 / 5 = 3.4. При целочисленном делении результат будет 3, дробная часть 0.4 игнорируется.
+        </div>
+    </section>
+
+    <!-- Модуль -->
+    <section class="mb-5">
+        <h2>3. Модуль (abs)</h2>
+
+        <div class="formula">
+            abs(s) (Python, C++, Pascal) | iabs(s) (Алгоритмический)
+        </div>
+
+        <p><strong>Что это?</strong> Модуль числа — это его расстояние от нуля на числовой оси.</p>
+
+        <div class="example-box">
+            <strong>Примеры:</strong><br>
+            |-5| = 5<br>
+            |7| = 7<br>
+            |0| = 0
+        </div>
+    </section>
+
+    <!-- Таблица операторов -->
+    <section class="mb-5">
+        <h2>4. Операторы в разных языках</h2>
+
+        <table class="operator-table">
+            <thead>
+                <tr>
+                    <th>Операция</th>
+                    <th>Python</th>
+                    <th>C++</th>
+                    <th>Алгоритмический</th>
+                    <th>Pascal</th>
+                    <th>Бейсик</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Остаток</td>
+                    <td>s % t</td>
+                    <td>s % t</td>
+                    <td>mod(s, t)</td>
+                    <td>s mod t</td>
+                    <td>S MOD t</td>
+                </tr>
+                <tr>
+                    <td>Целочисленное деление</td>
+                    <td>s // t</td>
+                    <td>s / t</td>
+                    <td>div(s, t)</td>
+                    <td>s div t</td>
+                    <td>S \ t</td>
+                </tr>
+                <tr>
+                    <td>Модуль</td>
+                    <td>abs(s)</td>
+                    <td>abs(s)</td>
+                    <td>iabs(s)</td>
+                    <td>abs(s)</td>
+                    <td>ABS(s)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Пример решения -->
+    <section class="mb-5">
+        <h2>5. Пример решения задания №6</h2>
+
+        <div class="code-block">
+            a = int(input())<br>
+            b = int(input())<br>
+            if a % 3 == 0 and b % 4 == 0:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print("Да")<br>
+            else:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;print("Нет")
+        </div>
+
+        <p><strong>Условие:</strong> Программа печатает «Да», если при делении переменной a на 3 остаток равен 0 (то есть число должно делиться на 3), и аналогично b должно делиться на 4. Оба условия должны выполняться, так как стоит <code>and</code>.</p>
+
+        <div class="example-box">
+            <strong>Проверка пар чисел:</strong><br>
+            (18; 16) — 18 на 3 делится, 16 на 4 делится ✓<br>
+            (9; 8) — 9 на 3 делится, 8 на 4 делится ✓<br>
+            (8; 9) — 8 на 3 не делится ✗<br>
+            (30; 24) — 30 на 3 делится, 24 на 4 делится ✓<br>
+            (24; 24) — 24 на 3 делится, 24 на 4 делится ✓<br>
+            (30; 31) — 31 на 4 не делится ✗<br>
+            (39; 32) — 39 на 3 делится, 32 на 4 делится ✓<br>
+            (80; 36) — 80 на 3 не делится ✗<br>
+            (8; 4) — 8 на 3 не делится ✗
+        </div>
+
+        <p><strong>Ответ:</strong> 5 пар (из 9 запусков)</p>
+    </section>
+
+    <div class="text-center mt-4">
+        <a href="/theory" class="btn btn-outline-success">← Назад к теории</a>
+    </div>
+</div>
+{% endblock %}
