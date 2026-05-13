@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+
+{% block title %}Морфемика и словообразование — ОГЭ русский язык{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theory.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Теория ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-puzzle-fill me-1"></i> Морфемика и словообразование</span>
+            </div>
+            <h1 class="display-5 fw-bold">Морфемика и словообразование</h1>
+            <p class="lead mt-3">Система морфем русского языка, классификация, основа слова и всё о составе слова для ОГЭ по русскому языку.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"><i class="bi bi-check-circle-fill me-1"></i> Корень, приставка, суффикс</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Основа и окончание</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-puzzle-fill" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- БЛОК 1: Введение -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§1</div>
+        <span class="badge-type"><i class="bi bi-book-half me-1"></i> Что такое морфемика?</span>
+    </div>
+    <p><strong>В морфемике</strong> изучаются два основных вопроса:</p>
+    <ul>
+        <li>как классифицируются морфемы русского языка;</li>
+        <li>как слово членится на морфемы.</li>
+    </ul>
+    <div class="border_element">
+        <p><strong><span style="color:#198754;">Морфемика</span></strong> — это раздел языкознания, в котором изучается система морфем языка и морфемная структура слов и их форм.</p>
+    </div>
+    <p>Основная единица морфемики — <strong>морфема</strong> (от греч. <em>morphe</em> — форма) — это наименьшая, далее неделимая часть слова, обладающая значением. Из морфем строятся слова, которые, в свою очередь, являются «строительным материалом» для предложений.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('intro_more')">
+        <i class="bi bi-eye-fill me-1"></i> Подробнее о морфемах
+    </div>
+    <div id="intro_more" class="solution-content d-none">
+        <p>Морфемы бывают разных типов: корневые и аффиксальные (приставки, суффиксы, окончания). Каждая морфема вносит свой вклад в значение слова и его грамматическую форму.</p>
+        <p class="mb-0">Например, в слове <strong>"подберёзовик"</strong> морфемы: <em>под-</em> (приставка), <em>-берёз-</em> (корень), <em>-ов-</em> (суффикс), <em>-ик</em> (суффикс), нулевое окончание.</p>
+    </div>
+</div>
+
+<!-- БЛОК 2: Классификация морфем -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§2</div>
+        <span class="badge-type"><i class="bi bi-diagram-3 me-1"></i> Классификация морфем</span>
+    </div>
+    
+    <div class="tableWrapper">
+        <table style="width:100%;">
+            <tbody>
+                <tr style="background-color: #eaf7ea;">
+                    <td style="text-align:center;"><strong>Корневые</strong></td>
+                    <td style="text-align:center;" colspan="2"><strong>Некорневые</strong></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;">
+                        <p><strong>Корень</strong></p>
+                    </td>
+                    <td style="text-align:center;">
+                        <p><strong>СЛОВООБРАЗУЮЩИЕ</strong></p>
+                        <p>(приставка и словообразующий суффикс)</p>
+                    </td>
+                    <td style="text-align:center;">
+                        <p><strong>ФОРМООБРАЗУЮЩИЕ</strong></p>
+                        <p>(окончание и формообразующий суффикс)</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="text-center my-3">
+        <img src="https://uploads-foxford-ru.ngcdn.ru/uploads/tinymce_file/file/175315/93f2119ce75b0ac0.png" alt="Классификация морфем" class="img-fluid rounded shadow-sm" style="max-width: 500px;">
+        <div class="figure-caption">Рис. 1 — Схема классификации морфем русского языка</div>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('classification_more')">
+        <i class="bi bi-eye-fill me-1"></i> Разбор классификации
+    </div>
+    <div id="classification_more" class="solution-content d-none">
+        <p><strong>Корневые морфемы (корни)</strong> — обязательная часть любого слова, несущая основное лексическое значение.</p>
+        <p><strong>Словообразующие аффиксы</strong> (приставки и словообразующие суффиксы) — служат для образования новых слов с новым лексическим значением.</p>
+        <p class="mb-0"><strong>Формообразующие аффиксы</strong> (окончания и формообразующие суффиксы, например -л- в глаголах прошедшего времени) — служат для образования грамматических форм того же слова.</p>
+    </div>
+</div>
+
+<!-- БЛОК 3: Основа слова -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§3</div>
+        <span class="badge-type"><i class="bi bi-layers me-1"></i> Основа слова</span>
+    </div>
+    <p><strong style="color:#198754;">Основа слова</strong> — это часть слова без окончания, в которой <strong>заключено его лексическое значение.</strong> Основа противопоставлена окончанию, потому что она постоянна, а окончание изменяется.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('basis_more')">
+        <i class="bi bi-eye-fill me-1"></i> Примеры основ
+    </div>
+    <div id="basis_more" class="solution-content d-none">
+        <p><strong>Примеры:</strong></p>
+        <ul>
+            <li>в слове <strong>"стол"</strong> основа — <em>стол-</em> (нулевое окончание)</li>
+            <li>в слове <strong>"стола"</strong> основа — <em>стол-</em> (окончание -а)</li>
+            <li>в слове <strong>"красивый"</strong> основа — <em>красив-</em></li>
+        </ul>
+        <p class="mb-0"><strong>Важно!</strong> Формообразующие суффиксы (как -л- в глаголах) НЕ входят в основу!</p>
+    </div>
+</div>
+
+<!-- БЛОК 4: Окончание -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§4</div>
+        <span class="badge-type"><i class="bi bi-symmetry-vertical me-1"></i> Окончание</span>
+    </div>
+    <p><strong style="color:#198754;">Окончание</strong> — изменяемая часть слова, которая образует форму слова и грамматически связывает слова в словосочетании и предложении: <em>в ответ-е задач-и, цел-ую строк-у.</em> Окончание может быть нулевым, например, в словах <em>урок, праздник.</em></p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('ending_more')">
+        <i class="bi bi-eye-fill me-1"></i> Когда у слов НЕТ окончания?
+    </div>
+    <div id="ending_more" class="solution-content d-none">
+        <p>Окончания есть <strong>только у изменяемых слов.</strong> Нет их у:</p>
+        <ul>
+            <li>служебных слов <em>(в, после, не)</em></li>
+            <li>наречий <em>(тихо, высоко)</em></li>
+            <li>неизменяемых существительных <em>(какаду, шоссе)</em></li>
+            <li>инфинитива глаголов <em>(бежать, петь)</em></li>
+            <li>деепричастий <em>(увидев, собравшись)</em></li>
+        </ul>
+    </div>
+</div>
+
+<!-- БЛОК 5: Корень -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§5</div>
+        <span class="badge-type"><i class="bi bi-tree-fill me-1"></i> Корень</span>
+    </div>
+    <p><strong style="color:#198754;">Корень</strong> — основная значимая часть слова, в которой <strong>заключено общее значение родственных (однокоренных) слов</strong>. Например, <em>поделить, отдельно, делимое, делитель, раздельный, деление.</em></p>
+    <p>Корень — <strong>обязательная часть слова</strong>. Без приставок, окончаний, суффиксов слова могут существовать <em>(меню, сальто, беж, очень, завтра)</em>, а без корня — нет.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('root_more')">
+        <i class="bi bi-eye-fill me-1"></i> Сложные слова
+    </div>
+    <div id="root_more" class="solution-content d-none">
+        <p>Слова с двумя и более корнями называются <strong>сложными</strong>. Например: <em>чистописание, словообразование, юго-западный, светло-синий, старшеклассник.</em></p>
+    </div>
+</div>
+
+<!-- БЛОК 6: Приставка -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§6</div>
+        <span class="badge-type"><i class="bi bi-plus-circle me-1"></i> Приставка</span>
+    </div>
+    <p><strong style="color:#198754;">Приставка</strong> находится перед корнем и <strong>служит для образования новых слов</strong> (<em>доводить, разводить, переводить</em> от "водить"). Приставки никогда не меняют часть речи (<em>краснеть — покраснеть</em>, <em>меньше — поменьше</em>).</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('prefix_more')">
+        <i class="bi bi-eye-fill me-1"></i> Примеры приставок
+    </div>
+    <div id="prefix_more" class="solution-content d-none">
+        <p>Есть приставки, которые могут присоединяться к словам различных частей речи: <em>сверхлёгкий, сверхприбыль</em> (сверх-), <em>развеселый, разукрасить</em> (раз-), <em>сотрудничать, соавтор</em> (со-).</p>
+    </div>
+</div>
+
+<!-- БЛОК 7: Суффикс -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§7</div>
+        <span class="badge-type"><i class="bi bi-suffix me-1"></i> Суффикс</span>
+    </div>
+    <p><strong style="color:#198754;">Суффикс</strong> стоит после корня и служит не только <strong>для образования новых слов</strong> (<em>молодость от молодой</em>), но и <strong>форм слова</strong>: <em>прочитать — прочитал</em> (суффикс <strong>-л-</strong>).</p>
+    <p>Суффиксы <strong>могут изменять части речи</strong>: <em>тепло — тепловые, твердый — твердеть</em>.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('suffix_more')">
+        <i class="bi bi-eye-fill me-1"></i> Суффиксы по частям речи
+    </div>
+    <div id="suffix_more" class="solution-content d-none">
+        <p><strong>Суффиксы строго закреплены за частью речи:</strong></p>
+        <ul>
+            <li><strong>-ость-</strong>: существительное — <em>молодость, ясность</em></li>
+            <li><strong>-ть-</strong>: глагол — <em>грызть, кусать</em></li>
+            <li><strong>-о</strong>: наречие — <em>быстро, смело</em></li>
+            <li><strong>-чив-</strong>: прилагательное — <em>улыбчивый, находчивый</em></li>
+        </ul>
+        <p class="mb-0">В слове может быть несколько приставок и суффиксов: <em>преувеличивать</em> (пре-, у-), <em>нагреватель</em> (-е-, -ва-, -тель-).</p>
+    </div>
+</div>
+
+<!-- Практика -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">📝</div>
+        <span class="badge-type"><i class="bi bi-pencil-square me-1"></i> Разбор слова</span>
+    </div>
+    <p class="fs-5 fw-semibold">Разберите слово <strong>"ПОДСНЕЖНИК"</strong> по составу.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('task_solution')">
+        <i class="bi bi-eye-fill me-1"></i> Показать решение
+    </div>
+    <div id="task_solution" class="solution-content d-none">
+        <p><strong>Решение:</strong></p>
+        <p><strong>под-</strong> — приставка</p>
+        <p><strong>-снеж-</strong> — корень</p>
+        <p><strong>-ник</strong> — суффикс</p>
+        <p><strong>∅</strong> — нулевое окончание</p>
+        <p><strong>подснежник-</strong> — основа слова</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Подснежник — цветок, растущий под снегом.</p>
+    </div>
+</div>
+
+<!-- ОВАЛЬНАЯ КНОПКА ВОЗВРАТА - как в примере -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/rus" class="btn btn-outline-success-custom rounded-pill">
+        <i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам
+    </a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}

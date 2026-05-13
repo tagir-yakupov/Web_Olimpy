@@ -2,7 +2,7 @@
 
 {% block content %}
 <div style="max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-    <h2>📝 Добавление новой задачи</h2>
+    <h2>Добавление новой задачи</h2>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -19,20 +19,20 @@
     
     <form method="POST" enctype="multipart/form-data">
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🔢 Номер задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Номер задачи:</label>
             <input type="number" name="id" required 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🏷️ Категория:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Категория:</label>
             <input type="text" name="category" required 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
-                   placeholder="math, physics, programming...">
+                   placeholder="">
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">📖 Условие задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Условие задачи:</label>
             
             <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
                 <button type="button" onclick="formatText('condition', 'bold')" style="padding: 5px 10px; font-weight: bold; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">B</button>
@@ -54,7 +54,7 @@
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">💡 Ответ:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Ответ:</label>
             
             <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
                 <button type="button" onclick="formatText('answer', 'bold')" style="padding: 5px 10px; font-weight: bold; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">B</button>
@@ -74,7 +74,7 @@
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🖼️ Изображение:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Изображение:</label>
             <input type="file" name="image" accept="image/*" 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: white;">
             <div id="imagePreview" style="margin-top: 10px; max-width: 300px; display: none;">
@@ -83,11 +83,11 @@
         </div>
         
         <button type="submit" style="background: #1d3709; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
-            ➕ Добавить задачу
+            Добавить задачу
         </button>
         
         <a href="{{ url_for('conf.conf') }}" style="margin-left: 10px; display: inline-block; padding: 12px 30px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
-            ↩️ Назад
+            Назад
         </a>
     </form>
 </div>

@@ -2,7 +2,7 @@
 
 {% block content %}
 <div style="max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-    <h2>📝 Добавление новой задачи</h2>
+    <h2>Добавление новой задачи</h2>
     
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
@@ -18,27 +18,27 @@
     
     <form method="POST">
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🔢 Номер задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Номер задачи:</label>
             <input type="number" name="task_number" required 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🏷️ Тип задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Тип задачи:</label>
             <input type="text" name="task_type" required 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
-                   placeholder='Например: уравнение, неравенство, квадратный многочлен...'>
+                   placeholder=''>
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">📚 Тематика задания:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Тематика задания:</label>
             <input type="text" name="task_theme" required 
                    style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" 
-                   placeholder="Например: eq, geometry, plots, problems">
+                   placeholder="">
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">📖 Условие задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Условие задачи:</label>
             
             <!-- Кнопки форматирования -->
             <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
@@ -58,7 +58,7 @@
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">💡 Решение задачи:</label>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Решение задачи:</label>
             
             <!-- Кнопки форматирования -->
             <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
@@ -77,18 +77,20 @@
         </div>
         
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">🖼️ Ссылка на изображение:</label>
-            <input type="text" name="image_url" 
-                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
-                   placeholder='Вставляем полную ссылку на изображение'>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Изображение:</label>
+            <input type="file" name="image" accept="image/*" 
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: white;">
+            <div id="imagePreview" style="margin-top: 10px; max-width: 300px; display: none;">
+                <img id="previewImg" src="" alt="Предпросмотр" style="max-width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
         </div>
         
         <button type="submit" style="background: #1d3709; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
-            ➕ Сгенерировать задачу
+            Создать задачу
         </button>
         
         <a href="{{ url_for('conf.conf') }}" style="margin-left: 10px; display: inline-block; padding: 12px 30px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
-            ↩️ Назад
+            Назад
         </a>
     </form>
 </div>

@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Теория по русскому языку ОГЭ{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <!-- Верхняя карточка с заголовком -->
+        <div class="card shadow mb-4">
+            <div class="card-body text-center py-4">
+                <h1 class="display-5 fw-bold mb-3">Теория по русскому языку ОГЭ</h1>
+                <p class="lead text-muted">Правила, изложение, сочинение и вся необходимая теория</p>
+            </div>
+        </div>
+
+        <!-- Сетка основных разделов (4 карточки) -->
+        <div class="row g-4">
+
+            <!-- Морфемика и словообразование -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/morphemics" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-puzzle-fill topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Морфемика и словообразование</h5>
+                                <p class="text-muted small mb-0">Корни, суффиксы, приставки</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Морфология -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/morphology" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-diagram-3-fill topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Морфология</h5>
+                                <p class="text-muted small mb-0">Части речи • Склонение, спряжение, разряды</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Орфография -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/spelling" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-pencil-square topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Орфография</h5>
+                                <p class="text-muted small mb-0">Правописание корней, приставок, суффиксов</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Пунктуация -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/punctuation" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-quote topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Пунктуация</h5>
+                                <p class="text-muted small mb-0">Знаки препинания в предложениях</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Синтаксис -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/syntax" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-tree-fill topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Синтаксис</h5>
+                                <p class="text-muted small mb-0">Словосочетания, типы предложений, осложнение</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Изложение (сжатое) -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/summary" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-file-text-fill topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Сжатое изложение</h5>
+                                <p class="text-muted small mb-0">Приёмы сжатия текста, микротемы</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Сочинение 13.3 -->
+            <div class="col-md-6">
+                <a href="/theory/oge/rus/essay" class="text-decoration-none">
+                    <div class="topic-card p-4 h-100">
+                        <div class="d-flex align-items-center gap-3">
+                            <i class="bi bi-pen-fill topic-icon"></i>
+                            <div>
+                                <h5 class="fw-bold mb-1">Сочинение 13.3</h5>
+                                <p class="text-muted small mb-0">Структура, клише, аргументы, определение понятий</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="mt-4 text-center">
+            <a href="/" class="btn btn-outline-success rounded-pill">
+                <i class="bi bi-arrow-left me-2"></i>На главную
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

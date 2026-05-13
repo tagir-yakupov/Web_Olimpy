@@ -7,7 +7,7 @@ from random import randint
 
 conf_th = Blueprint('conf', __name__, url_prefix='/theory/oge')
 
-@conf_th.route('/math/new', methods=['GET', 'POST'])
+@conf_th.route('/new', methods=['GET', 'POST'])
 def conf():
     if session.get('user_name') != 'admin':
         flash('Доступ запрещен!', 'error')
@@ -42,11 +42,21 @@ def conf():
             if elem.strip():
                 task_html += f'\n                <p>{elem}</p>'
         task_html += f'\n                <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i>{solution_lines[-1]}</p>\n            </div>\n</div>\n\n'
-        file_path = f'templates/theory_math/math_{theme}.html'
+        
+        file_path = f'templates/{theme}.html'
+        
+        # Проверяем, существует ли файл
+        if not os.path.exists(file_path):
+            flash(f'Ошибка: файл {theme}.html не найден!', 'error')
+            return redirect(url_for('conf.conf'))
+        
         with open(file_path, 'r', encoding='utf-8') as f:
             content = f.read()
-        button_pattern = r'(<div class="mt-4 pt-3 border-top">\s*<a href="/theory/oge/math" class="btn btn-outline-success-custom rounded-pill"><i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам</a>\s*</div>)'
-        match = re.search(button_pattern, content, re.DOTALL)
+
+        button_pattern = r'(<div class="mt-4 pt-3 border-top">\s*<a href="[^"]+" class="btn[^"]*">.*?(?:Вернуться|Назад|Вернуться ко всем темам).*?</a>\s*</div>)'
+        
+        match = re.search(button_pattern, content, re.DOTALL | re.IGNORECASE)
+        
         if match:
             new_content = content[:match.start()] + task_html + content[match.start():]
             
@@ -55,7 +65,16 @@ def conf():
             
             flash('Теория успешно добавлена!', 'success')
         else:
-            flash('Ошибка: не найдено место для вставки!', 'error')
+            body_match = re.search(r'(.*?)(</body>)', content, re.DOTALL | re.IGNORECASE)
+            if body_match:
+                new_content = body_match.group(1) + task_html + body_match.group(2)
+                with open(file_path, 'w', encoding='utf-8') as f:
+                    f.write(new_content)
+                flash('Теория успешно добавлена в конец страницы!', 'success')
+            else:
+                with open(file_path, 'a', encoding='utf-8') as f:
+                    f.write(task_html)
+                flash('Теория добавлена в конец файла!', 'success')
         
         return redirect(url_for('conf.conf'))
     

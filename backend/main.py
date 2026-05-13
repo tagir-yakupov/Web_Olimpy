@@ -17,6 +17,8 @@ from backend.admin_panel_pb import conf_pb
 from backend.parse1 import load_tasks, load_math_oge
 from backend.database.db_session import global_init, create_session
 from backend.database.models import UserModel
+from backend.chat import chatt
+from backend.rus_info import rus_th
 
 # Инициализация БД
 DB_DIR = os.path.join(ROOT_DIR, 'data')
@@ -36,12 +38,8 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(math_th_bp)  # ← Регистрируем теорию по математике
 app.register_blueprint(conf_th)
 app.register_blueprint(conf_pb)
-
-# Загружаем задания
-tasks_info = load_tasks()
-tasks_math = load_math_oge()
-
-
+app.register_blueprint(chatt)
+app.register_blueprint(rus_th)
 
 
 @app.route('/')
@@ -84,6 +82,7 @@ def logout():
 @app.route('/task')
 def task_info():
     """Задания по информатике"""
+    tasks_info = load_tasks()
     if 'user_id' not in session:
         flash('Пожалуйста, войдите в систему', 'warning')
         return redirect(url_for('auth.login'))
@@ -93,6 +92,7 @@ def task_info():
 @app.route('/task/math')
 def task_math():
     """Задания по математике"""
+    tasks_math = load_math_oge()
     if 'user_id' not in session:
         flash('Пожалуйста, войдите в систему', 'warning')
         return redirect(url_for('auth.login'))
@@ -105,6 +105,9 @@ def task_submit():
     if 'user_id' not in session:
         flash('Пожалуйста, войдите в систему', 'warning')
         return redirect(url_for('auth.login'))
+    
+    tasks_math = load_math_oge()
+    tasks_info = load_tasks()
 
     subject = request.form.get('subject', 'Информатика')
     tasks = tasks_math if subject == 'Математика' else tasks_info

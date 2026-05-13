@@ -1,0 +1,304 @@
+{% extends "base.html" %}
+
+{% block title %}Задание 8 ОГЭ — Морфологические нормы{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theory.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Задание №8 ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-type-bold me-1"></i> Морфологические нормы</span>
+            </div>
+            <h1 class="display-5 fw-bold">Морфологические нормы</h1>
+            <p class="lead mt-3">Склонение существительных, прилагательных, числительных, местоимений и глаголов. Всё, что нужно знать для задания 8 ОГЭ по русскому языку.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"><i class="bi bi-check-circle-fill me-1"></i> Формы существительных</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Склонение числительных</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-type-bold" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Формулировка задания -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Пример задания</div>
+        <span class="badge-type"><i class="bi bi-file-text-fill me-1"></i> Формулировка из ОГЭ</span>
+    </div>
+    
+    <div class="border_element p-3 mb-3" style="background: #f8f9fa; border-left: 4px solid #198754; border-radius: 0.75rem;">
+        <p><strong>Раскройте скобки и запишите слово «он» в соответствующей форме, соблюдая нормы современного русского литературного языка.</strong></p>
+        <p><em>Пароход отплывает, вслед (он) звучит прощальный марш.</em></p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: ему</p>
+    </div>
+</div>
+
+<!-- Формы существительных -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§1</div>
+        <span class="badge-type"><i class="bi bi-grid-3x3-gap-fill me-1"></i> Формы существительных</span>
+    </div>
+    <p>Сложность представляют следующие формы существительных:</p>
+    <ul>
+        <li>Именительный падеж множественного числа</li>
+        <li>Родительный падеж множественного числа</li>
+        <li>Род существительных, в том числе несклоняемых</li>
+    </ul>
+    
+    <div class="solution-toggle" onclick="toggleSolution('nominative_plural')">
+        <i class="bi bi-eye-fill me-1"></i> Именительный падеж мн.ч. (слова для запоминания)
+    </div>
+    <div id="nominative_plural" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #eaf7ea;">
+                        <th>Окончания -Ы, -И</th>
+                        <th>Окончания -А, -Я (запомнить!)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="vertical-align:top;">
+                            рЕкторы, архитЕкторы, бухгАлтеры, дИкторы, диспЕтчеры, инженЕры,<br>
+                            кондИтеры, лЕкторы, маляры, столярЫ, провИзоры, продЮсеры, риЕлторы,<br>
+                            трЕнеры, шофЁры, штурманы, брелОки, бульдозеры, газопровОды, госпитали,<br>
+                            грИфели, кАбели, диспансЕры, договОры, дОпуски, комбАйнеры, контейнеры,<br>
+                            конусы, круги, лИфты, мЕсяцы, Очерки, плЕеры, пОлисы, пОлки, пОрты,<br>
+                            прИнтеры, слоги, слоИ, соусы, тЕксты, тОрты, фИльтры, флОты, фрОнты, Ярусы
+                        </td>
+                        <td style="vertical-align:top;">
+                            директорА, докторА, профессорА, поварА, кучерА, мастерА, юнкерА, хуторА,<br>
+                            буферА, веерА, вечерА, катерА, номерА, бокА, облакА, окорокА, округА,<br>
+                            островА, парусА, голосА, бортА, сортА, паспортА, погребА, поездА, стадА,<br>
+                            городА, поясА, стогА, теремА, тетеревА, томА, черепА, шомполА, куполА,<br>
+                            колоколА, вензелЯ, тополЯ, якорЯ, краЯ, дУпла, тУловища, вЁсла, окОнца, сОлнца
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('plural_variants')">
+        <i class="bi bi-eye-fill me-1"></i> Слова с вариантами окончаний (зависит от значения)
+    </div>
+    <div id="plural_variants" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #eaf7ea;">
+                        <th>-А, -Я</th>
+                        <th>-Ы, -И</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>АДРЕСА (местожительство)</td><td>АДРЕСЫ (поздравление)</td></tr>
+                    <tr><td>ХЛЕБА (злаки)</td><td>ХЛЕБЫ (печёные изделия)</td></tr>
+                    <tr><td>КОЛЕНА (изгиб, фигура в танце)</td><td>КОЛЕНИ (часть ноги)</td></tr>
+                    <tr><td>КОРПУСА (здания, войсковое соединение)</td><td>КОРПУСЫ (туловище, свод текстов)</td></tr>
+                    <tr><td>ЛАГЕРЯ (военные, пионерские)</td><td>ЛАГЕРИ (политические группировки)</td></tr>
+                    <tr><td>МЕХА (меховые изделия)</td><td>МЕХИ (кузнечные)</td></tr>
+                    <tr><td>МУЖЬЯ (супруги)</td><td>МУЖИ (мужчины в высоком стиле)</td></tr>
+                    <tr><td>ЛИСТЬЯ (у растений)</td><td>ЛИСТЫ (металлические, бумажные)</td></tr>
+                    <tr><td>ОБРАЗА (иконы)</td><td>ОБРАЗЫ (в искусстве)</td></tr>
+                    <tr><td>ОРДЕНА (знаки отличия)</td><td>ОРДЕНЫ (тайные общества)</td></tr>
+                    <tr><td>ПРОПУСКА (документы)</td><td>ПРОПУСКИ (пробелы)</td></tr>
+                    <tr><td>СЧЕТА (денежные документы)</td><td>СЧЕТЫ (приспособления для счёта)</td></tr>
+                    <tr><td>СЫНОВЬЯ (дети)</td><td>СЫНЫ (уроженцы)</td></tr>
+                    <tr><td>УЧИТЕЛЯ (преподаватели)</td><td>УЧИТЕЛИ (главы учения)</td></tr>
+                    <tr><td>ТОНА (цвета, оттенки)</td><td>ТОНЫ (музыкальные звуки)</td></tr>
+                    <tr><td>ПРОВОДА (кабели)</td><td>ПРОВОДЫ (прощание)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('genitive_plural')">
+        <i class="bi bi-eye-fill me-1"></i> Родительный падеж мн.ч. (самое важное)
+    </div>
+    <div id="genitive_plural" class="solution-content d-none">
+        <p><strong>Парные предметы (нулевое окончание):</strong> сапог, чулок, туфель, ботинок, валенок, калош, колготок, кроссовок, плеч, погон, шорт</p>
+        <p><strong>Парные предметы (-ОВ):</strong> носков, джинсов, гольфов, очков, бронхов</p>
+        <p><strong>Единицы измерения (нулевое):</strong> 200 ватт, 220 вольт, 10 ампер, 10 герц, 5 карат, 5 аршин</p>
+        <p><strong>Единицы измерения (-ОВ):</strong> метров, граммов, акров, гектаров, дюймов</p>
+        <p><strong>Национальности (нулевое):</strong> англичан, армян, башкир, болгар, грузин, лезгин, осетин, румын, татар, цыган</p>
+        <p><strong>Национальности (-ОВ):</strong> абхазов, венгров, казахов, калмыков, киргизов, монголов, поляков, узбеков, якутов</p>
+        <p><strong>Овощи/фрукты (-ОВ):</strong> абрикосов, апельсинов, арбузов, бананов, лимонов, мандаринов, помидоров</p>
+        <p><strong>Овощи/фрукты (нулевое):</strong> яблок, груш, слив, дынь</p>
+        <p><strong>Следует запомнить:</strong> вафель, капель, кастрюль, петель, сабель, цапель; брызг, дел, каникул, макарон, манжет, опилок, перил, сардин, средств, сумерек, хлопот, шахмат, ядер</p>
+    </div>
+</div>
+
+<!-- Формы прилагательных -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§2</div>
+        <span class="badge-type"><i class="bi bi-palette-fill me-1"></i> Формы прилагательных</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('adj_comparison')">
+        <i class="bi bi-eye-fill me-1"></i> Степени сравнения прилагательных
+    </div>
+    <div id="adj_comparison" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #eaf7ea;">
+                        <th colspan="2">СРАВНИТЕЛЬНАЯ СТЕПЕНЬ</th>
+                        <th colspan="2">ПРЕВОСХОДНАЯ СТЕПЕНЬ</th>
+                    </tr>
+                    <tr style="background-color: #eaf7ea;">
+                        <th>Простая</th>
+                        <th>Составная</th>
+                        <th>Простая</th>
+                        <th>Составная</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>-ЕЕ, -Е, -ШЕ<br><i>сильнее, крепче, тоньше</i></td>
+                        <td>БОЛЕЕ, МЕНЕЕ + нач.форма<br><i>более сильный</i></td>
+                        <td>-ЕЙШ, -АЙШ<br><i>умнейший, сильнейший</i></td>
+                        <td>САМЫЙ, НАИБОЛЕЕ + нач.форма<br><i>самый сильный</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-2"><strong>Важно!</strong> Нельзя соединять простую и сложную формы: <span class="text-danger">более ниже</span> ❌ (правильно: ниже или более низкий)</p>
+        <p><strong>Не образуют простую сравнительную степень:</strong> прилагательные с суффиксами -ск- (приятельский), -н- (ранний), -л- (загорелый), -ов-/-ев- (деловой)</p>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('adj_short')">
+        <i class="bi bi-eye-fill me-1"></i> Краткая форма прилагательных
+    </div>
+    <div id="adj_short" class="solution-content d-none">
+        <p>Прилагательные на <strong>-енный</strong>, <strong>-йный</strong> образуют краткую форму м.р. на <strong>-ен</strong> (существен — существенен, но чаще употребляется существен).</p>
+        <p>Форма на <strong>-енен</strong> обязательна только в словах: <em>искренен, низменен, откровенен</em>.</p>
+        <p><strong>Не образуют краткую форму:</strong></p>
+        <ul>
+            <li>с суффиксом -л- (загорелый — омонимия с глаголом)</li>
+            <li>обозначающие масти животных (каурый, вороной)</li>
+            <li>некоторые цвета (фиолетовый, бордовый)</li>
+        </ul>
+        <p><strong>Только краткую форму имеют:</strong> рад, горазд, должен, готов, обязан</p>
+    </div>
+</div>
+
+<!-- Формы числительных -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§3</div>
+        <span class="badge-type"><i class="bi bi-123 me-1"></i> Формы числительных</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('numerals')">
+        <i class="bi bi-eye-fill me-1"></i> Склонение числительных (таблицы)
+    </div>
+    <div id="numerals" class="solution-content d-none">
+        <p><strong>40, 90, 100:</strong> имеют только две формы: И.п./В.п. = сорок, девяносто, сто; остальные падежи = сорока, девяноста, ста</p>
+        <p><strong>50-80, 500-900:</strong> склоняются обе части: пятьдесят — пятидесяти — пятьюдесятью</p>
+        <p><strong>200, 300, 400:</strong> двести — двухсот — двумстам — двумястами — о двухстах</p>
+        <p><strong>Составные количественные:</strong> склоняется каждое слово: шестьсот семьдесят три — шестисот семидесяти трёх</p>
+        <p><strong>Порядковые числительные:</strong> в составных склоняется только последнее слово: тысяча девятьсот сорок пятый — тысяча девятьсот сорок пятого</p>
+        <p><strong>Полтора, полторы, полтораста:</strong> И.п./В.п. = полтора, полторы, полтораста; остальные падежи = полутора, полутораста</p>
+        <p><strong>Собирательные (двое, трое...):</strong> склоняются как прилагательные во мн.ч.: трое — троих — троим — троими — о троих</p>
+        <p><strong>Оба/обе:</strong> обоих (м., ср.р.) — обеих (ж.р.)</p>
+    </div>
+</div>
+
+<!-- Формы местоимений -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§4</div>
+        <span class="badge-type"><i class="bi bi-person-fill me-1"></i> Формы местоимений</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('pronouns')">
+        <i class="bi bi-eye-fill me-1"></i> Правило добавления Н к местоимениям
+    </div>
+    <div id="pronouns" class="solution-content d-none">
+        <p><strong>Н добавляется:</strong></p>
+        <ul>
+            <li>После всех простых предлогов: без него, к ней, о нём, с ними, у неё</li>
+            <li>После наречных предлогов, управляющих Р.п.: возле него, впереди неё, мимо них, после него</li>
+            <li>С предлогом СКВОЗЬ: сквозь него, сквозь неё</li>
+        </ul>
+        <p><strong>НЕ добавляется:</strong></p>
+        <ul>
+            <li>После предлогов, управляющих Д.п.: вопреки ему, навстречу ему, согласно ему</li>
+            <li>После предлога БЛАГОДАРЯ: благодаря ему</li>
+            <li>После сложных предлогов: в отношении его, по причине его, насчёт его</li>
+            <li>После сравнительной степени: выше его, старше её</li>
+        </ul>
+        <p class="mt-2"><strong>Отрицательные местоимения:</strong> некого, нечего (не имеют И.п.); никто, ничто (пишутся слитно без предлога, раздельно с предлогом: ни у кого, ни о чём)</p>
+    </div>
+</div>
+
+<!-- Формы глаголов -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§5</div>
+        <span class="badge-type"><i class="bi bi-play-fill me-1"></i> Формы глаголов</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('verbs_important')">
+        <i class="bi bi-eye-fill me-1"></i> Самые важные формы глаголов
+    </div>
+    <div id="verbs_important" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr style="background-color: #eaf7ea;">
+                        <th>Инфинитив</th>
+                        <th>Настоящее время</th>
+                        <th>Прошедшее время</th>
+                        <th>Повелительное наклонение</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>ехать</td><td>еду, едет</td><td>ехал, ехала</td><td>поезжай (не едь, не ехай!)</td></tr>
+                    <tr><td>ездить</td><td>езжу, ездит</td><td>ездил, ездила</td><td>езди (не ездий!)</td></tr>
+                    <tr><td>бежать</td><td>бегу, бежит, бегут</td><td>—</td><td>беги (не бежи!)</td></tr>
+                    <tr><td>лечь</td><td>лягу, ляжет, лягут</td><td>лёг, легла</td><td>ляг (не ляжь!)</td></tr>
+                    <tr><td>класть</td><td>кладу, кладёт</td><td>клал, клала</td><td>клади (не ложь, не поклади!)</td></tr>
+                    <tr><td>положить</td><td>положу, положит</td><td>положил, положила</td><td>положи</td></tr>
+                    <tr><td>мучить</td><td>мучу, мучит</td><td>мучил, мучила</td><td>мучь</td></tr>
+                    <tr><td>мерить</td><td>мерю, мерит</td><td>мерил, мерила</td><td>мерь</td></tr>
+                    <tr><td>выздороветь</td><td>выздоровею, выздоровеет</td><td>выздоровел</td><td>—</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="mt-2"><strong>Глаголы, не имеющие формы 1 лица:</strong> победить, убедить, претить, очутиться, чудить, пылесосить (употребляется несвободно)</p>
+        <p><strong>Двоякие формы:</strong> брызгает (поливает) — брызжет (разлетается каплями); двигает (мебель) — движет (идея); капает (дождь) — каплет (протекает)</p>
+    </div>
+</div>
+
+<!-- Кнопка возврата -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/rus" class="btn btn-outline-success rounded-pill px-4 py-2">
+        <i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам
+    </a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}

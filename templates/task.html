@@ -80,6 +80,21 @@
             border-color: #c5d5c5;
             color: #2d4a2d;
         }
+        
+        /* Стили для картинок */
+        .task-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border: 1px solid #d4e0d4;
+        }
+        
+        .image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -111,6 +126,13 @@
                             </div>
                             <div class="card-body">
                                 <p class="card-text mb-3" style="white-space: pre-line; color: #3d5a3d;">{{ t.question }}</p>
+
+                                <!-- ДОБАВЛЕНО: Отображение картинки -->
+                                {% if t.image %}
+                                    <div class="image-container">
+                                        <img src="{{ t.image }}" alt="Изображение к заданию {{ t.id }}" class="task-image">
+                                    </div>
+                                {% endif %}
 
                                 {% if t.table %}
                                     {% if t.table.type == 'code' %}
