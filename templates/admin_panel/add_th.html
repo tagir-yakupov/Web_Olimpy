@@ -71,23 +71,25 @@
                 <button type="button" onclick="formatText('solution', 'sqrt')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">√</button>
                 <button type="button" onclick="formatText('solution', 'ul')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">• Список</button>
             </div>
-
-            <textarea id="solution" name="task_solution" rows="6" required
+            
+            <textarea id="solution" name="task_solution" rows="6" required 
                       style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;"
                       placeholder="Если нужно сделать в формате LaTeX, то сначала выбераем символ(дробь, корень), а потом выбрав всё выбераем LaTeX."></textarea>
         </div>
-
+        
         <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Ссылка на изображение:</label>
-            <input type="text" name="image_url"
-                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
-                   placeholder='Вставляем полную ссылку на изображение'>
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Изображение:</label>
+            <input type="file" name="image" accept="image/*" 
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: white;">
+            <div id="imagePreview" style="margin-top: 10px; max-width: 300px; display: none;">
+                <img id="previewImg" src="" alt="Предпросмотр" style="max-width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
         </div>
-
+        
         <button type="submit" style="background: #1d3709; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
-            Добавить задачу
+            Создать задачу
         </button>
-
+        
         <a href="{{ url_for('conf.conf') }}" style="margin-left: 10px; display: inline-block; padding: 12px 30px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
             Назад
         </a>
@@ -101,7 +103,7 @@ function formatText(textareaId, type) {
     const end = textarea.selectionEnd;
     const selectedText = textarea.value.substring(start, end);
     let formattedText = '';
-
+    
     switch(type) {
         case 'bold':
             formattedText = `<strong>${selectedText}</strong>`;
@@ -141,10 +143,10 @@ function formatText(textareaId, type) {
         default:
             formattedText = selectedText;
     }
-
+    
     const newText = textarea.value.substring(0, start) + formattedText + textarea.value.substring(end);
     textarea.value = newText;
-
+    
     // Устанавливаем курсор после вставленного текста
     const newCursorPos = start + formattedText.length;
     textarea.setSelectionRange(newCursorPos, newCursorPos);

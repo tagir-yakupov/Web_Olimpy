@@ -1,0 +1,333 @@
+{% extends "base.html" %}
+
+{% block title %}Задание 3 ОГЭ — Синтаксический анализ предложения{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theory.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Задание №3 ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-diagram-3 me-1"></i> Синтаксический анализ</span>
+            </div>
+            <h1 class="display-5 fw-bold">Синтаксический анализ предложения</h1>
+            <p class="lead mt-3">Всё о предложении: главные и второстепенные члены, односоставные и двусоставные, осложнение, классификация сложных предложений и способы передачи чужой речи.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"><i class="bi bi-check-circle-fill me-1"></i> Простые и сложные</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Односоставные и двусоставные</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-diagram-3" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Формулировка задания -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Пример задания</div>
+        <span class="badge-type"><i class="bi bi-file-text-fill me-1"></i> Формулировка из ОГЭ</span>
+    </div>
+    
+    <div class="border_element p-3 mb-3" style="background: #f8f9fa; border-left: 4px solid #198754; border-radius: 0.75rem;">
+        <p><strong>Прочитайте текст и выполните задания 2,3.</strong></p>
+        <p>(1)Владимир Иванович Даль говорил, что в русском слове «не менее жизни, как и в самом человеке». (2)Этому живому слову Даль посвятил свою деятельность, все свои силы – его истинным призванием стало служение родному русскому слову, нашей национальной культуре. (3)Автор «Толкового словаря живого великорусского языка» достоин того, чтобы мы больше знали о судьбе этого талантливого человека, об истории создания его замечательного словаря. (4)Мы должны научиться черпать из этой удивительной книги то, что поможет нам общаться с родным словом, как с живым человеком. (5)А узнавая, постигая, разгадывая тайны русского слова, мы глубже познаём особенности национального характера, русской культуры, истории России, через общение с живым словом лучше начинаем узнавать себя.</p>
+        <p><strong>Укажите варианты ответов, в которых даны верные характеристики предложений текста. Запишите номера ответов.</strong></p>
+        <p>1) Предложение 1 содержит цитирование.<br>
+        2) В первой части сложного предложения 2 содержится сказуемое составное именное.<br>
+        3) Предложение 3 сложносочинённое.<br>
+        4) Предложение 4 простое, распространённое.<br>
+        5) Предложение 5 осложнено однородными и обособленными членами предложения.</p>
+        <p class="fw-bold text-success mt-2"><i class="bi bi-check-circle-fill"></i> Ответ: 15</p>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('task_explanation')">
+        <i class="bi bi-eye-fill me-1"></i> Разбор задания
+    </div>
+    <div id="task_explanation" class="solution-content d-none">
+        <p><strong>Разбор:</strong></p>
+        <ul>
+            <li>✅ <strong>1 — верно</strong>: в предложении 1 есть прямая речь (цитирование слов Даля).</li>
+            <li>❌ <strong>2 — неверно</strong>: сказуемое в первой части предложения 2 — «посвятил» (простое глагольное).</li>
+            <li>❌ <strong>3 — неверно</strong>: предложение 3 сложноподчинённое (есть союзное слово «чтобы»).</li>
+            <li>❌ <strong>4 — неверно</strong>: предложение 4 сложное (есть союзное слово «что»).</li>
+            <li>✅ <strong>5 — верно</strong>: есть однородные деепричастия («узнавая, постигая, разгадывая») и обособленные члены.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Предложение -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§1</div>
+        <span class="badge-type"><i class="bi bi-chat-dots-fill me-1"></i> Что такое предложение?</span>
+    </div>
+    
+    <div class="alert alert-info p-3 mb-3" style="background: #eaf7ea; border-left: 4px solid #198754; border-radius: 0.75rem;">
+        <p><strong>Предложение</strong> – это интонационно и грамматически оформленная единица речи (общения, коммуникации), которая служит средством формирования и выражения мысли в форме сообщения, вопроса или побуждения. Предложение является наименьшей единицей общения и обладает интонационной завершённостью. Предложение отличается от словосочетания функцией: словосочетание выполняет номинативную функцию, предложение - коммуникативную.</p>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('sentence_classification')">
+        <i class="bi bi-eye-fill me-1"></i> Классификация предложений (таблица)
+    </div>
+    <div id="sentence_classification" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: #eaf7ea;">
+                        <td colspan="4" style="text-align:center;"><strong>По количеству грамматических основ</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;"><strong>ПРОСТОЕ</strong><br>(одна грамматическая основа)</td>
+                        <td colspan="2" style="text-align:center;"><strong>СЛОЖНОЕ</strong><br>(2 и более грамматические основы)</td>
+                    </tr>
+                    <tr style="background-color: #eaf7ea;">
+                        <td colspan="4" style="text-align:center;"><strong>По составу грамматической основы</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;"><strong>ОДНОСОСТАВНОЕ</strong><br>грамматическая основа состоит только из одного главного члена<br><i>Холодно; Едут!; Тишина; Подвиньтесь!</i></td>
+                        <td colspan="2" style="text-align:center;"><strong>ДВУСОСТАВНОЕ</strong><br>грамматическая основа включает и подлежащее, и сказуемое.<br><i>Прозрачный лес один чернеет, И ель сквозь иней зеленеет</i></td>
+                    </tr>
+                    <tr style="background-color: #eaf7ea;">
+                        <td colspan="4" style="text-align:center;"><strong>По наличию второстепенных членов</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;"><strong>РАСПРОСТРАНЕННОЕ</strong><br>есть второстепенные члены<br><i>Лошади тяжело ступали по глубокому снегу.</i></td>
+                        <td colspan="2" style="text-align:center;"><strong>НЕРАСПРОСТРАНЕННОЕ</strong><br>только главные члены<br><i>Солнце встало.</i></td>
+                    </tr>
+                    <tr style="background-color: #eaf7ea;">
+                        <td colspan="4" style="text-align:center;"><strong>По цели высказывания</strong></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;"><strong>ПОВЕСТВОВАТЕЛЬНОЕ</strong></td>
+                        <td colspan="2" style="text-align:center;"><strong>ВОПРОСИТЕЛЬНОЕ</strong></td>
+                        <td style="text-align:center;"><strong>ПОБУДИТЕЛЬНОЕ</strong></td>
+                    </tr>
+                    <tr style="background-color: #eaf7ea;">
+                        <td colspan="4" style="text-align:center;"><strong>По эмоциональной окраске</strong></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:center;"><strong>ВОСКЛИЦАТЕЛЬНОЕ</strong><br><i>Как вы бледны!</i></td>
+                        <td colspan="2" style="text-align:center;"><strong>НЕВОСКЛИЦАТЕЛЬНОЕ</strong><br><i>Мы вчера сходили в магазин.</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Главные и второстепенные члены -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§2</div>
+        <span class="badge-type"><i class="bi bi-person-standing me-1"></i> Главные и второстепенные члены</span>
+    </div>
+    
+    <div class="alert alert-info p-3 mb-3" style="background: #eaf7ea; border-left: 4px solid #198754; border-radius: 0.75rem;">
+        <p><strong>Член предложения</strong> – это минимальная синтаксическая величина, предел членения простого предложения.<br>
+        <strong>!!!</strong> Не все слова в предложении являются членами предложения. Например, предлоги и союзы — не члены предложения.</p>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('sentence_parts')">
+        <i class="bi bi-eye-fill me-1"></i> Таблица членов предложения
+    </div>
+    <div id="sentence_parts" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: #eaf7ea;">
+                        <td style="text-align:center;"><strong>Главные члены (грамматическая основа)</strong></td>
+                        <td style="text-align:center;"><strong>Второстепенные члены</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Подлежащее</strong> – о ком/чем говорится<br><strong>Сказуемое</strong> – что говорится о подлежащем</td>
+                        <td><strong>Определение</strong> (какой?)<br><strong>Дополнение</strong> (вопросы косвенных падежей)<br><strong>Обстоятельство</strong> (где? куда? как? когда? и др.)<br><strong>Обособленные</strong> – выделенные запятыми</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Односоставные и двусоставные -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§3</div>
+        <span class="badge-type"><i class="bi bi-1-square-fill me-1"></i> Односоставные и двусоставные</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('one_part_sentences')">
+        <i class="bi bi-eye-fill me-1"></i> Виды односоставных предложений
+    </div>
+    <div id="one_part_sentences" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: #eaf7ea;">
+                        <td><strong>ВИД</strong></td>
+                        <td><strong>ОПИСАНИЕ</strong></td>
+                        <td><strong>ПРИМЕРЫ</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Определённо-личные</strong></td>
+                        <td>сказуемое в форме 1 или 2 лица (можно подставить Я, МЫ, ТЫ, ВЫ)</td>
+                        <td><i>Люблю грозу в начале мая. Идём в кино?</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Неопределённо-личные</strong></td>
+                        <td>сказуемое в форме 3 лица мн.ч. (можно подставить ОНИ)</td>
+                        <td><i>В дверь стучат. Ему сказали правду.</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Обобщённо-личные</strong></td>
+                        <td>пословицы и поговорки</td>
+                        <td><i>Слезами горю не поможешь.</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Безличные</strong></td>
+                        <td>нет и не может быть подлежащего</td>
+                        <td><i>Вечереет. Мне грустно. На небе нет ни облачка.</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Назывные</strong></td>
+                        <td>есть только подлежащее</td>
+                        <td><i>Зима. Мороз и солнце! Вот и озеро.</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Осложнение простого предложения -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§4</div>
+        <span class="badge-type"><i class="bi bi-exclamation-triangle-fill me-1"></i> Осложнение простого предложения</span>
+    </div>
+    
+    <div class="alert alert-info p-3 mb-3" style="background: #eaf7ea; border-left: 4px solid #198754; border-radius: 0.75rem;">
+        <p><strong>Осложненными</strong> называют предложения, которые содержат какой-либо осложняющий элемент. Осложнения делятся на две группы: осложнения, являющиеся членами предложения, и осложнения, не являющиеся членами предложения (вводные слова, обращения и др.)</p>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('complicated_sentences')">
+        <i class="bi bi-eye-fill me-1"></i> Виды осложнений
+    </div>
+    <div id="complicated_sentences" class="solution-content d-none">
+        <ul>
+            <li><strong>Обособленные члены</strong> — определения, обстоятельства, дополнения (выделяются запятыми)</li>
+            <li><strong>Однородные члены</strong> — отвечают на один вопрос, относятся к одному слову</li>
+            <li><strong>Вводные слова и конструкции</strong> — <i>конечно, во-первых, к счастью</i></li>
+            <li><strong>Обращения</strong> — <i>Друзья, давайте жить дружно!</i></li>
+            <li><strong>Сравнительные обороты</strong> — <i>лёгкий, как пух</i></li>
+            <li><strong>Прямая речь</strong> — <i>«Привет!» — сказал он.</i></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Классификация сложных предложений -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§5</div>
+        <span class="badge-type"><i class="bi bi-shuffle me-1"></i> Сложные предложения</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('complex_sentences')">
+        <i class="bi bi-eye-fill me-1"></i> ССП, СПП, БСП
+    </div>
+    <div id="complex_sentences" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: #eaf7ea;">
+                        <td><strong>ТИП</strong></td>
+                        <td><strong>СОЮЗЫ/СВЯЗЬ</strong></td>
+                        <td><strong>ПРИМЕР</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>ССП</strong><br>(сложносочинённое)</td>
+                        <td>сочинительные союзы: <i>и, а, но, или, либо, то...то</i></td>
+                        <td><i>Наступила осень, и птицы улетели на юг.</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>СПП</strong><br>(сложноподчинённое)</td>
+                        <td>подчинительные союзы и союзные слова: <i>что, чтобы, потому что, когда, если, который</i></td>
+                        <td><i>Я знаю, что ты придёшь.</i></td>
+                    </tr>
+                    <tr>
+                        <td><strong>БСП</strong><br>(бессоюзное)</td>
+                        <td>интонация, знаки препинания (запятая, двоеточие, тире)</td>
+                        <td><i>Солнце село — наступил вечер.</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('spb_types')">
+        <i class="bi bi-eye-fill me-1"></i> СПП с несколькими придаточными
+    </div>
+    <div id="spb_types" class="solution-content d-none">
+        <ul>
+            <li><strong>Последовательное</strong>: [ ], ( ), ( ) — каждое придаточное зависит от предыдущего</li>
+            <li><strong>Однородное</strong>: [ ], ( ), ( ) — оба придаточных относятся к одному слову в главном</li>
+            <li><strong>Параллельное</strong>: ( ), [ ], ( ) — придаточные относятся к разным словам или разным частям главного</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Способы передачи чужой речи -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§6</div>
+        <span class="badge-type"><i class="bi bi-chat-quote-fill me-1"></i> Способы передачи чужой речи</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('foreign_speech')">
+        <i class="bi bi-eye-fill me-1"></i> Прямая, косвенная речь и цитирование
+    </div>
+    <div id="foreign_speech" class="solution-content d-none">
+        <div class="tableWrapper">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr style="background-color: #eaf7ea;">
+                        <td><strong>ПРЯМАЯ РЕЧЬ</strong></td>
+                        <td><strong>КОСВЕННАЯ РЕЧЬ</strong></td>
+                        <td><strong>ЦИТИРОВАНИЕ</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Дословное воспроизведение чужого высказывания.<br><i>«Приду поздно», — сказал он.</i></td>
+                        <td>Пересказ чужой речи в форме придаточного предложения.<br><i>Он сказал, что придёт поздно.</i></td>
+                        <td>Дословная выдержка из текста.<br><i>Пушкин писал: «Я вас любил...»</i></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<!-- Кнопка возврата -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/rus" class="btn btn-outline-success rounded-pill px-4 py-2">
+        <i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам
+    </a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}

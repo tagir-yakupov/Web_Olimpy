@@ -1,0 +1,15 @@
+.topic-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+        border-left: 4px solid #198754;
+    }
+    .topic-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .topic-icon {
+        font-size: 2rem;
+        color: #198754;
+    }

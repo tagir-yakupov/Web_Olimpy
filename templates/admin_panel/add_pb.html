@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+    <h2>Добавление новой задачи</h2>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div style="padding: 10px; margin-bottom: 20px; border-radius: 5px; 
+                           {% if category == 'success' %}background: #d4edda; color: #155724;
+                           {% elif category == 'error' %}background: #f8d7da; color: #721c24;
+                           {% else %}background: #d1ecf1; color: #0c5460;{% endif %}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Номер задачи:</label>
+            <input type="number" name="id" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Категория:</label>
+            <input type="text" name="category" required 
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;"
+                   placeholder="">
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Условие задачи:</label>
+            
+            <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
+                <button type="button" onclick="formatText('condition', 'bold')" style="padding: 5px 10px; font-weight: bold; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">B</button>
+                <button type="button" onclick="formatText('condition', 'italic')" style="padding: 5px 10px; font-style: italic; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">I</button>
+                <button type="button" onclick="formatText('condition', 'underline')" style="padding: 5px 10px; text-decoration: underline; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">U</button>
+                <button type="button" onclick="formatText('condition', 'latex')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">[LaTeX]</button>
+                <button type="button" onclick="formatText('condition', 'frac')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">a/b</button>
+                <button type="button" onclick="formatText('condition', 'sqrt')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">√</button>
+                <button type="button" onclick="formatText('condition', 'pow')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">x²</button>
+                <button type="button" onclick="formatText('condition', 'sub')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">xₙ</button>
+                <button type="button" onclick="formatText('condition', 'integral')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">∫</button>
+                <button type="button" onclick="formatText('condition', 'sum')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">Σ</button>
+                <button type="button" onclick="formatText('condition', 'ul')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">• Список</button>
+            </div>
+            
+            <textarea id="condition" name="condition" rows="6" required 
+                      style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;"
+                      placeholder="Введите условие задачи"></textarea>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Ответ:</label>
+            
+            <div style="margin-bottom: 10px; display: flex; gap: 5px; flex-wrap: wrap;">
+                <button type="button" onclick="formatText('answer', 'bold')" style="padding: 5px 10px; font-weight: bold; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">B</button>
+                <button type="button" onclick="formatText('answer', 'italic')" style="padding: 5px 10px; font-style: italic; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">I</button>
+                <button type="button" onclick="formatText('answer', 'underline')" style="padding: 5px 10px; text-decoration: underline; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">U</button>
+                <button type="button" onclick="formatText('answer', 'latex')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">[LaTeX]</button>
+                <button type="button" onclick="formatText('answer', 'frac')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">a/b</button>
+                <button type="button" onclick="formatText('answer', 'sqrt')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">√</button>
+                <button type="button" onclick="formatText('answer', 'pow')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">x²</button>
+                <button type="button" onclick="formatText('answer', 'sub')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">xₙ</button>
+                <button type="button" onclick="formatText('answer', 'ul')" style="padding: 5px 10px; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; cursor: pointer;">• Список</button>
+            </div>
+            
+            <textarea id="answer" name="answer" rows="4" required 
+                      style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-family: monospace;"
+                      placeholder="Введите ответ"></textarea>
+        </div>
+        
+        <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 5px; font-weight: bold;">Изображение:</label>
+            <input type="file" name="image" accept="image/*" 
+                   style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; background: white;">
+            <div id="imagePreview" style="margin-top: 10px; max-width: 300px; display: none;">
+                <img id="previewImg" src="" alt="Предпросмотр" style="max-width: 100%; border-radius: 5px; border: 1px solid #ddd;">
+            </div>
+        </div>
+        
+        <button type="submit" style="background: #1d3709; color: white; padding: 12px 30px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px;">
+            Добавить задачу
+        </button>
+        
+        <a href="{{ url_for('conf.conf') }}" style="margin-left: 10px; display: inline-block; padding: 12px 30px; background: #6c757d; color: white; text-decoration: none; border-radius: 5px;">
+            Назад
+        </a>
+    </form>
+</div>
+
+<script>
+function formatText(textareaId, type) {
+    const textarea = document.getElementById(textareaId);
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = textarea.value.substring(start, end);
+    let formattedText = '';
+    
+    switch(type) {
+        case 'bold':
+            formattedText = `<strong>${selectedText}</strong>`;
+            break;
+        case 'italic':
+            formattedText = `<em>${selectedText}</em>`;
+            break;
+        case 'underline':
+            formattedText = `<u>${selectedText}</u>`;
+            break;
+        case 'latex':
+            if (selectedText) {
+                formattedText = `\\(${selectedText}\\)`;
+            } else {
+                formattedText = `\\( \\)`;
+            }
+            break;
+        case 'frac':
+            if (selectedText && selectedText.includes('/')) {
+                const parts = selectedText.split('/');
+                formattedText = `\\frac{${parts[0]}}{${parts[1]}}`;
+            } else if (selectedText) {
+                formattedText = `\\frac{${selectedText}}{}`;
+            } else {
+                formattedText = `\\frac{}{}`;
+            }
+            break;
+        case 'sqrt':
+            if (selectedText) {
+                formattedText = `\\sqrt{${selectedText}}`;
+            } else {
+                formattedText = `\\sqrt{}`;
+            }
+            break;
+        case 'pow':
+            if (selectedText) {
+                formattedText = `${selectedText}^{}`;
+            } else {
+                formattedText = `^{}`;
+            }
+            break;
+        case 'sub':
+            if (selectedText) {
+                formattedText = `${selectedText}_{}`;
+            } else {
+                formattedText = `_{}`;
+            }
+            break;
+        case 'integral':
+            formattedText = `\\int_{}^{}`;
+            break;
+        case 'sum':
+            formattedText = `\\sum_{i=1}^{n}`;
+            break;
+        case 'ul':
+            const items = selectedText.split('\n');
+            formattedText = items.map(item => `• ${item}`).join('\n');
+            break;
+        default:
+            formattedText = selectedText;
+    }
+    
+    const newText = textarea.value.substring(0, start) + formattedText + textarea.value.substring(end);
+    textarea.value = newText;
+    
+    const newCursorPos = start + formattedText.length;
+    textarea.setSelectionRange(newCursorPos, newCursorPos);
+    textarea.focus();
+}
+
+function previewImage(input) {
+    const preview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        
+        reader.onload = function(e) {
+            previewImg.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        previewImg.src = '';
+        preview.style.display = 'none';
+    }
+}
+
+const form = document.querySelector('form');
+if (form) {
+    form.addEventListener('submit', function(e) {
+        const taskNumber = document.querySelector('input[name="id"]').value;
+        const category = document.querySelector('input[name="category"]').value;
+        const condition = document.getElementById('condition').value;
+        const answer = document.getElementById('answer').value;
+        
+        if (!taskNumber) {
+            e.preventDefault();
+            alert('Пожалуйста, введите номер задачи');
+            return false;
+        }
+        
+        if (!category.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите категорию');
+            return false;
+        }
+        
+        if (!condition.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите условие задачи');
+            return false;
+        }
+        
+        if (!answer.trim()) {
+            e.preventDefault();
+            alert('Пожалуйста, введите ответ');
+            return false;
+        }
+        
+        const file = document.querySelector('input[name="image"]').files[0];
+        if (file && file.size > 5 * 1024 * 1024) {
+            e.preventDefault();
+            alert('Размер файла не должен превышать 5MB');
+            return false;
+        }
+    });
+}
+</script>
+{% endblock %}

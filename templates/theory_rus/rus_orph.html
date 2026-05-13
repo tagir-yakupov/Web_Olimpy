@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}Орфография для ОГЭ по русскому языку{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/theory.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- Hero блок -->
+<div class="topic-hero">
+    <div class="row align-items-center">
+        <div class="col-md-9">
+            <div class="mb-2">
+                <span class="badge bg-light text-success fs-6 p-2"><i class="bi bi-star-fill me-1"></i> Теория ОГЭ</span>
+                <span class="badge bg-light text-success ms-2 p-2"><i class="bi bi-pencil-square me-1"></i> Орфография</span>
+            </div>
+            <h1 class="display-5 fw-bold">Орфография для ОГЭ</h1>
+            <p class="lead mt-3">Все самые важные правила правописания в одной статье: окончания глаголов, приставки, суффиксы, корни, НЕ/НИ и разделительные знаки.</p>
+            <div class="mt-3">
+                <span class="badge bg-white text-success me-2 p-2"><i class="bi bi-check-circle-fill me-1"></i> Правописание окончаний</span>
+                <span class="badge bg-white text-success p-2"><i class="bi bi-puzzle-fill me-1"></i> Приставки и суффиксы</span>
+            </div>
+        </div>
+        <div class="col-md-3 text-center d-none d-md-block">
+            <i class="bi bi-pencil-square" style="font-size: 4rem; opacity: 0.9;"></i>
+        </div>
+    </div>
+</div>
+
+<!-- Введение -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">Вступление</div>
+        <span class="badge-type"><i class="bi bi-book-half me-1"></i> Важно запомнить</span>
+    </div>
+    <p>Выучить и запомнить всю орфографию для ОГЭ так же реально, как найти следы жизни на Марсе (к слову, это сделали ещё <a href="https://www.kp.ru/daily/27559.5/4883875/" target="_blank" rel="noopener noreferrer">в прошлом году</a>!).</p>
+    <p>Собрали для тебя все самые важные правила в одной статье — освежишь в памяти:</p>
+    <ul>
+        <li>правописание окончаний глаголов;</li>
+        <li>написание НЕ и НИ с разными частями речи;</li>
+        <li>особенности употребления мягкого и твёрдого знака;</li>
+        <li>правописание приставок, суффиксов и корней.</li>
+    </ul>
+</div>
+
+<!-- БЛОК 1: Правописание окончаний глаголов -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§1</div>
+        <span class="badge-type"><i class="bi bi-type-italic me-1"></i> Правописание окончаний глаголов</span>
+    </div>
+    <p>Чтобы писать их правильно, всегда определяй спряжение глагола — это поможет подобрать правильное окончание.</p>
+    
+    <div class="tableWrapper">
+        <table style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Гласные в личных окончаниях глаголов I спряжения</th>
+                    <th>Окончания глаголов I спряжения</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Е, У, Ю</td>
+                    <td>-ешь, -ет, -ем, -ете, -ут, -ют</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="tableWrapper">
+        <table style="width:100%;">
+            <thead>
+                <tr>
+                    <th>Гласные в личных окончаниях глаголов II спряжения</th>
+                    <th>Окончания глаголов II спряжения</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>И, А, Я</td>
+                    <td>-ишь, -ит, -им, -ите, -ат, -ят</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('verbs_exceptions')">
+        <i class="bi bi-eye-fill me-1"></i> Глаголы-исключения
+    </div>
+    <div id="verbs_exceptions" class="solution-content d-none">
+        <p><strong>Глаголы-исключения:</strong></p>
+        <ul>
+            <li>слова <em>брить, стелить</em> имеют окончания <strong>I спряжения</strong>;</li>
+            <li>слова <em>гнать, дышать, держать, зависеть, видеть, слышать, обидеть, терпеть, вертеть, ненавидеть, смотреть</em> — окончания <strong>II спряжения</strong>.</li>
+        </ul>
+        <p class="mb-0 mt-2"><strong>Запомни стишок:</strong> «Гнать, дышать, держать, зависеть, видеть, слышать и обидеть, а ещё терпеть, вертеть, ненавидеть и смотреть».</p>
+    </div>
+</div>
+
+<!-- БЛОК 2: Правописание Ь и Ъ -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§2</div>
+        <span class="badge-type"><i class="bi bi-symmetry-vertical me-1"></i> Правописание Ь и Ъ</span>
+    </div>
+    <p>Здесь важно различать, когда мы пишем тот или иной знак.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('soft_sign')">
+        <i class="bi bi-eye-fill me-1"></i> Когда пишется мягкий знак (Ь)?
+    </div>
+    <div id="soft_sign" class="solution-content d-none">
+        <p><strong>Мягкий знак употребляется:</strong></p>
+        <ul>
+            <li>для обозначения мягкости согласного звука — после шипящих в существительных <strong>3-го склонения</strong> (<em>рожь, мышь, помощь</em>);</li>
+            <li>после шипящих в глаголах <strong>2-го лица</strong> (<em>пишешь, читаешь</em>);</li>
+            <li>после шипящих в глаголах <strong>повелительного наклонения</strong> (<em>режь, спрячь</em>);</li>
+            <li>после шипящих в <strong>наречиях</strong> (кроме <em>уж, замуж, невтерпёж</em>);</li>
+            <li>перед <strong>Е, Ё, И, Ю, Я</strong> (но не после приставок) и в некоторых иноязычных словах (<em>копьё, воробьи, вьюга, бульон</em>).</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('hard_sign')">
+        <i class="bi bi-eye-fill me-1"></i> Когда пишется твёрдый знак (Ъ)?
+    </div>
+    <div id="hard_sign" class="solution-content d-none">
+        <p><strong>Твёрдый знак пишется:</strong></p>
+        <ul>
+            <li>для обозначения твёрдости согласного — после приставок на согласный, перед буквами <strong>Е, Ё, Ю, Я</strong> (<em>съесть, подъезд</em>);</li>
+            <li>в сложных словах с первой частью <em>двух-, трёх-</em> или <em>четырёх-</em> перед <strong>Е, Ю, Я</strong> (<em>двухъярусный, трёхъязычный</em>);</li>
+            <li>в иноязычных словах после иноязычных приставок <em>аб-, ад-, диз-, ин-, интер-, кон-, контр-, об-, суб-, транс-</em> (<em>адъютант, объект, инъекция</em>).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- БЛОК 3: О/Ё после шипящих и Ц -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§3</div>
+        <span class="badge-type"><i class="bi bi-soundwave me-1"></i> Употребление О/Ё после шипящих и Ц</span>
+    </div>
+    <p>Написание после шипящих зависит от местоположения гласных в слове, а ещё от части речи.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('sibilants')">
+        <i class="bi bi-eye-fill me-1"></i> Правила О/Ё после шипящих
+    </div>
+    <div id="sibilants" class="solution-content d-none">
+        <ul>
+            <li><strong>В корнях</strong> имён существительных и прилагательных пишется <strong>Ё</strong>, если можно подобрать проверочное слово с Е.<br>
+            <em>Примеры: чёрный — чернеть</em>, но слово <em>шорох</em> мы проверить не сможем.</li>
+            <li><strong>В суффиксах и окончаниях</strong> существительных и прилагательных пишется <strong>О</strong>, если эта буква под ударением, за исключением суффикса <em>-ёр</em>.<br>
+            <em>Примеры: мячом</em>, но <em>дирижёр</em>.</li>
+            <li><strong>В глаголах и словах, образованных от них</strong>, пишется буква <strong>Ё</strong>.<br>
+            <em>Примеры: стрижёшь, тушёнка</em> (от глагола <em>тушить</em>).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- БЛОК 4: Правописание корней -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§4</div>
+        <span class="badge-type"><i class="bi bi-tree-fill me-1"></i> Правописание корней</span>
+    </div>
+    <p>Здесь всё зависит от того, какое слово перед тобой: с чередующейся гласной в корне, проверяемой или непроверяемой. Ошибки на ОГЭ по русскому выпускники часто допускают из-за этого, поэтому советуем сначала определить тип слова.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('alternating_roots')">
+        <i class="bi bi-eye-fill me-1"></i> Чередующиеся гласные в корнях
+    </div>
+    <div id="alternating_roots" class="solution-content d-none">
+        <ul>
+            <li><strong>-бер-/-бир-, -дер-/-дир-, -мер-/-мир-</strong> и другие → пишется <strong>И</strong>, если после корня есть суффикс <strong>-а-</strong>: <em>заберу́ — забира́ть, задеру́ — задира́ть</em>.</li>
+            <li><strong>-кос-/-кас-</strong> → <strong>А</strong>, если после корня есть <strong>-а-</strong>: <em>каса́ться — косну́ться</em>.</li>
+            <li><strong>-гор-/-гар-</strong> → под ударением — <strong>А</strong>, без ударения — <strong>О</strong>: <em>зага́р — загоре́лый</em>.</li>
+            <li><strong>-лож-/-лаг-, -рос-/-раст-</strong> → перед <strong>Г, Ж, СТ, Щ</strong> пишется <strong>А</strong>: <em>полага́ть — положи́ть, расти́ — вы́рос</em>.</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('checked_roots')">
+        <i class="bi bi-eye-fill me-1"></i> Корни с проверяемыми гласными и согласными
+    </div>
+    <div id="checked_roots" class="solution-content d-none">
+        <ul>
+            <li>Проверяй <strong>ударением</strong> или изменением слова: <em>трава́ — тра́вы, леса́ — лес</em>.</li>
+            <li>К словам с <strong>непроизносимыми согласными</strong> подбирай однокоренные слова так, чтобы согласный слышался чётко: <em>местный — место</em>.</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('unchecked_roots')">
+        <i class="bi bi-eye-fill me-1"></i> Корни с непроверяемыми гласными (словарные слова)
+    </div>
+    <div id="unchecked_roots" class="solution-content d-none">
+        <p>Здесь нет никаких правил, слова с такими корнями нужно просто <strong>запоминать</strong>:</p>
+        <p><em>багровый, винегрет, апартаменты, вестибюль, интеллигенция, искусный, обаяние, панорама, эксперимент</em>.</p>
+    </div>
+</div>
+
+<!-- БЛОК 5: Правописание приставок -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§5</div>
+        <span class="badge-type"><i class="bi bi-plus-circle me-1"></i> Правописание приставок</span>
+    </div>
+    
+    <div class="solution-toggle" onclick="toggleSolution('prefixes_z_s')">
+        <i class="bi bi-eye-fill me-1"></i> Приставки на З/С
+    </div>
+    <div id="prefixes_z_s" class="solution-content d-none">
+        <p>Приставки <em>без-/бес-, раз-/рас-, из-/ис-</em> и другие пишутся в зависимости от последующего звука:</p>
+        <ul>
+            <li><strong>З</strong> — перед <strong>звонкими</strong> согласными и гласными (<em>разбег, бездарный</em>);</li>
+            <li><strong>С</strong> — перед <strong>глухими</strong> согласными (<em>рассказ, беспечный</em>).</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('prefixes_pre_pri')">
+        <i class="bi bi-eye-fill me-1"></i> Приставки ПРЕ- и ПРИ-
+    </div>
+    <div id="prefixes_pre_pri" class="solution-content d-none">
+        <p><strong>ПРЕ-</strong>:</p>
+        <ul>
+            <li>= значение <strong>«очень»</strong> (<em>прекрасный — очень красивый</em>);</li>
+            <li>= близкое к <strong>«пере-»</strong> (<em>преодолеть — перейти</em>).</li>
+        </ul>
+        <p><strong>ПРИ-</strong>:</p>
+        <ul>
+            <li>значение <strong>приближения</strong> (<em>приехать</em>);</li>
+            <li>значение <strong>неполноты действия</strong> (<em>приоткрыть</em>);</li>
+            <li>значение <strong>присоединения</strong> (<em>приклеить</em>);</li>
+            <li>значение <strong>нахождения вблизи</strong> (<em>пришкольный</em>).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- БЛОК 6: Правописание суффиксов -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§6</div>
+        <span class="badge-type"><i class="bi bi-suffix me-1"></i> Правописание суффиксов</span>
+    </div>
+    <p>Написание суффиксов зависит от части речи. У существительных и прилагательных есть суффиксы, которые пишутся всегда одинаково.</p>
+    <p><strong>Например:</strong> <em>-тор, -ник, -тель, -чик, -щик, -изн, -еств, -чив, -лив</em>.</p>
+    <p>Это значит, что, если в слове есть такой суффикс, он всегда пишется одинаково. Но есть и такие суффиксы, написание которых подчиняется правилам.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('suffixes_n_nn')">
+        <i class="bi bi-eye-fill me-1"></i> Н/НН в прилагательных и причастиях
+    </div>
+    <div id="suffixes_n_nn" class="solution-content d-none">
+        <ul>
+            <li><strong>НН</strong> — если есть приставка (кроме <em>не-</em>) (<em>вязаный → завязанный</em>) или <strong>зависимое слово</strong> (<em>крашеный забор → крашенный масляной краской забор</em>).</li>
+            <li><strong>Н</strong> — в <strong>кратких причастиях</strong> (<em>задача решена</em>).</li>
+            <li><strong>Н</strong> — в отглагольных прилагательных без приставки и без зависимого слова (<em>жареный картофель</em>).</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('suffixes_ek_ik')">
+        <i class="bi bi-eye-fill me-1"></i> Суффиксы -ЕК и -ИК в существительных
+    </div>
+    <div id="suffixes_ek_ik" class="solution-content d-none">
+        <ul>
+            <li><strong>-ек</strong> — если гласная <strong>исчезает</strong> при склонении (<em>замочек — замочка</em>);</li>
+            <li><strong>-ик</strong> — гласная <strong>сохраняется</strong> (<em>ключик — ключика</em>).</li>
+        </ul>
+    </div>
+</div>
+
+<!-- БЛОК 7: НЕ и НИ с разными частями речи -->
+<div class="task-block p-4">
+    <div class="d-flex align-items-center gap-3 mb-3 flex-wrap">
+        <div class="task-number">§7</div>
+        <span class="badge-type"><i class="bi bi-x-circle me-1"></i> НЕ и НИ с разными частями речи</span>
+    </div>
+    <p>Чтобы не допустить ошибки в изложении на ОГЭ по русскому или в первой части, важно помнить особенности написания этих частиц с каждой частью речи.</p>
+    
+    <div class="solution-toggle" onclick="toggleSolution('ne_with_verbs')">
+        <i class="bi bi-eye-fill me-1"></i> НЕ с глаголами, деепричастиями и краткими причастиями
+    </div>
+    <div id="ne_with_verbs" class="solution-content d-none">
+        <p><strong>Пишется РАЗДЕЛЬНО:</strong></p>
+        <ul>
+            <li><em>не знал, не ведая, не сделан</em></li>
+        </ul>
+        <p class="mb-0"><strong>Исключения:</strong> слова, которые без НЕ не употребляются (<em>ненавидеть, негодовать, недоумевать</em>).</p>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('ne_with_adjectives')">
+        <i class="bi bi-eye-fill me-1"></i> НЕ с прилагательными и существительными
+    </div>
+    <div id="ne_with_adjectives" class="solution-content d-none">
+        <p><strong>Слитно:</strong></p>
+        <ul>
+            <li>если слово <strong>не употребляется</strong> без НЕ (<em>невежа, нелепый</em>);</li>
+            <li>если можно <strong>заменить синонимом</strong> без НЕ (<em>негромкий — тихий, неприятель — враг</em>).</li>
+        </ul>
+        <p><strong>Раздельно:</strong></p>
+        <ul>
+            <li>если есть <strong>противопоставление с союзом А</strong> (<em>не правда, а ложь</em>);</li>
+            <li>если есть слова <strong>далеко не, вовсе не, отнюдь не</strong> (<em>далеко не красивый</em>).</li>
+        </ul>
+    </div>
+    
+    <div class="solution-toggle mt-2" onclick="toggleSolution('ni_particle')">
+        <i class="bi bi-eye-fill me-1"></i> Частица НИ
+    </div>
+    <div id="ni_particle" class="solution-content d-none">
+        <p><strong>НИ</strong> при раздельном написании <strong>усиливает отрицание</strong>:</p>
+        <p><em>вокруг не было ни деревьев, ни самого крохотного кустарника</em>.</p>
+        <p class="mb-0">Также НИ пишется в устойчивых выражениях: <em>ни свет ни заря, ни рыба ни мясо, ни жив ни мёртв</em>.</p>
+    </div>
+</div>
+
+<!-- ОВАЛЬНАЯ КНОПКА ВОЗВРАТА -->
+<div class="mt-4 pt-3 border-top">
+    <a href="/theory/oge/rus" class="btn btn-outline-success-custom rounded-pill">
+        <i class="bi bi-arrow-left me-2"></i> Вернуться ко всем темам
+    </a>
+</div>
+
+<script>
+    function toggleSolution(id) {
+        const el = document.getElementById(id);
+        if (el.classList.contains('d-none')) {
+            el.classList.remove('d-none');
+        } else {
+            el.classList.add('d-none');
+        }
+    }
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script" async></script>
+{% endblock %}
