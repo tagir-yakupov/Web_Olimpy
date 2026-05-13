@@ -20,6 +20,7 @@ def new_prob():
         number = request.form.get('id')
         category = request.form.get('category')
         image_file = request.files.get('image')
+        difficulty = request.form.get('difficulty')
         image_path = None
         if image_file and image_file.filename:
             filename = f'image_{category}_{number}_{randint(1,1000)}.png'
@@ -39,7 +40,8 @@ def new_prob():
             'id': number,
             'question': cond,
             'image': f'/static/uploads/{filename}',
-            'answer': ans
+            'answer': ans,
+            'difficulty': difficulty
         }
         tasks[0]['questions'].append(new_task)
         with open(json_path, 'w', encoding='utf-8') as f:

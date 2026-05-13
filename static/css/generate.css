@@ -1,0 +1,87 @@
+.generator-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        padding: 2rem;
+    }
+    .difficulty-selector {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    .difficulty-option {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+        padding: 1rem;
+        border: 2px solid #e9ecef;
+        border-radius: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .difficulty-option:hover {
+        border-color: #5a8f5a;
+        background: #f8fff8;
+    }
+    .difficulty-option.selected {
+        border-color: #5a8f5a;
+        background: #e8f5e9;
+    }
+    .difficulty-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    .topic-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    .topic-chip {
+        padding: 0.4rem 1rem;
+        background: #e8f4e8;
+        border: 1px solid #5a8f5a;
+        border-radius: 2rem;
+        font-size: 0.85rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .topic-chip:hover, .topic-chip.selected {
+        background: #5a8f5a;
+        color: white;
+    }
+    .preview-card {
+        background: #f8f9fa;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    .stat-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: 0.25rem 0.75rem;
+        background: white;
+        border-radius: 2rem;
+        font-size: 0.85rem;
+        margin: 0.25rem;
+    }
+    .loading-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(255,255,255,0.9);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 4px solid #e9ecef;
+        border-top-color: #5a8f5a;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }

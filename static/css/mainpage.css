@@ -1,0 +1,23 @@
+.hero-section {
+        background: linear-gradient(135deg, #2d4a2d 0%, #5a8f5a 100%);
+        color: white;
+        border-radius: 1rem;
+        padding: 3rem 2rem;
+        margin-bottom: 2rem;
+    }
+    .feature-card {
+        background: white;
+        border-radius: 1rem;
+        padding: 2rem;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
+        height: 100%;
+    }
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+    .btn-custom {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+        border-radius: 0.75rem;
+    }

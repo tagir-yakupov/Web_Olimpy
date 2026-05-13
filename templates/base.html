@@ -1,19 +1,47 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}ОГЭ Подготовка{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <style>
+        *{transition:background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease}
+        :root[data-theme="light"]{--bg:#f5f7f5;--card:#fff;--text:#2d4a2d;--navbar:#2d4a2d;--border:#c5d5c5;--chat-bot:#e8f0e8;--card-header:#e8f0e8}
+        :root[data-theme="dark"]{--bg:#0d1117;--card:#161b22;--text:#f0f6fc;--navbar:#161b22;--border:#30363d;--chat-bot:#21262d;--card-header:#21262d}
+        body{background:var(--bg);color:var(--text);min-height:100vh;display:flex;flex-direction:column}
+        .navbar{background:var(--navbar)!important;border-bottom:1px solid var(--border)}
+        .navbar-brand,.nav-link{color:#fff!important}
+        .card{background:var(--card);border:1px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+        .card-header{background:var(--card-header);border-bottom:2px solid var(--border)}
+        main{flex:1;padding-top:76px}
+        footer{background:var(--navbar);color:#fff;text-align:center;padding:1rem;margin-top:auto}
+        .table,.table-bordered{border:2px solid #5a8f5a!important}
+        .table th,.table td{border:2px solid #5a8f5a!important;background:var(--card)!important;color:var(--text)!important}
+        .table thead th{background:var(--card-header)!important}
+        .btn-success{background:#5a8f5a!important;border-color:#4a7a4a!important}
+        .btn-outline-light{color:#fff!important;border-color:#fff!important}
+        .theme-toggle{background:transparent;border:2px solid #fff;color:#fff;padding:0.25rem 0.75rem;border-radius:2rem;cursor:pointer;display:flex;align-items:center;gap:0.5rem;font-size:0.9rem}
+        .theme-toggle:hover{background:#fff;color:var(--navbar)}
+        .chat-widget{position:fixed;bottom:20px;right:20px;z-index:1000}
+        .chat-window{width:350px;position:absolute;bottom:70px;right:0;background:var(--card);border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,.15);display:none;border:1px solid var(--border)}
+        .chat-header{background:#5a8f5a;color:#fff;padding:12px;border-radius:10px 10px 0 0;display:flex;justify-content:space-between;align-items:center}
+        .chat-messages{height:400px;overflow-y:auto;padding:12px}
+        .message-bot{background:var(--chat-bot);padding:8px 12px;border-radius:18px;display:inline-block;margin-bottom:8px;color:var(--text)}
+        .message-user{background:#5a8f5a;color:#fff;padding:8px 12px;border-radius:18px;display:inline-block;margin-bottom:8px}
+        .chat-input-area{display:flex;gap:8px;padding:12px;border-top:1px solid var(--border)}
+        .chat-input-area input{flex:1}
+        .chat-button{background:#5a8f5a;border:none;border-radius:50%;width:55px;height:55px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.2);transition:transform 0.2s}
+        .chat-button:hover{transform:scale(1.05)}
+        .chat-button svg{width:28px;height:28px;fill:#fff}
+        @media(max-width:991px){main{padding-top:120px}}
+    </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="/">
-                ОГЭ Подготовка
-            </a>
+            <a class="navbar-brand" href="/">Olimpy</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -22,14 +50,21 @@
                     {% if session.get('user_name') %}
                         <li class="nav-item"><a class="nav-link" href="/task">Информатика</a></li>
                         <li class="nav-item"><a class="nav-link" href="/task/math">Математика</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/profile">{{ session['user_name'] }}</a></li>
-                        <li class="nav-item ms-lg-2">
-                            <a class="btn btn-outline-light btn-sm" href="/logout">Выйти</a>
+                        <li class="nav-item"><a class="nav-link" href="/generate">Создать вариант</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/profile"><i class="bi bi-person-circle me-1"></i>{{ session['user_name'] }}</a></li>
+                        <li class="nav-item">
+                            <button class="theme-toggle" id="themeToggle">
+                                <span id="themeIcon">◐</span>
+                            </button>
                         </li>
+                        <li class="nav-item ms-2"><a class="btn btn-outline-light btn-sm" href="/logout">Выйти</a></li>
                     {% else %}
                         <li class="nav-item"><a class="nav-link" href="/login">Войти</a></li>
-                        <li class="nav-item ms-lg-2">
-                            <a class="btn btn-success btn-sm" href="/register">Регистрация</a>
+                        <li class="nav-item ms-2"><a class="btn btn-success btn-sm" href="/register">Регистрация</a></li>
+                        <li class="nav-item ms-2">
+                            <button class="theme-toggle" id="themeToggle">
+                                <i class="bi bi-moon-fill" id="themeIcon"></i>
+                            </button>
                         </li>
                     {% endif %}
                 </ul>
@@ -49,18 +84,17 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-
             {% block content %}{% endblock %}
         </div>
     </main>
 
     <footer>
-        <div class="container text-center">
-            <small>© 2026 ОГЭ Подготовка. Все права защищены.</small>
+        <div class="container">
+            <small>© 2026 Olimpy</small>
         </div>
     </footer>
 
-    <!-- Чат-виджет нейросети -->
+    <!-- Чат-виджет -->
     <div class="chat-widget">
         <div class="chat-button" id="chatButton">
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -69,130 +103,100 @@
         </div>
         <div class="chat-window" id="chatWindow">
             <div class="chat-header">
-                <h6>Нейросеть-помощник</h6>
-                <button class="close-chat" id="closeChat">×</button>
+                <h6 class="mb-0">Нейросеть-помощник</h6>
+                <button class="btn-close btn-close-white" id="closeChat"></button>
             </div>
             <div class="chat-messages" id="chatMessages">
-                <div class="message bot">
-                    <div class="message-content">
-                        Привет! Я нейросеть-помощник. Задавай любые вопросы по ОГЭ
-                    </div>
-                </div>
+                <div class="message-bot">Привет! Я нейросеть-помощник. Задавай любые вопросы по ОГЭ</div>
             </div>
             <div class="chat-input-area">
-                <input type="text" class="chat-input" id="chatInput" placeholder="Напиши свой вопрос..." autocomplete="off">
-                <button class="chat-send-btn" id="sendMessage">Отправить</button>
+                <input type="text" class="form-control" id="chatInput" placeholder="Напиши свой вопрос...">
+                <button class="btn btn-success" id="sendMessage">Отправить</button>
             </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- JavaScript для чата -->
     <script>
-        (function() {
-            const chatButton = document.getElementById('chatButton');
-            const chatWindow = document.getElementById('chatWindow');
-            const closeChat = document.getElementById('closeChat');
-            const sendButton = document.getElementById('sendMessage');
-            const chatInput = document.getElementById('chatInput');
-            const chatMessages = document.getElementById('chatMessages');
-
-            // Открыть/закрыть чат
-            chatButton.addEventListener('click', () => {
-                chatWindow.classList.add('open');
-            });
-
-            closeChat.addEventListener('click', () => {
-                chatWindow.classList.remove('open');
-            });
-
-            // Функция добавления сообщения
-            function addMessage(text, isUser) {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
-                messageDiv.innerHTML = `<div class="message-content">${escapeHtml(text)}</div>`;
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+        function setTheme(theme) {
+            const html = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'dark') {
+                icon.className = 'bi bi-sun-fill';
+            } else {
+                icon.className = 'bi bi-moon-fill';
             }
+        }
+        
+        function toggleTheme() {
+            const current = localStorage.getItem('theme') || 'light';
+            const next = current === 'light' ? 'dark' : 'light';
+            setTheme(next);
+        }
+        
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        setTheme(savedTheme);
+        
+        const themeBtn = document.getElementById('themeToggle');
+        if (themeBtn) {
+            themeBtn.addEventListener('click', toggleTheme);
+        }
 
-            // Функция показа "печатает..."
-            function showTyping() {
-                const typingDiv = document.createElement('div');
-                typingDiv.className = 'message bot';
-                typingDiv.id = 'typingMessage';
-                typingDiv.innerHTML = '<div class="message-content typing-indicator active">Нейросеть печатает...</div>';
-                chatMessages.appendChild(typingDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+        // Чат
+        const chatBtn = document.getElementById('chatButton');
+        const chatWin = document.getElementById('chatWindow');
+        const closeBtn = document.getElementById('closeChat');
+        const sendBtn = document.getElementById('sendMessage');
+        const chatInp = document.getElementById('chatInput');
+        const chatMsg = document.getElementById('chatMessages');
+
+        chatBtn.onclick = () => chatWin.style.display = 'block';
+        closeBtn.onclick = () => chatWin.style.display = 'none';
+
+        function addMessage(text, isUser) {
+            const div = document.createElement('div');
+            div.className = `mb-2 d-flex ${isUser ? 'justify-content-end' : 'justify-content-start'}`;
+            div.innerHTML = `<div class="${isUser ? 'message-user' : 'message-bot'}">${escapeHtml(text)}</div>`;
+            chatMsg.appendChild(div);
+            chatMsg.scrollTop = chatMsg.scrollHeight;
+        }
+        
+        function escapeHtml(str) {
+            const d = document.createElement('div');
+            d.textContent = str;
+            return d.innerHTML;
+        }
+        
+        async function sendToAI(msg) {
+            try {
+                const res = await fetch('/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({message: msg})
+                });
+                const data = await res.json();
+                return data.reply || 'Извините, не удалось получить ответ.';
+            } catch(e) { 
+                return 'Ошибка соединения. Попробуйте позже.';
             }
-
-            function hideTyping() {
-                const typing = document.getElementById('typingMessage');
-                if (typing) typing.remove();
-            }
-
-            // Экранирование HTML
-            function escapeHtml(text) {
-                const div = document.createElement('div');
-                div.textContent = text;
-                return div.innerHTML;
-            }
-
-            // Отправка сообщения в нейросеть
-            async function sendToAI(message) {
-                try {
-                    const response = await fetch('/chat', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ message: message })
-                    });
-                    
-                    if (!response.ok) {
-                        throw new Error('Ошибка сервера');
-                    }
-                    
-                    const data = await response.json();
-                    return data.reply || "Извините, не удалось получить ответ. Попробуйте позже.";
-                } catch (error) {
-                    console.error('Ошибка:', error);
-                    return "Ошибка соединения. Проверьте интернет и попробуйте снова.";
-                }
-            }
-
-            // Основная функция отправки
-            async function sendMessage() {
-                const message = chatInput.value.trim();
-                if (!message) return;
-
-                // Добавляем сообщение пользователя
-                addMessage(message, true);
-                chatInput.value = '';
-                
-                // Показываем индикатор печати
-                showTyping();
-                
-                // Получаем ответ от нейросети
-                const reply = await sendToAI(message);
-                
-                // Убираем индикатор и добавляем ответ
-                hideTyping();
-                addMessage(reply, false);
-            }
-
-            // Отправка по кнопке
-            sendButton.addEventListener('click', sendMessage);
-            
-            // Отправка по Enter
-            chatInput.addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
-                    sendMessage();
-                }
-            });
-        })();
+        }
+        
+        async function sendMessage() {
+            const msg = chatInp.value.trim();
+            if (!msg) return;
+            addMessage(msg, true);
+            chatInp.value = '';
+            addMessage('🤔 ...', false);
+            const reply = await sendToAI(msg);
+            chatMsg.removeChild(chatMsg.lastChild);
+            addMessage(reply, false);
+        }
+        
+        sendBtn.onclick = sendMessage;
+        chatInp.onkeypress = (e) => e.key === 'Enter' && sendMessage();
     </script>
-    
     {% block extra_js %}{% endblock %}
 </body>
 </html>

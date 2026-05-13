@@ -2,38 +2,51 @@
 
 {% block title %}{{ title }}{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mainpage.css') }}">
+{% endblock %}
+
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-lg-8">
-        <div class="card shadow mb-4 border-primary">
-            <div class="card-body text-center py-5">
-                <h1>{{ title }}</h1>
-                <p class="lead text-muted mb-4">
-                    Платформа для подготовки к ОГЭ по информатике, математике и олимпиадам
-                </p>
-                <div class="d-flex justify-content-center gap-3 flex-wrap">
-                    <a href="/task" class="btn btn-success btn-lg">
-                        Информатика
-                    </a>
-                    <a href="/task/math" class="btn btn-success btn-lg">
-                        Математика ОГЭ (2-ая часть)
-                    </a>
-                    <a href="/theory/oge/math" class="btn btn-success btn-lg">
-                        Вся теория по математике для подготовки к ОГЭ
-                    </a>
-                    <a href="/theory/oge/rus" class="btn btn-success btn-lg">
-                        Вся теория по русскому языку для подготовки к ОГЭ
-                    </a>
-                </div>
-            </div>
+
+<div class="hero-section text-center">
+    <h1 class="display-4 fw-bold mb-3">{{ title }}</h1>
+    <p class="lead mb-4">
+        Платформа для подготовки к ОГЭ по информатике, математике и олимпиадам
+    </p>
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="/task" class="btn btn-light btn-custom">
+            Информатика
+        </a>
+        <a href="/task/math" class="btn btn-light btn-custom">
+            Математика ОГЭ (2-ая часть)
+        </a>
+        <a href="/theory/oge/math" class="btn btn-light btn-custom">
+            Вся теория по математике для подготовки к ОГЭ
+        </a>
+        <a href="/theory/oge/rus" class="btn btn-light btn-custom">
+            Вся теория по русскому языку для подготовки к ОГЭ
+        </a>
+        <a href="/generate" class="btn btn-success btn-custom">
+            Генератор вариантов
+        </a>
+    </div>
+</div>
+
+{% if not user %}
+<div class="card shadow">
+    <div class="card-body text-center py-4">
+        <h5 class="card-title mb-3">Начните подготовку прямо сейчас!</h5>
+        <p class="text-muted mb-4">Создайте аккаунт, чтобы сохранять прогресс</p>
+        <div class="d-flex justify-content-center gap-3">
+            <a href="/register" class="btn btn-success btn-lg">
+                <i class="bi bi-person-plus me-2"></i>Регистрация
+            </a>
+            <a href="/login" class="btn btn-outline-success btn-lg">
+                <i class="bi bi-box-arrow-in-right me-2"></i>Войти
+            </a>
         </div>
-
-                </div>
-            </div>
-
-        {% if not user %}
-
-        {% endif %}
-
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
