@@ -64,6 +64,9 @@
         </div>
     </footer>
 
+    <!-- Стили для чат-виджета -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/chat.css') }}">
+
     <!-- Чат-виджет -->
     <div class="chat-widget">
         <div class="chat-button" id="chatButton">
@@ -80,7 +83,7 @@
                 <div class="message-bot">Привет! Я нейросеть-помощник. Задавай любые вопросы по ОГЭ</div>
             </div>
             <div class="chat-input-area">
-                <input type="text" class="form-control" id="chatInput" placeholder="Напиши свой вопрос...">
+                <textarea id="chatInput" placeholder="Напиши свой вопрос..." rows="1"></textarea>
                 <button class="btn btn-success" id="sendMessage">Отправить</button>
             </div>
         </div>
@@ -88,15 +91,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Тема оформления
         function setTheme(theme) {
             const html = document.documentElement;
             const icon = document.getElementById('themeIcon');
             html.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
             if (theme === 'dark') {
-                icon.className = 'bi bi-sun-fill';
+                if (icon) icon.className = 'bi bi-sun-fill';
             } else {
-                icon.className = 'bi bi-moon-fill';
+                if (icon) icon.className = 'bi bi-moon-fill';
             }
         }
         
@@ -115,57 +119,106 @@
         }
 
         // Чат
-        const chatBtn = document.getElementById('chatButton');
-        const chatWin = document.getElementById('chatWindow');
-        const closeBtn = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendMessage');
-        const chatInp = document.getElementById('chatInput');
-        const chatMsg = document.getElementById('chatMessages');
+        (function() {
+            const chatBtn = document.getElementById('chatButton');
+            const chatWin = document.getElementById('chatWindow');
+            const closeBtn = document.getElementById('closeChat');
+            const sendBtn = document.getElementById('sendMessage');
+            const chatInp = document.getElementById('chatInput');
+            const chatMsg = document.getElementById('chatMessages');
 
-        chatBtn.onclick = () => chatWin.style.display = 'block';
-        closeBtn.onclick = () => chatWin.style.display = 'none';
-
-        function addMessage(text, isUser) {
-            const div = document.createElement('div');
-            div.className = `mb-2 d-flex ${isUser ? 'justify-content-end' : 'justify-content-start'}`;
-            div.innerHTML = `<div class="${isUser ? 'message-user' : 'message-bot'}">${escapeHtml(text)}</div>`;
-            chatMsg.appendChild(div);
-            chatMsg.scrollTop = chatMsg.scrollHeight;
-        }
-        
-        function escapeHtml(str) {
-            const d = document.createElement('div');
-            d.textContent = str;
-            return d.innerHTML;
-        }
-        
-        async function sendToAI(msg) {
-            try {
-                const res = await fetch('/chat', {
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({message: msg})
-                });
-                const data = await res.json();
-                return data.reply || 'Извините, не удалось получить ответ.';
-            } catch(e) { 
-                return 'Ошибка соединения. Попробуйте позже.';
+            if (!chatBtn || !chatWin || !closeBtn || !sendBtn || !chatInp || !chatMsg) {
+                console.error('Элементы чата не найдены');
+                return;
             }
-        }
-        
-        async function sendMessage() {
-            const msg = chatInp.value.trim();
-            if (!msg) return;
-            addMessage(msg, true);
-            chatInp.value = '';
-            addMessage('🤔 ...', false);
-            const reply = await sendToAI(msg);
-            chatMsg.removeChild(chatMsg.lastChild);
-            addMessage(reply, false);
-        }
-        
-        sendBtn.onclick = sendMessage;
-        chatInp.onkeypress = (e) => e.key === 'Enter' && sendMessage();
+
+            chatBtn.onclick = function(e) {
+                e.preventDefault();
+                chatWin.style.display = 'flex';
+                setTimeout(() => chatInp.focus(), 100);
+            };
+            
+            closeBtn.onclick = function(e) {
+                e.preventDefault();
+                chatWin.style.display = 'none';
+            };
+
+            function addMessage(text, isUser) {
+                const div = document.createElement('div');
+                div.className = `mb-2 d-flex ${isUser ? 'justify-content-end' : 'justify-content-start'}`;
+                div.innerHTML = `<div class="${isUser ? 'message-user' : 'message-bot'}">${escapeHtml(text)}</div>`;
+                chatMsg.appendChild(div);
+                chatMsg.scrollTop = chatMsg.scrollHeight;
+            }
+            
+            function escapeHtml(str) {
+                if (!str) return '';
+                const d = document.createElement('div');
+                d.textContent = str;
+                return d.innerHTML;
+            }
+            
+            async function sendToAI(msg) {
+                try {
+                    const res = await fetch('/chat', {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({message: msg})
+                    });
+                    const data = await res.json();
+                    return data.reply || 'Извините, не удалось получить ответ.';
+                } catch(e) { 
+                    console.error('Ошибка чата:', e);
+                    return 'Ошибка соединения. Попробуйте позже.';
+                }
+            }
+            
+            async function sendMessage() {
+                const msg = chatInp.value.trim();
+                if (!msg) return;
+                
+                sendBtn.disabled = true;
+                addMessage(msg, true);
+                chatInp.value = '';
+                chatInp.style.height = 'auto';
+                
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message-bot';
+                typingDiv.innerHTML = 'Печатает...';
+                typingDiv.id = 'typingIndicator';
+                chatMsg.appendChild(typingDiv);
+                chatMsg.scrollTop = chatMsg.scrollHeight;
+                
+                const reply = await sendToAI(msg);
+                
+                const indicator = document.getElementById('typingIndicator');
+                if (indicator) indicator.remove();
+                
+                addMessage(reply, false);
+                sendBtn.disabled = false;
+                chatInp.focus();
+            }
+            
+            sendBtn.onclick = sendMessage;
+            
+            chatInp.onkeydown = function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            };
+            
+            chatInp.oninput = function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+            };
+            
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && chatWin.style.display === 'flex') {
+                    chatWin.style.display = 'none';
+                }
+            });
+        })();
     </script>
     {% block extra_js %}{% endblock %}
 </body>
